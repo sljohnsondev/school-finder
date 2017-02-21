@@ -9,6 +9,8 @@
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.7.1",
     "file-loader": "^0.10.0",
+    "firebase": "^3.6.10",
+    "firebase-tools": "^3.3.0",
     "jest": "^18.1.0",
     "node-sass": "^4.5.0",
     "react-addons-test-utils": "^15.4.2",
