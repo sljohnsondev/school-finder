@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import './settings-style.css';
+import './filters-style.css';
 
 export default class Filters extends Component {
 
