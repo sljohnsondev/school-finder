@@ -1,30 +1,28 @@
 import { connect } from 'react-redux';
 import App from '../components/App'
-import { fetchLocation, fetchSun, fetchWeather, receiveForecast, receiveExtForecastApp } from '../actions'
+// import { TBD } from '../actions'
 
 const mapStateToProps = (state) => {
-  return {
-    data: state.latLongSun
-  }
+  return state;
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchLocation: (data) => {
-      dispatch(fetchLocation(data))
-    },
-    fetchSun: (data) => {
-      dispatch(fetchSun(data))
-    },
-    fetchWeather: (data) => {
-      dispatch(fetchWeather(data))
-    },
-    receiveForecast: (data) => {
-      dispatch(receiveForecast(data))
-    },
-    receiveExtForecastApp: (data, city) => {
-      dispatch(receiveExtForecastApp(data, city))
-    }
+    // fetchLocation: (data) => {
+    //   dispatch(fetchLocation(data))
+    // },
+    // fetchSun: (data) => {
+    //   dispatch(fetchSun(data))
+    // },
+    // fetchWeather: (data) => {
+    //   dispatch(fetchWeather(data))
+    // },
+    // receiveForecast: (data) => {
+    //   dispatch(receiveForecast(data))
+    // },
+    // receiveExtForecastApp: (data, city) => {
+    //   dispatch(receiveExtForecastApp(data, city))
+    // }
   }
 }
 
