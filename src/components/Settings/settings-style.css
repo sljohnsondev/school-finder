@@ -1,0 +1,15 @@
+.settings-p-tag {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 40px;
+  margin-bottom: 50px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.settings-container {
+  text-align: center;
+  border-style: solid;
+  width: 30%;
+  margin: auto;
+  padding: 20px;
+}
