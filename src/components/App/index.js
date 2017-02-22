@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Header';
-import Map from '../Map';
+import GoogleMap from '../GoogleMap';
 import './app-style.css'
 
 export default class App extends Component {
@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <Map />
+        <GoogleMap />
         {this.props.children}
       </div>
     )
