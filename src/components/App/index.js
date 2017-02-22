@@ -6,15 +6,32 @@ import './app-style.css'
 export default class App extends Component {
 
   componentDidMount() {
-
+    console.log('it is working')
   }
 
   render() {
+
+    const location = {
+      lat: 39.731237,
+      lng: -104.973377
+    }
+
+    const schoolsArr = [
+      {
+        location: {
+          lat: 39.758135,
+          lng: -105.007295
+        }
+      }
+    ]
+
     return (
-      <div style={{width: 700, height: 800, background: 'peru'}}>
+      <div>
         <Header />
-        <Map />
-        {this.props.children}
+        <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
+          <Map center={location} schoolsArr={schoolsArr} />
+          {this.props.children}
+        </div>
       </div>
     )
   }
