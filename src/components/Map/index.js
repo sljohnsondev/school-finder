@@ -19,19 +19,17 @@ export default class Map extends Component {
     })
 
     return (
-      <div>
-        <GoogleMapLoader
-          containerElement = { mapContainer }
-          googleMapElement = {
-            <GoogleMap
-              defaultZoom={13}
-              defaultCenter={center}
-              options={{streetViewControl: false, myTypeControl: false }}>
-              { markers }
-            </GoogleMap>
-          }
-        />
-      </div>
+      <GoogleMapLoader
+        containerElement = { mapContainer }
+        googleMapElement = {
+          <GoogleMap
+            defaultZoom={13}
+            defaultCenter={center}
+            options={{streetViewControl: false, myTypeControl: false }}>
+            { markers }
+          </GoogleMap>
+        }
+      />
     )
   }
 }

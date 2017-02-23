@@ -43,11 +43,11 @@ export default class App extends Component {
           <SignIn/> }
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
           <Map center={location} schoolsArr={schoolsArr} />
+          {this.props.children}
         </div>
       </div>
     )
   }
 }
-// {this.props.children}
 //
 // AIzaSyB8JYY9Fxzlc0pjxOxv-i9f1QtLOe0lY9o
