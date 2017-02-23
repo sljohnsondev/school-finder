@@ -1,5 +1,8 @@
 const app = (state = [], action) => {
   switch (action.type) {
+    case 'SIGN_IN':
+      return action.user;
+
     // case 'FETCH_LOCATION':
     //   return action.data;
     //

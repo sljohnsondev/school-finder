@@ -1,4 +1,17 @@
-// 
+export const signInHandler = (user) => {
+  return {
+    type: 'SIGN_IN',
+    user
+  }
+}
+
+export const setSchools = (schoolResults) => {
+  return {
+    type: 'SET_SCHOOLS',
+    schoolResults
+  }
+}
+
 // export const receiveForecast = (forecastData) => {
 //   return {
 //     type: 'RECEIVE_FORECAST',
