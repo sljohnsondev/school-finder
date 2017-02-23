@@ -1,16 +1,21 @@
 import { connect } from 'react-redux';
 import App from '../components/App'
-// import { TBD } from '../actions'
+import { signIn, signOut } from '../firebase.js';
+import { signInHandler } from '../actions'
 
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    data: state.AppData,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchLocation: (data) => {
-    //   dispatch(fetchLocation(data))
-    // },
+    signInHandler: () => {
+      signIn().then((user) => {
+        dispatch(signInHandler(user))
+      });
+    }
     // fetchSun: (data) => {
     //   dispatch(fetchSun(data))
     // },

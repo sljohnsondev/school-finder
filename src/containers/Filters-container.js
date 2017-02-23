@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
 import Filters from '../components/Filters';
-// import { TBD } from '../actions';
+import { setSchools } from '../actions';
 
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    schoolResults: state.FilterResults,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // receiveForecast: (data) => {
+    setSchools: (schoolResults) => {
+      dispatch(setSchools(schoolResults))
+    },
+  // receiveForecast: (data) => {
     //   dispatch(receiveForecast(data))
     // },
     // removePin: (data) => {

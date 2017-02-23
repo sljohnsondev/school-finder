@@ -22,3 +22,8 @@
   font-family: 'Quicksand', sans-serif;
   margin: 20px 0;
 }
+
+.filter-fields h4 {
+  font-size: 14px;
+  margin: 5px 0;
+}
