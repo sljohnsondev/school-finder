@@ -20,6 +20,7 @@ export default class Map extends Component {
 
     return (
       <GoogleMapLoader
+        className = 'map-container'
         containerElement = { mapContainer }
         googleMapElement = {
           <GoogleMap

@@ -1,5 +1,24 @@
-.filter-header h2{
+.filter-container {
+  position: fixed;
+  left: 0;
+  top: 8vh;
+  z-index: 1;
+  height: 84vh;
+  background: rgba(198, 218, 240, .9);
+  border-radius: 8px;
+  margin-left: 12px;
+  padding: 0 15px;
+  width: 25vw;
+}
+
+.filter-header {
   font-family: 'Quicksand', sans-serif;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
+  margin-top: 10px;
+}
+
+.filter-fields {
+  font-family: 'Quicksand', sans-serif;
+  margin: 20px 0;
 }

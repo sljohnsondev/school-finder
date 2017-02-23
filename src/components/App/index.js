@@ -18,6 +18,12 @@ export default class App extends Component {
     console.log('it is working')
   }
 
+  signInHandler() {
+    signIn().then((user) => {
+      this.setState({ user });
+    });
+  }
+
   render() {
 
     const location = {
@@ -40,14 +46,14 @@ export default class App extends Component {
         { this.state.user ?
           <div className='for filter and search components'/>
           :
-          <SignIn/> }
+          <SignIn signInHandler={ this.signInHandler.bind(this) } /> }
+          {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
           <Map center={location} schoolsArr={schoolsArr} />
-          {this.props.children}
         </div>
       </div>
     )
   }
 }
 //
-// AIzaSyB8JYY9Fxzlc0pjxOxv-i9f1QtLOe0lY9o
+// AIzaSyB8JYY9Fxzlc0pjxOxv-i9fa1QtLOe0lY9o

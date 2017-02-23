@@ -1,10 +1,15 @@
 import React from 'react';
+import './signin-style.css'
 
-const SignIn = () => {
+const SignIn = (props) => {
   return (
-    <div className='sign-in'>
-      <h2>Please sign to start your search</h2>
-      <img src='../../assets/btn_google_signin.png' />
+    <div className='sign-in-container'>
+      <h2>Please sign-in to start<br/>your school search</h2>
+      <img
+        className='google-btn-img'
+        src={require('../../assets/btn_google_signin.png')}
+        onClick={ () => props.signInHandler() }
+      />
     </div>
   )
 }
