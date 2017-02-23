@@ -1,59 +1,53 @@
 import React, { Component } from 'react';
 import Header from '../Header';
-const { splitLocation, filterData, filterExtData } = require('../Helpers/ForecastHelpers.js');
+import Map from '../Map';
+import SignIn from '../SignIn';
+import { signIn, signOut } from '../../firebase.js';
 import './app-style.css'
 
 export default class App extends Component {
-
-  componentDidMount() {
-    const { fetchLocation, fetchSun, fetchWeather } = this.props
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude
-      const long = position.coords.longitude
-      fetchLocation({lat, long});
-      this.fetchSunAPI(lat, long, fetchSun);
-      this.fetchCurrentCity(lat, long, fetchWeather);
-    })
-  }
-
-  fetchCurrentCity(lat, long) {
-    fetch(`http://api.wunderground.com/api/0b7e4bc2937ad616/geolookup/q/${lat},${long}.json`)
-    .then((response) => response.json())
-    .then((data) => this.getForecast(`${data.location.city}, ${data.location.state}`))
-  }
-
-  fetchSunAPI(lat, long, fetchSun) {
-    fetch(`http://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}&formatted=0`)
-    .then((response) => response.json())
-    .then((time) => this.filterTime(time))
-    .then((cleanTime) => fetchSun(cleanTime))
-  }
-  // .then((data) => this.checkDaytime(data))
-
-  filterTime(time){
-    return{
-      sunrise: time.results.sunrise,
-      sunset: time.results.sunset
+  constructor() {
+    super();
+    this.state = {
+      user: null,
     }
   }
 
-  getForecast(location) {
-    fetch(`http://api.wunderground.com/api/0b7e4bc2937ad616/conditions/q/${splitLocation(location)}.json`)
-    .then((response) => response.json())
-    .then((data) => filterData(data))
-    .then((cleanData) => this.props.fetchWeather(cleanData));
-    fetch(`http://api.wunderground.com/api/0b7e4bc2937ad616/forecast10day/q/${splitLocation(location)}.json`)
-    .then((response) => response.json())
-    .then((data) => filterExtData(data))
-    .then((cleanData) => this.props.receiveExtForecastApp(cleanData, location));
+
+  componentDidMount() {
+    console.log('it is working')
   }
 
   render() {
+
+    const location = {
+      lat: 39.731237,
+      lng: -104.973377
+    }
+
+    const schoolsArr = [
+      {
+        location: {
+          lat: 39.758135,
+          lng: -105.007295
+        }
+      }
+    ]
+
     return (
-      <div>
-          <Header {...this.props}/>
+      <div className='app-container'>
+        <Header />
+        { this.state.user ?
+          <div className='for filter and search components'/>
+          :
+          <SignIn/> }
+        <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
+          <Map center={location} schoolsArr={schoolsArr} />
           {this.props.children}
+        </div>
       </div>
     )
   }
 }
+//
+// AIzaSyB8JYY9Fxzlc0pjxOxv-i9f1QtLOe0lY9o

@@ -1,20 +1,15 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './containers/App-container';
-import PinBox from './containers/PinBox-container';
-import PinExtended from './containers/PinExtended-container';
-import Settings from './containers/Settings-container';
+import Profile from './containers/Profile-container';
+import Filters from './containers/Filters-container';
 
 
 const Routes = (
   <Route>
     <Route path="/" component={App}>
-      <IndexRoute component={PinBox} />
-      <Route path='forecast'>
-        <IndexRoute component={PinExtended}/>
-        <Route path=':city' component={PinExtended}/>
-      </Route>
-      <Route path='settings' component={Settings} />
+      <IndexRoute component={Filters} />
+      <Route path='profile' component={Profile} />
     </Route>
   </Route>
 );
