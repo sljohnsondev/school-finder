@@ -1,6 +1,28 @@
-/*.sign-in {
-  position: absolute;
-  z-index: 100;
-  float: right;
-  top: 30%;
-}*/
+.sign-in-container {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  position: fixed;
+  z-index: 1;
+  margin: 5px;
+  padding: 5px;
+  top: 35%;
+  left: 40%;
+  width: 300px;
+  background: rgba(198, 218, 240, .9);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.sign-in-container h2 {
+  margin: 15px 0 10px;
+}
+
+.google-btn-img {
+  transform: scale(.7);
+  width: inherit;
+}
+
+.google-btn-img:hover {
+  transform: scale(.8);
+  opacity: .9;
+}
