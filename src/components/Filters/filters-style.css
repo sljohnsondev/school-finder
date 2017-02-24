@@ -3,7 +3,7 @@
   left: 0;
   top: 8vh;
   z-index: 1;
-  height: 84vh;
+  height: 82vh;
   background: rgba(198, 218, 240, .9);
   border-radius: 8px;
   margin-left: 12px;
@@ -14,8 +14,7 @@
 .filter-header {
   font-family: 'Quicksand', sans-serif;
   font-size: 30px;
-  text-align: center;
-  margin-top: 10px;
+  margin: 8px 0 0;
 }
 
 .filter-fields {
@@ -28,8 +27,19 @@
   margin: 15px 0 0;
 }
 
+
+.slider {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.slider-data {
+  text-align: center;
+  margin: 0px 0 10px;
+}
+
 .search-btn {
-  margin-top: 20px;
+  margin-top: 10px;
   height: 50px;
   width: 100%;
   border-radius: 5px;
