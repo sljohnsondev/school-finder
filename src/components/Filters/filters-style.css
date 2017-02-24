@@ -8,13 +8,14 @@
   border-radius: 8px;
   margin-left: 12px;
   padding: 10px 20px;
-  width: 20vw;
+  min-width: 300px;
 }
 
 .filter-header {
   font-family: 'Quicksand', sans-serif;
   font-size: 30px;
   margin: 8px 0 0;
+  text-align: center;
 }
 
 .filter-fields {
@@ -52,4 +53,14 @@
 .search-btn:hover {
   border: 3px solid gray;
   background-color: darkgray
+}
+
+.filter-back-btn {
+  background: none;
+  border: none;
+  margin-top: 15px;
+}
+
+.filter-back-btn:hover {
+  font-weight: bolder;
 }
