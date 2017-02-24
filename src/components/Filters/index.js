@@ -34,7 +34,7 @@ export default class Filters extends Component {
     console.log('School!');
     console.log(gradeLevel, schoolType);
     // //fetch schools from Firebase
-    firebase.database().ref('dps_schools').on('value', snap => {
+    firebase.database().ref().on('value', snap => {
       //add a function here to filter that each snap has gradeLevel && schoolType
       console.log(snap.val());
     })
