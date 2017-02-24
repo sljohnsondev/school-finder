@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import firebase from '../../firebase';
 import { pick, map, extend } from 'lodash';
+import SearchResults from '../SearchResults';
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -125,7 +126,13 @@ export default class Filters extends Component {
             >Find Schools</button>
           </div>
           :
-          <h2 className='results-header'>Search Results</h2>}
+          <div>
+            <h2 className='filter-header'>Search Results</h2>
+            {this.props.schoolResults.map((school, i) => {
+              return <SearchResults key={ i } schoolData={ school } />
+            })}
+          </div>
+          }
       </div>
     )
   }
