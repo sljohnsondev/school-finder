@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
+import firebase from '../../firebase';
+import { pick, map, extend } from 'lodash';
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -14,6 +16,7 @@ export default class Filters extends Component {
       walkMode: false,
       commuteDist: 15,
       commuteTime: 30,
+      schoolResults: []
     }
   }
 
@@ -23,6 +26,35 @@ export default class Filters extends Component {
     let obj = {};
     obj[key] = val;
     this.setState(obj);
+  }
+
+  //cleanup when school results display is working (i.e. add logic for filering school results)
+  findSchools() {
+    let { gradeLevel, schoolType } = this.state;
+    console.log('School!');
+    console.log(gradeLevel, schoolType);
+    // //fetch schools from Firebase
+    firebase.database().ref('dps_schools').on('value', snap => {
+      console.log(snap.val());
+    })
+    // firebase.database().ref('dps_schools').on('value', (snapshot) => {
+    //     const schoolResults = snapshot.val() || {};
+    //     this.setState({
+    //       schoolResults: map(schoolResults, (val, key) => extend(val, { key })),
+    //     });
+    //   });
+    //   console.log(this.state.schoolResults)
+  }
+
+  getCommuteData() {
+    let { carMode, publicMode, bikeMode, walkMode } = this.state
+    console.log('Commute!')
+    console.log(carMode, publicMode, bikeMode, walkMode)
+  }
+//
+  handleFinder() {
+    this.findSchools();
+    this.getCommuteData();
   }
 
   render() {
@@ -86,7 +118,10 @@ export default class Filters extends Component {
             <p className='slider-data'>{this.state.commuteTime} mins</p>
           </article>
         </section>
-        <button className='search-btn'>Find Schools</button>
+        <button
+          className='search-btn'
+          onClick={ () => this.handleFinder() }
+        >Find Schools</button>
       </div>
     )
   }

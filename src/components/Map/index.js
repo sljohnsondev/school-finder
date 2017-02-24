@@ -20,9 +20,9 @@ export default class Map extends Component {
 
     return (
       <GoogleMapLoader
-        className = 'map-container'
-        containerElement = { mapContainer }
-        googleMapElement = {
+        className='map-container'
+        containerElement={ mapContainer }
+        googleMapElement={
           <GoogleMap
             defaultZoom={13}
             defaultCenter={center}
