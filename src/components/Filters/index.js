@@ -128,6 +128,10 @@ export default class Filters extends Component {
           :
           <div>
             <h2 className='filter-header'>Search Results</h2>
+            <button
+            className='filter-back-btn'
+            onClick={ () => this.toggleFilterView() }
+            >« Search Filters</button>
             {this.props.schoolResults.map((school, i) => {
               return <SearchResults key={ i } schoolData={ school } />
             })}
