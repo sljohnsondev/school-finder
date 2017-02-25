@@ -97,8 +97,6 @@ export default class Filters extends Component {
                 <label>Public Transit</label><br/>
                 <input type='checkbox' id='bikeMode' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)} />
                 <label>Bike</label><br/>
-                <input type='checkbox' id='walkMode' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)} />
-                <label>Walk</label>
               </article>
               <article className='filter-item'>
                 <h4>Commute Distance</h4>
