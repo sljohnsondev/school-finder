@@ -24,23 +24,38 @@
 }
 
 .filter-fields h4 {
-  font-size: 14px;
+  font-size: 16px;
   margin: 15px 0 0;
 }
 
+#homeAddress {
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 20px;
+}
+
+select {
+  height: 22px;
+  width: 50%;
+  border: none;
+}
+
+label {
+  font-size: 14px;
+}
 
 .slider {
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
 }
 
 .slider-data {
   text-align: center;
-  margin: 0px 0 10px;
+  margin: 0px 0 5px;
 }
 
 .search-btn {
-  margin-top: 10px;
   height: 45px;
   width: 100%;
   border-radius: 5px;
