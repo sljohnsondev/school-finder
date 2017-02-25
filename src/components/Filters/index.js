@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import firebase from '../../firebase';
-import { pick, map, extend } from 'lodash';
+// import { pick, map, extend } from 'lodash';
 import SearchResults from '../SearchResults';
 import './filters-style.css';
 
@@ -17,7 +17,8 @@ export default class Filters extends Component {
       walkMode: false,
       commuteDist: 15,
       commuteTime: 30,
-      viewFilters: true
+      viewFilters: true,
+      homeAddress: ''
     }
   }
 
@@ -64,6 +65,10 @@ export default class Filters extends Component {
           <div>
             <h2 className='filter-header'>Search Filters</h2>
             <section className='filter-fields'>
+              <article className='filter-item'>
+                <h4>Home Address</h4>
+                <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e) } />
+              </article>
               <article className='filter-item'>
                 <h4>Grade Level</h4>
                 <select id='gradeLevel' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)}>
