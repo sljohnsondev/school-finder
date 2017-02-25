@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
 import firebase from '../../firebase';
-// import { pick, map, extend } from 'lodash';
 import SearchResults from '../SearchResults';
+import { getGeoLocation } from '../Helpers/GoogleGeoLocation.js'
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -21,6 +20,21 @@ export default class Filters extends Component {
       homeAddress: ''
     }
   }
+
+  geocoder = new google.maps.Geocoder();
+
+  getGeoLocation (address) {
+    let coordinates;
+    let placeID;
+    const formattedAddress = `$(address), Denver, CO`;
+    geocoder.geocode({address: formattedAddress}, (results, status) => {
+      coordinates = results[0].geomety.location;
+      placeID = results[0].place_id;
+    })
+    return {coordinates: coordinates, placeId: placeID};
+  }
+
+
 
   handleChange(evt) {
     let key = evt.target.id;
@@ -53,9 +67,10 @@ export default class Filters extends Component {
   }
 
   handleFinder() {
-    this.findSchools(this.props);
-    this.getCommuteData();
-    this.toggleFilterView();
+
+    // this.findSchools(this.props);
+    // this.getCommuteData();
+    // this.toggleFilterView();
   }
 
   render() {
@@ -66,7 +81,7 @@ export default class Filters extends Component {
             <h2 className='filter-header'>Search Filters</h2>
             <section className='filter-fields'>
               <article className='filter-item'>
-                <h4>Home Address</h4>
+                <h4>Home Street Address</h4>
                 <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e) } />
               </article>
               <article className='filter-item'>

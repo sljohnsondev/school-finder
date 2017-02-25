@@ -5,7 +5,7 @@ import { signInHandler } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
-    data: state.AppData,
+    data: state,
   }
 }
 
