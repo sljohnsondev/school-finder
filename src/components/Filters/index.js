@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
-import { getGeoLocation } from '../Helpers/GoogleGeoLocation.js'
+import getGeoLocation from '../Helpers/GoogleGeoLocation.js'
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -20,21 +20,6 @@ export default class Filters extends Component {
       homeAddress: ''
     }
   }
-
-  geocoder = new google.maps.Geocoder();
-
-  getGeoLocation (address) {
-    let coordinates;
-    let placeID;
-    const formattedAddress = `$(address), Denver, CO`;
-    geocoder.geocode({address: formattedAddress}, (results, status) => {
-      coordinates = results[0].geomety.location;
-      placeID = results[0].place_id;
-    })
-    return {coordinates: coordinates, placeId: placeID};
-  }
-
-
 
   handleChange(evt) {
     let key = evt.target.id;
@@ -66,8 +51,12 @@ export default class Filters extends Component {
     console.log(carMode, publicMode, bikeMode, walkMode)
   }
 
-  handleFinder() {
+  callback(data) {
+    console.log(data)
+  }
 
+  handleFinder() {
+    getGeoLocation(this.state.homeAddress, this.callback, this.props.google)
     // this.findSchools(this.props);
     // this.getCommuteData();
     // this.toggleFilterView();

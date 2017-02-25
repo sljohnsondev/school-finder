@@ -8,10 +8,10 @@ import Filters from './containers/Filters-container';
 const Routes = (
   <Route>
     <Route path="/" component={App}>
-      <IndexRoute component={Filters} />
       <Route path='profile' component={Profile} />
     </Route>
   </Route>
 );
+// <IndexRoute component={Filters} />
 
 export default Routes;

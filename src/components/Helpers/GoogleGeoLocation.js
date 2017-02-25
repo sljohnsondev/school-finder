@@ -1,14 +1,19 @@
-// let geocoder = new google.maps.Geocoder();
-//
-// const getGeoLocation = (address) => {
-//   let coordinates;
-//   let placeID;
-//   const formattedAddress = `$(address), Denver, CO`;
-//   geocoder.geocode({address: formattedAddress}, (results, status) => {
-//     coordinates = results[0].geomety.location;
-//     placeID = results[0].place_id;
-//   })
-//   return {coordinates: coordinates, placeId: placeID};
-// }
-//
-// export default getGeoLocation;
+
+const getGeoLocation = (address, callback, google) => {
+
+  const geocoder = new google.maps.Geocoder();
+  const formattedAddress = `${address}, Denver, CO`;
+
+  let coords;
+  let placeID;
+
+  geocoder.geocode({address: formattedAddress}, (results, status) => {
+    debugger
+    let coords_obj = results[0].geometry.location;
+    coords = [coords_obj.lat(), coords_obj.lng()];
+    placeID = results[0].place_id;
+    callback({coords: coords, id: placeID});
+  })
+}
+
+export default getGeoLocation;

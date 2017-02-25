@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Map from '../Map';
 import SignIn from '../SignIn';
+import Filters from '../Filters'
 import './app-style.css'
 
 export default class App extends Component {
@@ -26,7 +27,7 @@ export default class App extends Component {
       <div className='app-container'>
         <Header />
         { this.props.data.AppData.displayName ?
-          <div className='for filter and search components'/>
+          <Filters google={ window.google }/>
           :
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
