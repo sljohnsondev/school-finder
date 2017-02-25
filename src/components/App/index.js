@@ -25,7 +25,7 @@ export default class App extends Component {
     return (
       <div className='app-container'>
         <Header />
-        { this.props.data.user ?
+        { this.props.data.uid ?
           <div className='for filter and search components'/>
           :
           <SignIn signInHandler={ this.props.signInHandler } /> }
