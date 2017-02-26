@@ -6,21 +6,30 @@ import './app-style.css'
 
 export default class App extends Component {
 
-  render(props) {
+  getMarkers() {
+    let markerDisplay;
+    if (this.props.data.FilterResults.homeAddress) {
+      markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
+    } else markerDisplay = this.props.data.FilterResults.schools;
+    return markerDisplay
+  }
 
-    const location = {
+  getAnchor() {
+    let anchorCoords;
+    if (this.props.data.FilterResults.homeAddress) {
+      return {
+        lat: this.props.data.FilterResults.homeAddress.Location.Lat,
+        lng: this.props.data.FilterResults.homeAddress.Location.Lng
+      }
+    } else return {
       lat: 39.731237,
       lng: -104.973377
     }
-    //
-    // const schoolsArr = [
-    //   {
-    //     Location: {
-    //       Lat: 39.758135,
-    //       Lng: -105.007295
-    //     }
-    //   }
-    // ]
+  }
+
+  render() {
+
+    let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
 
     return (
       <div className='app-container'>
@@ -31,7 +40,7 @@ export default class App extends Component {
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
-          {this.props.data.FilterResults.schools ? <Map center={location} schoolsArr={this.props.data.FilterResults.schools} /> : <Map center={location} schoolsArr={[]} />}
+          {this.props.data.FilterResults.schools ? <Map center={this.getAnchor()} schoolsArr={this.getMarkers()} /> : <Map center={this.getAnchor()} schoolsArr={[]} />}
         </div>
       </div>
     )

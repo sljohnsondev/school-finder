@@ -4,11 +4,12 @@ import './map-style.css';
 
 export default class Map extends Component {
 
+
+
   render() {
 
     const { center, schoolsArr } = this.props;
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
-    // const finalArr = schoolsArr.push({ location: this.props.data. })
 
     const markers = schoolsArr.map((school, i) => {
       const marker = {
@@ -17,7 +18,7 @@ export default class Map extends Component {
           lng: school.Location.Lng
         },
         animation: window.google.maps.Animation.DROP,
-        label: school.Name,
+        label: school.Name || 'Home',
       }
       return <Marker key={i} {...marker} />
     })
