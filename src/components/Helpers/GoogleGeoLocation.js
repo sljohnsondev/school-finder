@@ -8,9 +8,8 @@ const getGeoLocation = (address, callback, google) => {
   let placeID;
 
   geocoder.geocode({address: formattedAddress}, (results, status) => {
-    debugger
     let coords_obj = results[0].geometry.location;
-    coords = [coords_obj.lat(), coords_obj.lng()];
+    coords = {lat: coords_obj.lat(), lng: coords_obj.lng()};
     placeID = results[0].place_id;
     callback({coords: coords, id: placeID});
   })
