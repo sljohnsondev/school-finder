@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
-import getGeoLocation from '../Helpers/GoogleGeoLocation.js'
+import getGeoLocation from '../Helpers/getGeoLocation.js'
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -12,12 +12,12 @@ export default class Filters extends Component {
       schoolType: '',
       carMode: false,
       publicMode: false,
-      bikeMode: false,
       walkMode: false,
       commuteDist: 15,
       commuteTime: 30,
       viewFilters: true,
-      homeAddress: ''
+      homeAddress: '',
+      homeAddressCoords: ''
     }
   }
 
@@ -51,15 +51,14 @@ export default class Filters extends Component {
     console.log(carMode, publicMode, bikeMode, walkMode)
   }
 
-  callback(data) {
-    console.log(data)
+  callback(homeAddressCoords) {
+    this.setState({ homeAddressCoords});
   }
 
-  handleFinder() {
-    getGeoLocation(this.state.homeAddress, this.callback, this.props.google)
-    // this.findSchools(this.props);
-    // this.getCommuteData();
-    // this.toggleFilterView();
+  handleFinder(props) {
+    // getGeoLocation(this.state.homeAddress, this.callback.bind(this), this.props.google);
+    this.findSchools(props);
+    this.toggleFilterView();
   }
 
   render() {
@@ -77,30 +76,30 @@ export default class Filters extends Component {
                 <h4>Grade Level</h4>
                 <select id='gradeLevel' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)}>
                   <option value=''>Select grade level...</option>
-                  <option value='ece-prek'>ECE/Pre-K</option>
-                  <option value='k-5'>K-5</option>
-                  <option value='6-8'>6-8</option>
-                  <option value='9-12'>9-12</option>
+                  <option value='1'>ECE/Pre-K</option>
+                  <option value='2'>K-5</option>
+                  <option value='3'>6-8</option>
+                  <option value='4'>9-12</option>
                 </select>
               </article>
               <article className='filter-item'>
                 <h4>School Type</h4>
                 <select id='schoolType' value={ this.state.schoolType } onChange={(e) => this.handleChange(e)}>
                   <option value=''>Select school type...</option>
-                  <option value='public'>Public/District</option>
-                  <option value='charter'>Charter</option>
-                  <option value='magnet'>Magnet</option>
-                  <option value='9-12'>9-12</option>
+                  <option value='Public'>Public/District</option>
+                  <option value='Charter'>Charter</option>
+                  <option value='Magnet'>Magnet</option>
+                  <option value='Other'>Other</option>
                 </select>
               </article>
               <article className='filter-item'>
                 <h4>Transportation Options</h4>
-                <input type='checkbox' id='carMode' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)} />
+                <input type='checkbox' id='carMode' value={ this.state.carMode } onChange={(e) => this.handleChange(e)} />
                 <label>Car</label><br/>
-                <input type='checkbox' id='publicMode' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)} />
+                <input type='checkbox' id='publicMode' value={ this.state.publicMode } onChange={(e) => this.handleChange(e)} />
                 <label>Public Transit</label><br/>
-                <input type='checkbox' id='bikeMode' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)} />
-                <label>Bike</label><br/>
+                <input type='checkbox' id='walkMode' value={ this.state.walkMode } onChange={(e) => this.handleChange(e)} />
+                <label>Walk</label><br/>
               </article>
               <article className='filter-item'>
                 <h4>Commute Distance</h4>
@@ -129,7 +128,7 @@ export default class Filters extends Component {
             </section>
             <button
               className='search-btn'
-              onClick={ () => this.handleFinder() }
+              onClick={ () => this.handleFinder(this.props) }
             >Find Schools</button>
           </div>
           :
