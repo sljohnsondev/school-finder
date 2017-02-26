@@ -31,7 +31,7 @@ export default class App extends Component {
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
-          <Map center={location} schoolsArr={this.props.data.FilterResults} />
+          <Map center={location} schoolsArr={this.props.data.FilterResults.schools} />
         </div>
       </div>
     )

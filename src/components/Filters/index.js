@@ -53,6 +53,8 @@ export default class Filters extends Component {
 
   callback(homeAddressCoords) {
     this.setState({ homeAddressCoords });
+    this.props.setHomeAddress(homeAddressCoords)
+
   }
 
   handleFinder() {
@@ -138,7 +140,7 @@ export default class Filters extends Component {
             className='filter-back-btn'
             onClick={ () => this.toggleFilterView() }
             >« Search Filters</button>
-            {this.props.schoolResults.map((school, i) => {
+            {this.props.schoolResults.schools.map((school, i) => {
               return <SearchResults key={ i } schoolData={ school } />
             })}
           </div>
