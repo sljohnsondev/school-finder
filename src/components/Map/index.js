@@ -8,8 +8,8 @@ export default class Map extends Component {
 
     const { center, schoolsArr } = this.props;
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
+
     const markers = schoolsArr.map((school, i) => {
-      debugger
       const marker = {
         position: {
           lat: school.Location.Lat,

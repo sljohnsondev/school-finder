@@ -1,7 +1,7 @@
 
-const getGeoLocation = (address, callback, google) => {
+const getGeoLocation = (address, callback) => {
 
-  const geocoder = new google.maps.Geocoder();
+  const geocoder = new window.google.maps.Geocoder();
   const formattedAddress = `${address}, Denver, CO`;
 
   let coords;

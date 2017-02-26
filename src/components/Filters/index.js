@@ -34,14 +34,14 @@ export default class Filters extends Component {
   }
 
   //cleanup when school results display is working (i.e. add logic for filering school results)
-  findSchools(props) {
+  findSchools() {
     let { gradeLevel, schoolType } = this.state;
     console.log('School!');
     console.log(gradeLevel, schoolType);
     // //fetch schools from Firebase
     firebase.database().ref().on('value', snap => {
       //add a function here to filter that each snap has gradeLevel && schoolType
-      props.setSchools(snap.val())
+      this.props.setSchools(snap.val())
     })
   }
 
@@ -52,12 +52,12 @@ export default class Filters extends Component {
   }
 
   callback(homeAddressCoords) {
-    this.setState({ homeAddressCoords});
+    this.setState({ homeAddressCoords });
   }
 
-  handleFinder(props) {
-    // getGeoLocation(this.state.homeAddress, this.callback.bind(this), this.props.google);
-    this.findSchools(props);
+  handleFinder() {
+    getGeoLocation(this.state.homeAddress, this.callback.bind(this));
+    this.findSchools();
     this.toggleFilterView();
   }
 
@@ -128,7 +128,7 @@ export default class Filters extends Component {
             </section>
             <button
               className='search-btn'
-              onClick={ () => this.handleFinder(this.props) }
+              onClick={ () => this.handleFinder() }
             >Find Schools</button>
           </div>
           :

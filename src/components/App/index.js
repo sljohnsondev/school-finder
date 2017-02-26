@@ -7,10 +7,6 @@ import './app-style.css'
 
 export default class App extends Component {
 
-  componentDidMount() {
-    console.log(this.props.data.FilterResults)
-  }
-
   render(props) {
 
     const location = {
@@ -20,9 +16,9 @@ export default class App extends Component {
     //
     // const schoolsArr = [
     //   {
-    //     location: {
-    //       lat: 39.758135,
-    //       lng: -105.007295
+    //     Location: {
+    //       Lat: 39.758135,
+    //       Lng: -105.007295
     //     }
     //   }
     // ]
@@ -31,7 +27,7 @@ export default class App extends Component {
       <div className='app-container'>
         <Header />
         { this.props.data.AppData.displayName ?
-          <div />
+          <div />   
           :
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
