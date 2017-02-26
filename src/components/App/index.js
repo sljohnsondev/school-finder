@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Map from '../Map';
 import SignIn from '../SignIn';
+import Filters from '../Filters'
 import './app-style.css'
 
 export default class App extends Component {
@@ -12,26 +13,26 @@ export default class App extends Component {
       lat: 39.731237,
       lng: -104.973377
     }
-
-    const schoolsArr = [
-      {
-        location: {
-          lat: 39.758135,
-          lng: -105.007295
-        }
-      }
-    ]
+    //
+    // const schoolsArr = [
+    //   {
+    //     Location: {
+    //       Lat: 39.758135,
+    //       Lng: -105.007295
+    //     }
+    //   }
+    // ]
 
     return (
       <div className='app-container'>
         <Header />
-        { this.props.data.uid ?
-          <div className='for filter and search components'/>
+        { this.props.data.AppData.displayName ?
+          <div />   
           :
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
-          <Map center={location} schoolsArr={schoolsArr} />
+          <Map center={location} schoolsArr={this.props.data.FilterResults} />
         </div>
       </div>
     )
