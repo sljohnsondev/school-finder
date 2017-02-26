@@ -8,13 +8,16 @@ export default class Map extends Component {
 
     const { center, schoolsArr } = this.props;
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
+    // const finalArr = schoolsArr.push({ location: this.props.data. })
 
     const markers = schoolsArr.map((school, i) => {
       const marker = {
         position: {
           lat: school.Location.Lat,
           lng: school.Location.Lng
-        }
+        },
+        animation: window.google.maps.Animation.DROP,
+        label: school.Name,
       }
       return <Marker key={i} {...marker} />
     })
