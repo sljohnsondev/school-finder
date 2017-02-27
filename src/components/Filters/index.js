@@ -17,7 +17,6 @@ export default class Filters extends Component {
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      // homeAddressCoords: ''
     }
   }
 
