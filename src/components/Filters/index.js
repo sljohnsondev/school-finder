@@ -33,19 +33,25 @@ export default class Filters extends Component {
     this.setState({ viewFilters: !this.state.viewFilters })
   }
 
-  //cleanup when school results display is working (i.e. add logic for filering school results)
+  secondaryFilters(data) {
+    let { gradeLevel } = this.state
+    let newArr = data.reduce((acc, school) => {
+      if (school.GradeLevels.indexOf(gradeLevel) >= 0) {
+        acc.push(school);
+      } return acc;
+    }, [])
+    return newArr
+  }
+
   findSchools() {
-    // let ref = new firebase('')
-    let { gradeLevel, schoolType } = this.state;
-    console.log('School!');
-    console.log(gradeLevel, schoolType);
-    // //fetch schools from Firebase
+    let { schoolType } = this.state;
+
     firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).on('value', snap => {
       //add a function here to filter that each snap has gradeLevel && schoolType
-      this.props.setSchools(snap.val())
+      this.props.setSchools(this.secondaryFilters(snap.val()))
+
     })
   }
-  // .orderBy('SchoolTypeDescription').equalTo(schoolType)
 
   getCommuteData() {
     let { carMode, publicMode, bikeMode, walkMode } = this.state
@@ -63,6 +69,7 @@ export default class Filters extends Component {
   }
 
   handleFinder() {
+    this.props.setSchools({});
     this.findSchools();
     this.toggleFilterView();
   }
@@ -73,7 +80,7 @@ export default class Filters extends Component {
         {this.state.viewFilters ?
           <div>
             <h2 className='filter-header'>Search Filters</h2>
-            <section className='filter-fields'>
+            <form className='filter-fields'>
               <article className='filter-item'>
                 <h4>Home Street Address</h4>
                 <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e)} onBlur={ (e) => this.handleHomeAddress(e) } />
@@ -131,7 +138,7 @@ export default class Filters extends Component {
                 />
                 <p className='slider-data'>{this.state.commuteTime} mins</p>
               </article>
-            </section>
+            </form>
             <button
               className='search-btn'
               onClick={ () => this.handleFinder() }
