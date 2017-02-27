@@ -35,15 +35,17 @@ export default class Filters extends Component {
 
   //cleanup when school results display is working (i.e. add logic for filering school results)
   findSchools() {
+    // let ref = new firebase('')
     let { gradeLevel, schoolType } = this.state;
     console.log('School!');
     console.log(gradeLevel, schoolType);
     // //fetch schools from Firebase
-    firebase.database().ref().on('value', snap => {
+    firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).on('value', snap => {
       //add a function here to filter that each snap has gradeLevel && schoolType
       this.props.setSchools(snap.val())
     })
   }
+  // .orderBy('SchoolTypeDescription').equalTo(schoolType)
 
   getCommuteData() {
     let { carMode, publicMode, bikeMode, walkMode } = this.state
