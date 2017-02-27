@@ -1,15 +1,10 @@
 const filters = (state = [], action) => {
   switch (action.type) {
     case 'SET_SCHOOLS':
-      return action.schoolResults;
+      return Object.assign({}, state, {schools: action.schoolResults})
 
-    // case 'RECEIVE_EXTENDED':
-    //   return state.map(city => {
-    //     if (city.fullName !== action.fullName) {
-    //       return city
-    //     }
-    //     return Object.assign({}, city, {extForecast: action.forecastData})
-    //   })
+    case 'SET_HOME_ADDRESS':
+        return Object.assign({}, state, {homeAddress: action.homeAddress})
     //
     // case 'REMOVE_PIN':
     //   const indexNum = action.pinID;

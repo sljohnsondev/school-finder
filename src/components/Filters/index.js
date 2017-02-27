@@ -17,7 +17,7 @@ export default class Filters extends Component {
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      homeAddressCoords: ''
+      // homeAddressCoords: ''
     }
   }
 
@@ -35,15 +35,17 @@ export default class Filters extends Component {
 
   //cleanup when school results display is working (i.e. add logic for filering school results)
   findSchools() {
+    // let ref = new firebase('')
     let { gradeLevel, schoolType } = this.state;
     console.log('School!');
     console.log(gradeLevel, schoolType);
     // //fetch schools from Firebase
-    firebase.database().ref().on('value', snap => {
+    firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).on('value', snap => {
       //add a function here to filter that each snap has gradeLevel && schoolType
       this.props.setSchools(snap.val())
     })
   }
+  // .orderBy('SchoolTypeDescription').equalTo(schoolType)
 
   getCommuteData() {
     let { carMode, publicMode, bikeMode, walkMode } = this.state
@@ -51,12 +53,16 @@ export default class Filters extends Component {
     console.log(carMode, publicMode, bikeMode, walkMode)
   }
 
+
   callback(homeAddressCoords) {
-    this.setState({ homeAddressCoords });
+    // this.setState({ homeAddressCoords });
+    this.props.setHomeAddress(homeAddressCoords)
+  }
+  handleHomeAddress(e) {
+    getGeoLocation(e.target.value, this.callback.bind(this));
   }
 
   handleFinder() {
-    getGeoLocation(this.state.homeAddress, this.callback.bind(this));
     this.findSchools();
     this.toggleFilterView();
   }
@@ -70,7 +76,7 @@ export default class Filters extends Component {
             <section className='filter-fields'>
               <article className='filter-item'>
                 <h4>Home Street Address</h4>
-                <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e) } />
+                <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e)} onBlur={ (e) => this.handleHomeAddress(e) } />
               </article>
               <article className='filter-item'>
                 <h4>Grade Level</h4>
@@ -138,7 +144,7 @@ export default class Filters extends Component {
             className='filter-back-btn'
             onClick={ () => this.toggleFilterView() }
             >« Search Filters</button>
-            {this.props.schoolResults.map((school, i) => {
+            {this.props.schoolResults.schools.map((school, i) => {
               return <SearchResults key={ i } schoolData={ school } />
             })}
           </div>

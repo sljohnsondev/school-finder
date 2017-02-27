@@ -12,12 +12,12 @@ export const setSchools = (schoolResults) => {
   }
 }
 
-// export const receiveForecast = (forecastData) => {
-//   return {
-//     type: 'RECEIVE_FORECAST',
-//     forecastData
-//   }
-// }
+export const setHomeAddress = (homeAddress) => {
+  return {
+    type: 'SET_HOME_ADDRESS',
+    homeAddress
+  }
+}
 //
 // export const receiveExtForecast = (forecastData, fullName) => {
 //   return {

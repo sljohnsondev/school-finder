@@ -4,6 +4,8 @@ import './map-style.css';
 
 export default class Map extends Component {
 
+
+
   render() {
 
     const { center, schoolsArr } = this.props;
@@ -14,7 +16,9 @@ export default class Map extends Component {
         position: {
           lat: school.Location.Lat,
           lng: school.Location.Lng
-        }
+        },
+        animation: window.google.maps.Animation.DROP,
+        label: school.Name || 'Home',
       }
       return <Marker key={i} {...marker} />
     })
