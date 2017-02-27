@@ -17,7 +17,7 @@ export default class Filters extends Component {
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      homeAddressCoords: ''
+      // homeAddressCoords: ''
     }
   }
 
@@ -51,14 +51,16 @@ export default class Filters extends Component {
     console.log(carMode, publicMode, bikeMode, walkMode)
   }
 
-  callback(homeAddressCoords) {
-    this.setState({ homeAddressCoords });
-    this.props.setHomeAddress(homeAddressCoords)
 
+  callback(homeAddressCoords) {
+    // this.setState({ homeAddressCoords });
+    this.props.setHomeAddress(homeAddressCoords)
+  }
+  handleHomeAddress(e) {
+    getGeoLocation(e.target.value, this.callback.bind(this));
   }
 
   handleFinder() {
-    getGeoLocation(this.state.homeAddress, this.callback.bind(this));
     this.findSchools();
     this.toggleFilterView();
   }
@@ -72,7 +74,7 @@ export default class Filters extends Component {
             <section className='filter-fields'>
               <article className='filter-item'>
                 <h4>Home Street Address</h4>
-                <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e) } />
+                <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e)} onBlur={ (e) => this.handleHomeAddress(e) } />
               </article>
               <article className='filter-item'>
                 <h4>Grade Level</h4>
