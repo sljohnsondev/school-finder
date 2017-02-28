@@ -5,6 +5,19 @@ import SignIn from '../SignIn';
 import './app-style.css'
 
 export default class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      isRemounting: false,
+      markers: []
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.markers !== nextProps.markers) {
+      this.setState({ isRemounting: true, markers: nextProps.markers }, () => this.setState({ isRemounting: false}));
+    }
+  }
 
   getAnchor() {
     let anchorCoords;
@@ -21,9 +34,9 @@ export default class App extends Component {
 
   render() {
 
-    let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
+    // let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
 
-    return (
+    return this.state.isRemounting ? <div /> : (
       <div className='app-container'>
         <Header />
         { this.props.data.AppData.displayName ?
@@ -32,7 +45,7 @@ export default class App extends Component {
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
-          {this.props.data.FilterResults.schools ? <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress, ...this.props.data.FilterResults.schools]} /> : <Map center={this.getAnchor()} schoolsArr={[]} />}
+          {this.props.markers.Location ? <Map center={this.getAnchor()} schoolsArr={this.state.markers} /> : <Map center={this.getAnchor()} schoolsArr={[]} />}
         </div>
       </div>
     )

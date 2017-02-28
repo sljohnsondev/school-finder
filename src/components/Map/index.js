@@ -11,17 +11,18 @@ export default class Map extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.center !== nextProps.center) {
+    if (this.props.schoolsArr !== nextProps.schoolsArr) {
+      console.log('MAP')
       this.setState({ isRemounting: true }, () => this.setState({ isRemounting: false}));
     }
   }
 
   render() {
-
     const { center, schoolsArr } = this.props;
+    debugger
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
 
-    const markers = schoolsArr.map((school, i) => {
+    let markers = schoolsArr.map((school, i) => {
       const marker = {
         position: {
           lat: school.Location.Lat,
