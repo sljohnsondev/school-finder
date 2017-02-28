@@ -18,12 +18,12 @@ export default class SearchResults extends Component {
     let { Name, Address, Phone, WebUrl } = this.props.schoolData
     return (
       <div className={this.state.selected ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
-        <h3 className='filter-fields'>{Name}</h3>
-        <p>{Address}</p>
-        <a href={WebUrl} className='school-url' target='_blank'>School Website</a>
-        <section className='commute-info'>
-          <p>Commuted Time: TBD</p>
-          <p>Commuted Distance: TBD</p>
+        <h3 className='results-fields'>{Name}</h3>
+        <p className='results-fields'>{Address}</p>
+        <a href={WebUrl} className='school-url results-fields' target='_blank'>School Website</a>
+        <section className='commute-info results-fields'>
+          <p className='results-fields'>Commuted Time: TBD</p>
+          <p className='results-fields'>Commuted Distance: TBD</p>
         </section>
       </div>
     )

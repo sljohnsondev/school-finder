@@ -145,7 +145,7 @@ export default class Filters extends Component {
             >Find Schools</button>
           </div>
           :
-          <div>
+          <div className='results-container'>
             <h2 className='filter-header'>Search Results</h2>
             <button
             className='filter-back-btn'
