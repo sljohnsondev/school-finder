@@ -6,14 +6,6 @@ import './app-style.css'
 
 export default class App extends Component {
 
-  getMarkers() {
-    let markerDisplay;
-    if (this.props.data.FilterResults.homeAddress) {
-      markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
-    } else markerDisplay = this.props.data.FilterResults.schools;
-    return markerDisplay
-  }
-
   getAnchor() {
     let anchorCoords;
     if (this.props.data.FilterResults.homeAddress) {
@@ -40,7 +32,7 @@ export default class App extends Component {
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
-          {this.props.data.FilterResults.schools ? <Map center={this.getAnchor()} schoolsArr={this.getMarkers()} /> : <Map center={this.getAnchor()} schoolsArr={[]} />}
+          {this.props.data.FilterResults.schools ? <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress, ...this.props.data.FilterResults.schools]} /> : <Map center={this.getAnchor()} schoolsArr={[]} />}
         </div>
       </div>
     )

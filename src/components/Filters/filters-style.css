@@ -9,6 +9,7 @@
   margin-left: 12px;
   padding: 10px 20px;
   min-width: 300px;
+  overflow-y: scroll;
 }
 
 .filter-header {
