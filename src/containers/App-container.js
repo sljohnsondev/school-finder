@@ -6,6 +6,7 @@ import { signInHandler } from '../actions'
 const mapStateToProps = (state) => {
   return {
     data: state,
+    markers: Object.assign([], state.FilterResults.schools, [state.FilterResults.homeAddress])
   }
 }
 
