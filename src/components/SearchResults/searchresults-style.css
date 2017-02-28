@@ -1,0 +1,15 @@
+.school-container {
+  padding: 5px 0 10px;
+}
+
+.selected {
+  background: red;
+  position: relative;
+  left: -20px;
+  padding-left: 20px;
+  width: 110%;
+}
+
+/*.school-url {
+  z-index: 100
+}*/
