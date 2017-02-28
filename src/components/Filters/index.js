@@ -69,7 +69,7 @@ export default class Filters extends Component {
   }
 
   handleFinder() {
-    this.props.setSchools({});
+    this.props.setSchools([]);
     this.findSchools();
     this.toggleFilterView();
   }

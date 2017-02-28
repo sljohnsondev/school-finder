@@ -3,8 +3,18 @@ import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 import './map-style.css';
 
 export default class Map extends Component {
+  constructor() {
+    super()
+    this.state ={
+      isRemounting: false
+    }
+  }
 
-
+  componentWillReceiveProps(nextProps) {
+    if (this.props.center !== nextProps.center) {
+      this.setState({ isRemounting: true }, () => this.setState({ isRemounting: false}));
+    }
+  }
 
   render() {
 
@@ -23,7 +33,7 @@ export default class Map extends Component {
       return <Marker key={i} {...marker} />
     })
 
-    return (
+    return this.state.isRemounting ? <div></div> : (
       <GoogleMapLoader
         className='map-container'
         containerElement={ mapContainer }
