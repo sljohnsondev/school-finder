@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
-import getGeoLocation from '../Helpers/getGeoLocation.js'
+import getGeoLocation from '../Helpers/getGeoLocation.js';
+import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -17,7 +18,7 @@ export default class Filters extends Component {
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      // homeAddressCoords: ''
+      schools:''
     }
   }
 
@@ -39,39 +40,45 @@ export default class Filters extends Component {
       if (school.GradeLevels.indexOf(gradeLevel) >= 0) {
         acc.push(school);
       } return acc;
-    }, [])
-    return newArr
+    }, []);
+    //add getDistanceMatrix function here
+    googleDistanceMatrix(this.props.schoolResults.homeAddress, newArr, this.schoolCallback.bind(this))
   }
 
   findSchools() {
     let { schoolType } = this.state;
 
     firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).on('value', snap => {
-      //add a function here to filter that each snap has gradeLevel && schoolType
-      this.props.setSchools(this.secondaryFilters(snap.val()))
-
+      this.setState({ schools: snap.val() }, this.secondaryFilters(snap.val()))
     })
   }
 
-  getCommuteData() {
-    let { carMode, publicMode, bikeMode, walkMode } = this.state
-    console.log('Commute!')
-    console.log(carMode, publicMode, bikeMode, walkMode)
+  // getCommuteData() {
+  //   let { carMode, publicMode, bikeMode, walkMode } = this.state
+  //   console.log('Commute!')
+  //   console.log(carMode, publicMode, bikeMode, walkMode)
+  // }
+
+  schoolCallback(response) {
+    let schools = this.state.schools.filter(function(n){ return n != undefined })
+    let finalSchoolData = response.rows[0].elements.map((school, i) => {
+      return Object.assign({}, schools[i], {commute: { distance: school.distance.text, time: school.duration.text }} )
+    })
+    this.props.setSchools(finalSchoolData);
+    this.toggleFilterView();
   }
 
-
-  callback(homeAddressCoords) {
+  homeCallback(homeAddressCoords) {
     // this.setState({ homeAddressCoords });
     this.props.setHomeAddress(homeAddressCoords)
   }
   handleHomeAddress(e) {
-    getGeoLocation(e.target.value, this.callback.bind(this));
+    getGeoLocation(e.target.value, this.homeCallback.bind(this));
   }
 
   handleFinder() {
-    this.props.setSchools([]);
+    // this.props.setSchools([]);
     this.findSchools();
-    this.toggleFilterView();
   }
 
   render() {
