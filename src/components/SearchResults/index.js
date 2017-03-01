@@ -15,8 +15,8 @@ export default class SearchResults extends Component {
         <p className='results-fields'>{Address}</p>
         <a href={WebUrl} className='school-url results-fields' target='_blank'>School Website</a>
         <section className='commute-info results-fields'>
-          <h4 className='results-fields'>Commuted Time: {commute.time}</h4>
-          <h4 className='results-fields'>Commuted Distance: {commute.distance}</h4>
+          <h4 className='results-fields'>Commute Time: {commute.time.text}</h4>
+          <h4 className='results-fields'>Commute Distance: {commute.distance.text}</h4>
         </section>
       </div>
     )

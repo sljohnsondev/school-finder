@@ -4,6 +4,7 @@ import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
+import filterResults from '../Helpers/filterResults.js'
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -39,7 +40,6 @@ export default class Filters extends Component {
     this.props.setHomeAddress(homeAddressCoords)
   }
 
-
   //Get schools in FB, filter them, receive commut info from Google, and set to store
   findSchools() {
     let { schoolType } = this.state;
@@ -62,12 +62,11 @@ export default class Filters extends Component {
   }
 
   schoolCallback(response) {
-    let schools = this.state.schools
+    let { schools, commuteDist, commuteTime } = this.state
     let finalSchoolData = response.rows[0].elements.map((school, i) => {
-
-      return Object.assign({}, schools[i], {commute: { distance: school.distance.text, time: school.duration.text }} )
+      return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }} )
     })
-    this.props.setSchools(finalSchoolData);
+    this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
     this.toggleFilterView();
   }
 
@@ -77,7 +76,7 @@ export default class Filters extends Component {
   }
 
   callback(response) {
-    console.log(response);
+    console.log('DIRECTIONS!', response);
   }
 
   selectSchool(school) {
