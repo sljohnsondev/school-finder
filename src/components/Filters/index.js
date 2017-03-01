@@ -54,7 +54,7 @@ export default class Filters extends Component {
     console.log('clean', cleanData)
     let { gradeLevel } = this.state
     let finalSchools = cleanData.reduce((acc, school) => {
-      if (school.GradeLevels.indexOf(gradeLevel) >= 0) {
+      if (school.GradeLevels.indexOf(gradeLevel) !== -1) {
         acc.push(school);
       } return acc;
     }, []);
