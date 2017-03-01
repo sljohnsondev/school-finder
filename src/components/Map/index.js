@@ -11,7 +11,7 @@ export default class Map extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.center !== nextProps.center) {
+    if (this.props !== nextProps) {
       this.setState({ isRemounting: true }, () => this.setState({ isRemounting: false}));
     }
   }
@@ -19,7 +19,6 @@ export default class Map extends Component {
   render() {
     const { center, schoolsArr } = this.props;
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
-
     const markers = schoolsArr.map((school, i) => {
       const marker = {
         position: {

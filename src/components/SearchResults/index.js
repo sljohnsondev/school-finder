@@ -3,21 +3,14 @@ import './searchresults-style.css';
 
 export default class SearchResults extends Component {
 
-  constructor() {
-    super()
-    this.state ={
-      selected: false
-    }
-  }
-
   toggleSchoolSelect() {
-    this.setState({ selected: !this.state.selected })
+    this.props.selectSchool(this.props.schoolData)
   }
 
   render() {
     let { Name, Address, WebUrl, commute } = this.props.schoolData
     return (
-      <div className={this.state.selected ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
+      <div className={this.props.selectedSchool === Name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
         <h3 className='results-fields'>{Name}</h3>
         <p className='results-fields'>{Address}</p>
         <a href={WebUrl} className='school-url results-fields' target='_blank'>School Website</a>
@@ -29,3 +22,5 @@ export default class SearchResults extends Component {
     )
   }
 }
+
+//{this.props.schoolData.GradeLevels} {this.props.schoolData.SchoolTypeDescription}
