@@ -15,7 +15,7 @@ export default class SearchResults extends Component {
   }
 
   render() {
-    let { Name, Address, Phone, WebUrl, commute } = this.props.schoolData
+    let { Name, Address, WebUrl, commute } = this.props.schoolData
     return (
       <div className={this.state.selected ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
         <h3 className='results-fields'>{Name}</h3>

@@ -7,7 +7,6 @@ import './app-style.css'
 export default class App extends Component {
 
   getAnchor() {
-    let anchorCoords;
     if (this.props.data.FilterResults.homeAddress) {
       return {
         lat: this.props.data.FilterResults.homeAddress.Location.Lat,
@@ -21,7 +20,7 @@ export default class App extends Component {
 
   render() {
 
-    let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
+    // let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
 
     return (
       <div className='app-container'>

@@ -30,55 +30,51 @@ export default class Filters extends Component {
     this.setState(obj);
   }
 
-  toggleFilterView() {
-    this.setState({ viewFilters: !this.state.viewFilters })
-  }
-
-  secondaryFilters(data) {
-    let { gradeLevel } = this.state
-    let newArr = data.reduce((acc, school) => {
-      if (school.GradeLevels.indexOf(gradeLevel) >= 0) {
-        acc.push(school);
-      } return acc;
-    }, []);
-    //add getDistanceMatrix function here
-    googleDistanceMatrix(this.props.schoolResults.homeAddress, newArr, this.schoolCallback.bind(this))
-  }
-
-  findSchools() {
-    let { schoolType } = this.state;
-
-    firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).on('value', snap => {
-      this.setState({ schools: snap.val() }, this.secondaryFilters(snap.val()))
-    })
-  }
-
-  // getCommuteData() {
-  //   let { carMode, publicMode, bikeMode, walkMode } = this.state
-  //   console.log('Commute!')
-  //   console.log(carMode, publicMode, bikeMode, walkMode)
-  // }
-
-  schoolCallback(response) {
-    let schools = this.state.schools.filter(function(n){ return n != undefined })
-    let finalSchoolData = response.rows[0].elements.map((school, i) => {
-      return Object.assign({}, schools[i], {commute: { distance: school.distance.text, time: school.duration.text }} )
-    })
-    this.props.setSchools(finalSchoolData);
-    this.toggleFilterView();
-  }
-
-  homeCallback(homeAddressCoords) {
-    // this.setState({ homeAddressCoords });
-    this.props.setHomeAddress(homeAddressCoords)
-  }
+  //Get home address coords and set in store
   handleHomeAddress(e) {
     getGeoLocation(e.target.value, this.homeCallback.bind(this));
   }
 
-  handleFinder() {
-    // this.props.setSchools([]);
-    this.findSchools();
+  homeCallback(homeAddressCoords) {
+    this.props.setHomeAddress(homeAddressCoords)
+  }
+
+
+  //Get schools in FB, filter them, receive commut info from Google, and set to store
+  findSchools() {
+    let { schoolType } = this.state;
+
+    firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
+      let cleanData = Object.values(snap.val())
+      this.secondaryFilters(cleanData)
+    })
+  }
+
+  secondaryFilters(cleanData) {
+    console.log('clean', cleanData)
+    let { gradeLevel } = this.state
+    let finalSchools = cleanData.reduce((acc, school) => {
+      if (school.GradeLevels.indexOf(gradeLevel) >= 0) {
+        acc.push(school);
+      } return acc;
+    }, []);
+    console.log( 'secondary filter', finalSchools)
+    this.setState({schools: finalSchools}, () => googleDistanceMatrix(this.props.schoolResults.homeAddress, finalSchools, this.schoolCallback.bind(this)))
+  }
+
+  schoolCallback(response) {
+    let schools = this.state.schools
+    let finalSchoolData = response.rows[0].elements.map((school, i) => {
+      return Object.assign({}, schools[i], {commute: { distance: school.distance.text, time: school.duration.text }} )
+    })
+    console.log('callback', finalSchoolData);
+    this.props.setSchools(finalSchoolData);
+    this.toggleFilterView();
+  }
+
+  //Flip filter view
+  toggleFilterView() {
+    this.setState({ viewFilters: !this.state.viewFilters })
   }
 
   render() {
@@ -148,7 +144,7 @@ export default class Filters extends Component {
             </form>
             <button
               className='search-btn'
-              onClick={ () => this.handleFinder() }
+              onClick={ () => this.findSchools() }
             >Find Schools</button>
           </div>
           :
