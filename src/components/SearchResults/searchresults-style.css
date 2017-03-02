@@ -9,8 +9,6 @@
 
 .selected {
   background: rgba(255, 99, 71, .8);
-  /*border-top: 3px solid gray;
-  border-bottom: 3px solid gray;*/
   border-radius: 2px;
   position: relative;
   left: -20px;

@@ -50,14 +50,12 @@ export default class Filters extends Component {
   }
 
   secondaryFilters(cleanData) {
-    console.log('clean', cleanData)
     let { gradeLevel, transitMode } = this.state
     let finalSchools = cleanData.reduce((acc, school) => {
       if (school.GradeLevels.indexOf(gradeLevel) !== -1) {
         acc.push(school);
       } return acc;
     }, []);
-    console.log( 'secondary filter', finalSchools)
     this.setState({schools: finalSchools}, () => googleDistanceMatrix(this.props.schoolResults.homeAddress, finalSchools, transitMode, this.schoolCallback.bind(this)))
   }
 
@@ -76,7 +74,6 @@ export default class Filters extends Component {
   }
 
   callback(result, status) {
-    console.log('as set', result);
     this.props.setDirections(result);
   }
 

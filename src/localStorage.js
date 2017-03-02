@@ -3,14 +3,6 @@ export const loadState = () => {
     AppData: {},
     FilterResults: {}
   }
-
-  // try {
-  //    const localStorageState = localStorage.getItem('state');
-  //    if(!localStorageState) { return {} }
-  //    console.log(JSON.parse(localStorageState));
-  //  } catch (error) {
-  //    return undefined;
-  //  }
 }
 
 

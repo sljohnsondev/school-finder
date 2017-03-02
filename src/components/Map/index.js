@@ -5,7 +5,6 @@ import './map-style.css';
 export default class Map extends Component {
   render() {
     const { center, schoolsArr, directions } = this.props;
-    console.log('directions', directions)
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
     const markers = schoolsArr.map((school, i) => {
       const marker = {
