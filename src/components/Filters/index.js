@@ -3,6 +3,8 @@ import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
+import googleDirections from '../Helpers/googleDirections.js';
+import filterResults from '../Helpers/filterResults.js'
 import './filters-style.css';
 
 export default class Filters extends Component {
@@ -11,14 +13,13 @@ export default class Filters extends Component {
     this.state = {
       gradeLevel: '',
       schoolType: '',
-      carMode: false,
-      publicMode: false,
-      walkMode: false,
+      transitMode: 'DRIVING',
       commuteDist: 15,
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      schools:''
+      schools:'',
+      selectedSchool: ''
     }
   }
 
@@ -39,11 +40,9 @@ export default class Filters extends Component {
     this.props.setHomeAddress(homeAddressCoords)
   }
 
-
   //Get schools in FB, filter them, receive commut info from Google, and set to store
   findSchools() {
     let { schoolType } = this.state;
-
     firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
       let cleanData = Object.values(snap.val())
       this.secondaryFilters(cleanData)
@@ -52,29 +51,38 @@ export default class Filters extends Component {
 
   secondaryFilters(cleanData) {
     console.log('clean', cleanData)
-    let { gradeLevel } = this.state
+    let { gradeLevel, transitMode } = this.state
     let finalSchools = cleanData.reduce((acc, school) => {
-      if (school.GradeLevels.indexOf(gradeLevel) >= 0) {
+      if (school.GradeLevels.indexOf(gradeLevel) !== -1) {
         acc.push(school);
       } return acc;
     }, []);
     console.log( 'secondary filter', finalSchools)
-    this.setState({schools: finalSchools}, () => googleDistanceMatrix(this.props.schoolResults.homeAddress, finalSchools, this.schoolCallback.bind(this)))
+    this.setState({schools: finalSchools}, () => googleDistanceMatrix(this.props.schoolResults.homeAddress, finalSchools, transitMode, this.schoolCallback.bind(this)))
   }
 
   schoolCallback(response) {
-    let schools = this.state.schools
+    let { schools, commuteDist, commuteTime } = this.state
     let finalSchoolData = response.rows[0].elements.map((school, i) => {
-      return Object.assign({}, schools[i], {commute: { distance: school.distance.text, time: school.duration.text }} )
+      return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }} )
     })
-    console.log('callback', finalSchoolData);
-    this.props.setSchools(finalSchoolData);
+    this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
     this.toggleFilterView();
   }
 
-  //Flip filter view
+  //Filter view functionality
   toggleFilterView() {
-    this.setState({ viewFilters: !this.state.viewFilters })
+    this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' })
+  }
+
+  callback(response) {
+    console.log('DIRECTIONS!', response);
+  }
+
+  selectSchool(school) {
+    this.setState({ selectedSchool: school.Name }, () => {
+      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.callback.bind(this))
+    })
   }
 
   render() {
@@ -104,18 +112,39 @@ export default class Filters extends Component {
                   <option value=''>Select school type...</option>
                   <option value='Public'>Public/District</option>
                   <option value='Charter'>Charter</option>
-                  <option value='Magnet'>Magnet</option>
                   <option value='Other'>Other</option>
                 </select>
               </article>
               <article className='filter-item'>
                 <h4>Transportation Options</h4>
-                <input type='checkbox' id='carMode' value={ this.state.carMode } onChange={(e) => this.handleChange(e)} />
-                <label>Car</label><br/>
-                <input type='checkbox' id='publicMode' value={ this.state.publicMode } onChange={(e) => this.handleChange(e)} />
-                <label>Public Transit</label><br/>
-                <input type='checkbox' id='walkMode' value={ this.state.walkMode } onChange={(e) => this.handleChange(e)} />
-                <label>Walk</label><br/>
+                <label>
+                  <input
+                    type='radio'
+                    onChange={ () => this.setState({ transitMode: 'DRIVING' }) }
+                    checked={this.state.transitMode === 'DRIVING'}
+                  />
+                Car</label><br/>
+                <label>
+                  <input
+                    type='radio'
+                    onChange={ () => this.setState({ transitMode: 'TRANSIT' })}
+                    checked={this.state.transitMode === 'TRANSIT'}
+                  />
+                Public Transit</label><br/>
+                <label>
+                  <input
+                    type='radio'
+                    onChange={ () => this.setState({ transitMode: 'BICYCLING' })}
+                    checked={this.state.transitMode === 'BICYCLING'}
+                  />
+                Bike</label><br/>
+                <label>
+                  <input
+                    type='radio'
+                    onChange={ () => this.setState({ transitMode: 'WALKING' })}
+                    checked={this.state.transitMode === 'WALKING'}
+                  />
+                Walk</label><br/>
               </article>
               <article className='filter-item'>
                 <h4>Commute Distance</h4>
@@ -155,7 +184,13 @@ export default class Filters extends Component {
             onClick={ () => this.toggleFilterView() }
             >« Search Filters</button>
             {this.props.schoolResults.schools.map((school, i) => {
-              return <SearchResults key={ i } schoolData={ school } />
+              return (
+                <SearchResults
+                    key={ i }
+                    schoolData={ school }
+                    selectedSchool={this.state.selectedSchool}
+                    selectSchool={ this.selectSchool.bind(this) } />
+              )
             })}
           </div>
           }

@@ -18,6 +18,14 @@ export default class App extends Component {
     }
   }
 
+  renderMap() {
+    if (this.props.data.FilterResults.homeAddress && this.props.data.FilterResults.schools) {
+      return <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress, ...this.props.data.FilterResults.schools]} />
+      } else if (this.props.data.FilterResults.homeAddress) {
+        return <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress]} />
+        } else return <Map center={this.getAnchor()} schoolsArr={[]} />
+  }
+
   render() {
 
     // let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
@@ -31,7 +39,7 @@ export default class App extends Component {
           <SignIn signInHandler={ this.props.signInHandler } /> }
           {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
-          {this.props.data.FilterResults.schools ? <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress, ...this.props.data.FilterResults.schools]} /> : <Map center={this.getAnchor()} schoolsArr={[]} />}
+          {this.renderMap()}
         </div>
       </div>
     )

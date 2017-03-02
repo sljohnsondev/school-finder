@@ -1,4 +1,4 @@
-const googleDistanceMatrix = (homeAddress, schoolData, callback) => {
+const googleDistanceMatrix = (homeAddress, schoolData, transitMode , callback) => {
   let origin = new window.google.maps.LatLng(homeAddress.Location.Lat, homeAddress.Location.Lng );
   let destinations = schoolData.map((school, i) => {
     return `${school.Address}, Denver, CO`
@@ -9,7 +9,8 @@ const googleDistanceMatrix = (homeAddress, schoolData, callback) => {
     {
       origins: [origin],
       destinations: destinations,
-      travelMode: 'DRIVING'
+      travelMode: transitMode,
+      unitSystem: window.google.maps.UnitSystem.IMPERIAL
     }, callback)
 }
 
