@@ -4,7 +4,9 @@ const filterResults = (schoolData, time, distance) => {
       return Object.assign({}, school)
     }
   })
-  return result.filter(function(n){ return n != undefined })
+  return result.filter(function(n){ return n != undefined }).sort((a, b) => {
+    return a.commute.time.value - b.commute.time.value
+  })
 }
 
 

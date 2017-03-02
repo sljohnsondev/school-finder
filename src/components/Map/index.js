@@ -37,6 +37,7 @@ export default class Map extends Component {
         containerElement={ mapContainer }
         googleMapElement={
           <GoogleMap
+            ref='map'
             defaultZoom={12}
             defaultCenter={center}
             options={{streetViewControl: false, myTypeControl: false }}>
