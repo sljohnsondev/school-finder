@@ -3,21 +3,23 @@
 
 ## Project Screen Shot(s)
 
-![My image](https://drive.google.com/open?id=0B1LF3i2gTJgNLUZtaUpFTEpaaTQ
+![My image](/Users/samjohnson/turing/mod3/school-finder/screenshots/School.Finder.Welcome.png)
+
+![My image](/Users/samjohnson/turing/mod3/school-finder/screenshots/School.Directions.png)
+
+![My image](/Users/samjohnson/turing/mod3/school-finder/screenshots/School.Results.png)
 
 ## Installation and Setup Instructions
 
-#### Example:  
-
-Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
+Clone down this repository. You will need `npm` installed globally on your machine.  
 
 Installation:
 
 `npm install`  
 
-To Run Test Suite:  
+<!-- To Run Test Suite: //tests will be pushed up shortly -->
 
-`npm test`  
+<!-- `npm test`   -->
 
 To Start Server:
 
@@ -29,19 +31,12 @@ To Visit App:
 
 ## Reflection
 
-  - What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
-  - What did you set out to build?
-  - Why was this project challenging and therefore a really good learning experience?
-  - What were some unexpected obstacles?
-  - What tools did you use to implement this project?
-      - This might seem obvious because you are IN this codebase, but to all other humans now is the time to talk about why you chose webpack instead of create react app, or D3, or vanilla JS instead of a framework etc. Brag about your choices and justify them here.  
+This was a self-directed project at the end of Module 3 at Turing School of Software & Design.  
 
-#### Example:  
+I set out to build a React - Redux web application built on top of a Firebase Database and Google Maps APIs that allowed users to quickly and easily search for and get directions to schools within their desired commute parameters for their kids. I am very comfortable with React and Redux and was excited to build a robust application with them that presented data from the internet in a more helpful and productive way for parents.
 
-This was a 3 week long project built during my third module at Turing School of Software and Design. Project goals included using technologies learned up until this point and familiarizing myself with documentation for new features.  
+This project was a great opportunity to continue building my skills in React and Redux while learning a lot about how to implement Google Maps API service.  As a front-end developer, it was also beneficial to spend some time thinking about the database I was building with DPS school data scrubbed from a CSV file downloaded from their website.
 
-Originally I wanted to build an application that allowed users to pull data from the Twitter API based on what they were interested in, such as 'most tagged users'. I started this process by using the `create-react-app` boilerplate, then adding `react-router-4.0` and `redux`.  
+The biggest challenge I had was with rendering directions on the page in a React framework.  To solve the problem, I imported a JS library that gave me pre-build components to implement in my code. This ended up being a really great learning opportunity for me and  am excited to continue to explore additional libraries in future projects.
 
-One of the main challenges I ran into was Authentication. This lead me to spend a few days on a research spike into OAuth, Auth0, and two-factor authentication using Firebase or other third parties. Due to project time constraints, I had to table authentication and focus more on data visualization from parts of the API that weren't restricted to authenticated users.
-
-At the end of the day, the technologies implemented in this project are React, React-Router 4.0, Redux, LoDash, D3, and a significant amount of VanillaJS, JSX, and CSS. I chose to use the `create-react-app` boilerplate to minimize initial setup and invest more time in diving into weird technological rabbit holes. In the next iteration I plan on handrolling a `webpack.config.js` file to more fully understand the build process.
+As a former staff member at Teach For America, I care deeply about making sure all children have the opportunity to attain an excellent education and this project reflects my desire to use my skills as a developer and problem solver to ensure that is a reality.
