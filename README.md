@@ -3,11 +3,7 @@
 
 ## Project Screen Shot(s)
 
-#### Example:   
-
-[ PRETEND SCREEN SHOT IS HERE ]
-
-[ PRETEND OTHER SCREEN SHOT IS HERE ]
+![My image](https://drive.google.com/open?id=0B1LF3i2gTJgNLUZtaUpFTEpaaTQ
 
 ## Installation and Setup Instructions
 
