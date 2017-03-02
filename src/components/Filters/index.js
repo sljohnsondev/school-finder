@@ -180,7 +180,7 @@ export default class Filters extends Component {
             <button
             className='filter-back-btn'
             onClick={ () => this.toggleFilterView() }
-            >« Search Filters</button>
+            >« Back To Filters</button>
             {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
               return (
                 <SearchResults

@@ -1,10 +1,13 @@
 .school-container {
-  padding: 5px 0 10px;
+  padding: 8px 0 10px;
   line-height: normal;
 }
 
 .results-fields {
   margin: 2px 0;
+}
+h4 {
+  color: black;
 }
 
 .selected {
@@ -14,4 +17,14 @@
   left: -20px;
   padding-left: 20px;
   width: 110%;
+}
+
+.commute-info {
+  color: rgb(72, 133, 237);
+}
+
+a {
+  color: rgb(72, 133, 237);
+  font-weight: bolder;
+  text-decoration: none;
 }

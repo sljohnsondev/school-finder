@@ -1,4 +1,5 @@
 .filter-container {
+  font-family: 'Quicksand', sans-serif;
   position: fixed;
   left: 0;
   top: 8vh;
@@ -8,19 +9,19 @@
   border-radius: 8px;
   margin-left: 12px;
   padding: 10px 20px;
-  min-width: 300px;
+  width: 310px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
+
 .filter-header {
-  font-family: 'Quicksand', sans-serif;
   font-size: 30px;
   margin: 8px 0 0;
   text-align: center;
 }
 
 .filter-fields {
-  font-family: 'Quicksand', sans-serif;
   margin: 20px 0;
 }
 
@@ -61,22 +62,28 @@ label {
   width: 100%;
   border-radius: 5px;
   border-style: none;
-  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
   font-weight: bolder;
+  background: rgba(255, 99, 71, .6);
 }
 
 .search-btn:hover {
-  border: 3px solid gray;
-  background-color: darkgray
+  background: rgba(255, 99, 71, .9);
 }
 
 .filter-back-btn {
   background: none;
   border: none;
-  margin-top: 15px;
+  margin: 10px 0 10px 70px;
+  color: rgba(255, 99, 71, .8);
+  font-size: 16px;
+
 }
 
 .filter-back-btn:hover {
-  font-weight: bolder;
+  transform: scale(1.1);
+}
+
+:hover {
+  cursor: pointer;
 }
