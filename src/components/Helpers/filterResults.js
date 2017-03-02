@@ -1,6 +1,6 @@
 const filterResults = (schoolData, time, distance) => {
   let result = schoolData.map((school, i) => {
-    if (school.commute.distance.value <= time * 1609.35 && school.commute.time.value <= distance * 60) {
+    if (school.commute.distance.value <= distance * 1609.35 && school.commute.time.value <= time * 60) {
       return Object.assign({}, school)
     }
   })
