@@ -28,8 +28,10 @@ export default class Map extends Component {
             defaultZoom={12}
             defaultCenter={center}
             options={{streetViewControl: false, myTypeControl: false }}>
-            { markers }
-            { <DirectionsRenderer directions={directions} /> }
+            { directions ? <div/> : markers }
+            { directions === null ? <div/> : <DirectionsRenderer
+                directions={directions}
+            /> }
           </GoogleMap>
         }
       />
