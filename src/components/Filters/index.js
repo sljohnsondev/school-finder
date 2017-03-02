@@ -75,8 +75,9 @@ export default class Filters extends Component {
     this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' })
   }
 
-  callback(response) {
-    console.log('DIRECTIONS!', response);
+  callback(result, status) {
+    console.log('as set', result);
+    this.props.setDirections(result);
   }
 
   selectSchool(school) {

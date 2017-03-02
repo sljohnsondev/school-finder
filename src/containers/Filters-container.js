@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Filters from '../components/Filters';
-import { setSchools, setHomeAddress } from '../actions';
+import { setSchools, setHomeAddress, setDirections } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,9 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     setHomeAddress: (homeAddress) => {
       dispatch(setHomeAddress(homeAddress))
     },
-    // removePin: (data) => {
-    //   dispatch(removePin(data))
-    // }
+    setDirections: (directions) => {
+      dispatch(setDirections(directions))
+    },
   }
 }
 

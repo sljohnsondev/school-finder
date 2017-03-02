@@ -18,6 +18,13 @@ export const setHomeAddress = (homeAddress) => {
     homeAddress
   }
 }
+
+export const setDirections = (directions) => {
+  return {
+    type: 'SET_DIRECTIONS',
+    directions
+  }
+}
 //
 // export const receiveExtForecast = (forecastData, fullName) => {
 //   return {
