@@ -17,6 +17,7 @@ export default class Map extends Component {
   }
 
   render() {
+    console.log('map', <GoogleMap/> )
     const { center, schoolsArr } = this.props;
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
     const markers = schoolsArr.map((school, i) => {
@@ -37,7 +38,6 @@ export default class Map extends Component {
         containerElement={ mapContainer }
         googleMapElement={
           <GoogleMap
-            ref='map'
             defaultZoom={12}
             defaultCenter={center}
             options={{streetViewControl: false, myTypeControl: false }}>

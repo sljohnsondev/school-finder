@@ -21,9 +21,9 @@ export default class App extends Component {
   renderMap() {
     if (this.props.data.FilterResults.homeAddress && this.props.data.FilterResults.schools) {
       return <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress, ...this.props.data.FilterResults.schools]} />
-    } else if (this.props.data.FilterResults.homeAddress) {
+      } else if (this.props.data.FilterResults.homeAddress) {
         return <Map center={this.getAnchor()} schoolsArr={[this.props.data.FilterResults.homeAddress]} />
-      } else return <Map center={this.getAnchor()} schoolsArr={[]} />
+        } else return <Map center={this.getAnchor()} schoolsArr={[]} />
   }
 
   render() {

@@ -72,7 +72,7 @@ export default class Filters extends Component {
 
   //Filter view functionality
   toggleFilterView() {
-    this.setState({ viewFilters: !this.state.viewFilters })
+    this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' })
   }
 
   callback(response) {
