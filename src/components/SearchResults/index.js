@@ -4,11 +4,13 @@ import './searchresults-style.css';
 export default class SearchResults extends Component {
 
   toggleSchoolSelect() {
-    this.props.selectSchool(this.props.schoolData)
+    if (this.props.schoolData.Name === this.props.selectedSchool) {
+      this.props.selectSchool('');
+    } else this.props.selectSchool(this.props.schoolData)
   }
 
   render() {
-    let { Name, Address, WebUrl, commute } = this.props.schoolData
+    let { Name, Address, WebUrl, commute } = this.props.schoolData;
     return (
       <div className={this.props.selectedSchool === Name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
         <h3 className='results-fields'>{Name}</h3>
@@ -22,5 +24,3 @@ export default class SearchResults extends Component {
     )
   }
 }
-
-//{this.props.schoolData.GradeLevels} {this.props.schoolData.SchoolTypeDescription}

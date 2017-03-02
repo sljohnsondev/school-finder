@@ -25,7 +25,7 @@ export default class Map extends Component {
         containerElement={ mapContainer }
         googleMapElement={
           <GoogleMap
-            defaultZoom={12}
+            defaultZoom={11}
             defaultCenter={center}
             options={{streetViewControl: false, myTypeControl: false }}>
             { directions ? <div/> : markers }

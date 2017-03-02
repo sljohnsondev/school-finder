@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     setDirections: (directions) => {
       dispatch(setDirections(directions))
-    },
+    }
   }
 }
 

@@ -184,7 +184,7 @@ export default class Filters extends Component {
             className='filter-back-btn'
             onClick={ () => this.toggleFilterView() }
             >« Search Filters</button>
-            {this.props.schoolResults.schools.map((school, i) => {
+            {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
               return (
                 <SearchResults
                     key={ i }
@@ -192,7 +192,7 @@ export default class Filters extends Component {
                     selectedSchool={this.state.selectedSchool}
                     selectSchool={ this.selectSchool.bind(this) } />
               )
-            })}
+            }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
           </div>
           }
       </div>

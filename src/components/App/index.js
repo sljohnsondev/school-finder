@@ -28,8 +28,6 @@ export default class App extends Component {
 
   render() {
 
-    // let markerDisplay = Object.assign([], this.props.data.FilterResults.schools, [this.props.data.FilterResults.homeAddress])
-
     return (
       <div className='app-container'>
         <Header />
@@ -45,4 +43,3 @@ export default class App extends Component {
     )
   }
 }
-// AIzaSyB8JYY9Fxzlc0pjxOxv-i9fa1QtLOe0lY9o

@@ -14,5 +14,3 @@ const getGeoLocation = (address, callback) => {
 }
 
 export default getGeoLocation;
-
-// placeID = results[0].place_id;

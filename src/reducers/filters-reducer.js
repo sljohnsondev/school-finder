@@ -1,7 +1,5 @@
 const filters = (state = [], action) => {
 
-
-
   switch (action.type) {
     case 'SET_SCHOOLS':
       return Object.assign({}, state, {schools: action.schoolResults})
