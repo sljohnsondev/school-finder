@@ -1,24 +1,10 @@
 import React, { Component } from 'react';
-import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
 import './map-style.css';
 
 export default class Map extends Component {
-  constructor() {
-    super()
-    this.state ={
-      isRemounting: false
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      this.setState({ isRemounting: true }, () => this.setState({ isRemounting: false}));
-    }
-  }
-
   render() {
-    console.log('map', <GoogleMap/> )
-    const { center, schoolsArr } = this.props;
+    const { center, schoolsArr, directions } = this.props;
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
     const markers = schoolsArr.map((school, i) => {
       const marker = {
@@ -32,16 +18,19 @@ export default class Map extends Component {
       return <Marker key={i} {...marker} />
     })
 
-    return this.state.isRemounting ? <div></div> : (
+    return (
       <GoogleMapLoader
         className='map-container'
         containerElement={ mapContainer }
         googleMapElement={
           <GoogleMap
-            defaultZoom={12}
+            defaultZoom={11}
             defaultCenter={center}
             options={{streetViewControl: false, myTypeControl: false }}>
-            { markers }
+            { directions ? <div/> : markers }
+            { directions === null ? <div/> : <DirectionsRenderer
+                directions={directions}
+            /> }
           </GoogleMap>
         }
       />
