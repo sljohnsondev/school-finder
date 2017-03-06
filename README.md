@@ -3,11 +3,11 @@
 
 ## Project Screen Shot(s)
 
-![My image](/Users/samjohnson/turing/mod3/school-finder/screenshots/School.Finder.Welcome.png)
+![My image](./screenshots/school_finder_welcome.png)
 
-![My image](/Users/samjohnson/turing/mod3/school-finder/screenshots/School.Directions.png)
+![My image](./screenshots/school_results.png)
 
-![My image](/Users/samjohnson/turing/mod3/school-finder/screenshots/School.Results.png)
+![My image](./screenshots/school_directions.png)
 
 ## Installation and Setup Instructions
 
