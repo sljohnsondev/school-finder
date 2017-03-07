@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header';
 import Map from '../Map';
-import SignIn from '../SignIn';
+// import SignIn from '../SignIn';
 import './app-style.css'
 
 export default class App extends Component {
@@ -31,11 +31,7 @@ export default class App extends Component {
     return (
       <div className='app-container'>
         <Header />
-        { this.props.data.AppData.displayName ?
-          <div />
-          :
-          <SignIn signInHandler={ this.props.signInHandler } /> }
-          {this.props.children}
+        {this.props.children}
         <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
           {this.renderMap()}
         </div>
