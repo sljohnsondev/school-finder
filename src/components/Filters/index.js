@@ -44,7 +44,6 @@ export default class Filters extends Component {
   findSchools() {
     let { schoolType } = this.state;
     firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
-      debugger
       let cleanData = Object.values(snap.val())
       this.secondaryFilters(cleanData)
     })
@@ -75,6 +74,7 @@ export default class Filters extends Component {
   }
 
   callback(result, status) {
+    debugger
     this.props.setDirections(result);
   }
 

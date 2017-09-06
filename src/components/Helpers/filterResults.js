@@ -9,6 +9,4 @@ const filterResults = (schoolData, time, distance) => {
   })
 }
 
-
-
 export default filterResults;
