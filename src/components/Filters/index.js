@@ -71,12 +71,20 @@ export default class Filters extends Component {
 
   //Filter view functionality
   toggleFilterView() {
-    this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' }, this.props.setDirections(null))
+    this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' }, this.resetMap())
+  }
+
+  resetMap() {
+    if (!this.state.viewFilters) {
+      this.props.setDirections(null)
+      this.props.setSchools(null)
+    } else this.props.setDirections(null)
   }
 
   directionsCallback(result, status) {
     console.log(result, status);
     if (status === 'OK') {
+      console.log(result);
       this.props.setDirections(result);
     }
   }

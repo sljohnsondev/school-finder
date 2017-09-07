@@ -2,7 +2,23 @@ import React, { Component } from 'react';
 import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap } from 'react-google-maps';
 import './map-style.css';
 
+
+const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
+
+const MyGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+  defaultZoom={10}
+  defaultCenter={props.center}
+  options={{streetViewControl: false, myTypeControl: false }}
+  >
+    { props.directions ? <div/> : props.markers }
+    { props.directions === null ? <div/> : <DirectionsRenderer directions={props.directions} /> }
+  </GoogleMap>
+))
+
 export default class Map extends Component {
+  constructor
+
 
   displayMarkers(schoolsArr) {
     return schoolsArr.map((school, i) => {
@@ -20,23 +36,15 @@ export default class Map extends Component {
 
   render() {
     const { center, schoolsArr, directions } = this.props;
-    const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
-    const MyGoogleMap = withGoogleMap(props => (
-      <GoogleMap
-        defaultZoom={10}
-        defaultCenter={center}
-        options={{streetViewControl: false, myTypeControl: false }}
-      >
-        { directions ? <div/> : this.displayMarkers(schoolsArr, props) }
-        { directions === null ? <div/> : <DirectionsRenderer directions={directions} /> }
-      </GoogleMap>
-    ))
 
     return (
       <MyGoogleMap
         className='map-container'
         containerElement={ mapContainer }
         mapElement={ mapContainer }
+        center={ center }
+        markers={ this.displayMarkers(schoolsArr)}
+        directions={ directions }
       />
     )
   }
