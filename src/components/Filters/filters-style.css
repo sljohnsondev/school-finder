@@ -9,11 +9,67 @@
   border-radius: 8px;
   margin-left: 12px;
   padding: 10px 20px;
-  width: 310px;
+  width: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.slide-filter-btn {
+  z-index: 1;
+  position: fixed;
+  left: 350px;
+  top: 12vh;
+  padding: 15px 7px;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  background-color: rgba(255, 99, 71, .7);
+  border: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.slide-filter-btn:hover {
+  background: rgba(255, 99, 71, .9);
+}
+
+.hidden {
+  -webkit-transform: translate3d(-320px,0,0);
+  -moz-transform: translate3d(-320px,0,0);
+  -o-transform: translate3d(-320px,0,0);
+  -ms-transform: translate3d(-320px,0,0);
+  transform: translate3d(-320px,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
 
 .filter-header {
   font-size: 30px;

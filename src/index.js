@@ -5,9 +5,10 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import Routes from './routes';
 import rootReducer from './reducers';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, devToolsEnhancer())
 
 render(
   <Provider store={store}>

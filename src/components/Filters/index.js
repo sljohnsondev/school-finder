@@ -19,7 +19,8 @@ export default class Filters extends Component {
       viewFilters: true,
       homeAddress: '',
       schools:'',
-      selectedSchool: ''
+      selectedSchool: '',
+      hideFilter: false
     }
   }
 
@@ -70,128 +71,147 @@ export default class Filters extends Component {
 
   //Filter view functionality
   toggleFilterView() {
-    this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' }, this.props.setDirections(null))
+    this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' }, this.resetMap())
   }
 
-  callback(result, status) {
-    this.props.setDirections(result);
+  resetMap() {
+    if (!this.state.viewFilters) {
+      this.props.setDirections(null)
+      this.props.setSchools(null)
+    } else this.props.setDirections(null)
+  }
+
+  directionsCallback(result, status) {
+    console.log(result, status);
+    if (status === 'OK') {
+      console.log(result);
+      this.props.setDirections(result);
+    }
   }
 
   selectSchool(school) {
     this.setState({ selectedSchool: school.Name }, () => {
-      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.callback.bind(this))
+      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback.bind(this))
     })
+    this.slideFilterComponent()
+  }
+
+  slideFilterComponent() {
+    this.setState({ hideFilter: !this.state.hideFilter })
   }
 
   render() {
     return (
-      <div className='filter-container'>
-        {this.state.viewFilters ?
-          <div>
-            <h2 className='filter-header'>Search Filters</h2>
-            <form className='filter-fields'>
-              <article className='filter-item'>
-                <h4>Home Street Address</h4>
-                <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e)} onBlur={ (e) => this.handleHomeAddress(e) } />
-              </article>
-              <article className='filter-item'>
-                <h4>Grade Level</h4>
-                <select id='gradeLevel' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)}>
-                  <option value=''>Select grade level...</option>
-                  <option value='1'>ECE/Pre-K</option>
-                  <option value='2'>K-5</option>
-                  <option value='3'>6-8</option>
-                  <option value='4'>9-12</option>
-                </select>
-              </article>
-              <article className='filter-item'>
-                <h4>School Type</h4>
-                <select id='schoolType' value={ this.state.schoolType } onChange={(e) => this.handleChange(e)}>
-                  <option value=''>Select school type...</option>
-                  <option value='Public'>Public/District</option>
-                  <option value='Charter'>Charter</option>
-                  <option value='Other'>Other</option>
-                </select>
-              </article>
-              <article className='filter-item'>
-                <h4>Transportation Options</h4>
-                <label>
+      <div>
+        <button className={ this.state.hideFilter ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.slideFilterComponent() }>{this.state.hideFilter ? '>' : '<' }</button>
+        <div className={ this.state.hideFilter ? 'filter-container hidden' : 'filter-container'}>
+          {this.state.viewFilters ?
+            <div>
+              <h2 className='filter-header'>Search Filters</h2>
+              <form className='filter-fields'>
+                <article className='filter-item'>
+                  <h4>Home Street Address</h4>
+                  <input id='homeAddress' type='text' value={ this.state.homeAddress } onChange={ (e) => this.handleChange(e)} onBlur={ (e) => this.handleHomeAddress(e) } />
+                </article>
+                <article className='filter-item'>
+                  <h4>Grade Level</h4>
+                  <select id='gradeLevel' value={ this.state.gradeLevel } onChange={(e) => this.handleChange(e)}>
+                    <option value=''>Select grade level...</option>
+                    <option value='1'>ECE/Pre-K</option>
+                    <option value='2'>K-5</option>
+                    <option value='3'>6-8</option>
+                    <option value='4'>9-12</option>
+                  </select>
+                </article>
+                <article className='filter-item'>
+                  <h4>School Type</h4>
+                  <select id='schoolType' value={ this.state.schoolType } onChange={(e) => this.handleChange(e)}>
+                    <option value=''>Select school type...</option>
+                    <option value='Public'>Public/District</option>
+                    <option value='Charter'>Charter</option>
+                    <option value='Other'>Other</option>
+                  </select>
+                </article>
+                <article className='filter-item'>
+                  <h4>Transportation Options</h4>
+                  <label>
+                    <input
+                      type='radio'
+                      onChange={ () => this.setState({ transitMode: 'DRIVING' }) }
+                      checked={this.state.transitMode === 'DRIVING'}
+                    />
+                  Car</label><br/>
+                  <label>
+                    <input
+                      type='radio'
+                      onChange={ () => this.setState({ transitMode: 'TRANSIT' })}
+                      checked={this.state.transitMode === 'TRANSIT'}
+                    />
+                  Public Transit</label><br/>
+                  <label>
+                    <input
+                      type='radio'
+                      onChange={ () => this.setState({ transitMode: 'BICYCLING' })}
+                      checked={this.state.transitMode === 'BICYCLING'}
+                    />
+                  Bike</label><br/>
+                  <label>
+                    <input
+                      type='radio'
+                      onChange={ () => this.setState({ transitMode: 'WALKING' })}
+                      checked={this.state.transitMode === 'WALKING'}
+                    />
+                  Walk</label><br/>
+                </article>
+                <article className='filter-item'>
+                  <h4>Commute Distance</h4>
                   <input
-                    type='radio'
-                    onChange={ () => this.setState({ transitMode: 'DRIVING' }) }
-                    checked={this.state.transitMode === 'DRIVING'}
+                    id='commuteDist'
+                    className='slider'
+                    type="range"
+                    max="30"
+                    value={this.state.commuteDist}
+                    onChange={(e) => this.handleChange(e)}
                   />
-                Car</label><br/>
-                <label>
+                  <p className='slider-data'>{this.state.commuteDist} miles</p>
+                </article>
+                <article className='filter-item'>
+                  <h4>Commute Time</h4>
                   <input
-                    type='radio'
-                    onChange={ () => this.setState({ transitMode: 'TRANSIT' })}
-                    checked={this.state.transitMode === 'TRANSIT'}
+                    id='commuteTime'
+                    className='slider'
+                    type="range"
+                    max="60"
+                    value={this.state.commuteTime}
+                    onChange={(e) => this.handleChange(e)}
                   />
-                Public Transit</label><br/>
-                <label>
-                  <input
-                    type='radio'
-                    onChange={ () => this.setState({ transitMode: 'BICYCLING' })}
-                    checked={this.state.transitMode === 'BICYCLING'}
-                  />
-                Bike</label><br/>
-                <label>
-                  <input
-                    type='radio'
-                    onChange={ () => this.setState({ transitMode: 'WALKING' })}
-                    checked={this.state.transitMode === 'WALKING'}
-                  />
-                Walk</label><br/>
-              </article>
-              <article className='filter-item'>
-                <h4>Commute Distance</h4>
-                <input
-                  id='commuteDist'
-                  className='slider'
-                  type="range"
-                  max="30"
-                  value={this.state.commuteDist}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <p className='slider-data'>{this.state.commuteDist} miles</p>
-              </article>
-              <article className='filter-item'>
-                <h4>Commute Time</h4>
-                <input
-                  id='commuteTime'
-                  className='slider'
-                  type="range"
-                  max="60"
-                  value={this.state.commuteTime}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <p className='slider-data'>{this.state.commuteTime} mins</p>
-              </article>
-            </form>
-            <button
-              className='search-btn'
-              onClick={ () => this.findSchools() }
-            >Find Schools</button>
-          </div>
-          :
-          <div className='results-container'>
-            <h2 className='filter-header'>Search Results</h2>
-            <button
-            className='filter-back-btn'
-            onClick={ () => this.toggleFilterView() }
-            >« Back To Filters</button>
-            {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
-              return (
-                <SearchResults
-                    key={ i }
-                    schoolData={ school }
-                    selectedSchool={this.state.selectedSchool}
-                    selectSchool={ this.selectSchool.bind(this) } />
-              )
-            }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
-          </div>
-          }
+                  <p className='slider-data'>{this.state.commuteTime} mins</p>
+                </article>
+              </form>
+              <button
+                className='search-btn'
+                onClick={ () => this.findSchools() }
+              >Find Schools</button>
+            </div>
+            :
+            <div className='results-container'>
+              <h2 className='filter-header'>Search Results</h2>
+              <button
+              className='filter-back-btn'
+              onClick={ () => this.toggleFilterView() }
+              >« Back To Filters</button>
+              {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
+                return (
+                  <SearchResults
+                      key={ i }
+                      schoolData={ school }
+                      selectedSchool={this.state.selectedSchool}
+                      selectSchool={ this.selectSchool.bind(this) } />
+                )
+              }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
+            </div>
+            }
+        </div>
       </div>
     )
   }

@@ -1,38 +1,50 @@
 import React, { Component } from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
+import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap } from 'react-google-maps';
 import './map-style.css';
 
+
+const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
+
+const MyGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+  defaultZoom={10}
+  defaultCenter={props.center}
+  options={{streetViewControl: false, myTypeControl: false }}
+  >
+    { props.directions ? <div/> : props.markers }
+    { props.directions === null ? <div/> : <DirectionsRenderer directions={props.directions} /> }
+  </GoogleMap>
+))
+
 export default class Map extends Component {
-  render() {
-    const { center, schoolsArr, directions } = this.props;
-    const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
-    const markers = schoolsArr.map((school, i) => {
+  constructor
+
+
+  displayMarkers(schoolsArr) {
+    return schoolsArr.map((school, i) => {
       const marker = {
         position: {
           lat: school.Location.Lat,
           lng: school.Location.Lng
         },
         animation: window.google.maps.Animation.DROP,
-        label: school.Name || 'Home',
+        label: { text: school.Name || 'Home' },
       }
-      return <Marker key={i} {...marker} />
+      return <Marker key={i} {...marker}  />
     })
+  }
+
+  render() {
+    const { center, schoolsArr, directions } = this.props;
 
     return (
-      <GoogleMapLoader
+      <MyGoogleMap
         className='map-container'
         containerElement={ mapContainer }
-        googleMapElement={
-          <GoogleMap
-            defaultZoom={11}
-            defaultCenter={center}
-            options={{streetViewControl: false, myTypeControl: false }}>
-            { directions ? <div/> : markers }
-            { directions === null ? <div/> : <DirectionsRenderer
-                directions={directions}
-            /> }
-          </GoogleMap>
-        }
+        mapElement={ mapContainer }
+        center={ center }
+        markers={ this.displayMarkers(schoolsArr)}
+        directions={ directions }
       />
     )
   }
