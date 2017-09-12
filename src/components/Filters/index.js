@@ -202,6 +202,7 @@ export default class Filters extends Component {
                 return (
                   <SearchResults
                       key={ i }
+                      refNum={ i }
                       schoolData={ school }
                       selectedSchool={this.state.selectedSchool}
                       selectSchool={ this.selectSchool.bind(this) } />

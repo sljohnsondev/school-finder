@@ -21,7 +21,7 @@ export default class Map extends Component {
   constructor() {
     super()
     this.state = {
-      zoom: 11
+      zoom: 12
     }
   }
 
@@ -40,7 +40,7 @@ export default class Map extends Component {
           lng: school.Location.Lng
         },
         animation: window.google.maps.Animation.DROP,
-        label: { text: school.Name || 'Home' },
+        label: { text: refObj[i] },
       }
       return <Marker key={i} {...marker}  />
     })
@@ -74,4 +74,17 @@ export default class Map extends Component {
       />
     )
   }
+}
+
+let refObj = {
+  0: 'Home',
+  1: '1',
+  2: '2',
+  3: '3',
+  4: '4',
+  5: '5',
+  6: '6',
+  7: '7',
+  8: '8',
+  9: '9'
 }
