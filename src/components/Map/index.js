@@ -21,7 +21,7 @@ export default class Map extends Component {
   constructor() {
     super()
     this.state = {
-      zoom: 11
+      zoom: 12
     }
   }
 
