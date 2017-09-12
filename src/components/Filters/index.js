@@ -82,9 +82,7 @@ export default class Filters extends Component {
   }
 
   directionsCallback(result, status) {
-    console.log(result, status);
     if (status === 'OK') {
-      console.log(result);
       this.props.setDirections(result);
     }
   }

@@ -32,7 +32,7 @@ export default class App extends Component {
       <div className='app-container'>
         <Header />
         {this.props.children}
-        <div style={{width: '100vw', height: '97vh', background: 'peru'}}>
+        <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>
       </div>
