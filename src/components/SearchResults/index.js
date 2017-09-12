@@ -11,7 +11,6 @@ export default class SearchResults extends Component {
 
   render() {
     let { Name, Address, WebUrl, commute } = this.props.schoolData;
-    debugger
     return (
       <div className={this.props.selectedSchool === Name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
         <h3 className='results-fields'>{`${refObj[this.props.refNum]}${Name}`}</h3>
