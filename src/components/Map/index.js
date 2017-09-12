@@ -40,7 +40,7 @@ export default class Map extends Component {
           lng: school.Location.Lng
         },
         animation: window.google.maps.Animation.DROP,
-        label: { text: school.Name || 'Home' },
+        label: { text: refObj[i] },
       }
       return <Marker key={i} {...marker}  />
     })
@@ -74,4 +74,17 @@ export default class Map extends Component {
       />
     )
   }
+}
+
+let refObj = {
+  0: 'Home',
+  1: 'A',
+  2: 'B',
+  3: 'C',
+  4: 'D',
+  5: 'E',
+  6: 'F',
+  7: 'G',
+  8: 'H',
+  9: 'I'
 }

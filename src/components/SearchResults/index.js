@@ -11,9 +11,10 @@ export default class SearchResults extends Component {
 
   render() {
     let { Name, Address, WebUrl, commute } = this.props.schoolData;
+    debugger
     return (
       <div className={this.props.selectedSchool === Name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
-        <h3 className='results-fields'>{Name}</h3>
+        <h3 className='results-fields'>{`${refObj[this.props.refNum]}${Name}`}</h3>
         <p className='results-fields'>{Address}</p>
         <a href={WebUrl} className='school-url results-fields' target='_blank'>School Website</a>
         <section className='commute-info results-fields'>
@@ -23,4 +24,16 @@ export default class SearchResults extends Component {
       </div>
     )
   }
+}
+
+let refObj = {
+  0: 'A. ',
+  1: 'B. ',
+  2: 'C. ',
+  3: 'D. ',
+  4: 'E. ',
+  5: 'F. ',
+  6: 'G. ',
+  7: 'H. ',
+  8: 'I. '
 }
