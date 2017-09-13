@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap } from 'react-google-maps';
+import { markerRefObj } from '../Helpers/markerIndex';
 import './map-style.css';
 
 
@@ -40,7 +41,7 @@ export default class Map extends Component {
           lng: school.Location.Lng
         },
         animation: window.google.maps.Animation.DROP,
-        label: { text: refObj[i] },
+        label: { text: markerRefObj[i] },
       }
       return <Marker key={i} {...marker}  />
     })
@@ -74,17 +75,4 @@ export default class Map extends Component {
       />
     )
   }
-}
-
-let refObj = {
-  0: 'Home',
-  1: '1',
-  2: '2',
-  3: '3',
-  4: '4',
-  5: '5',
-  6: '6',
-  7: '7',
-  8: '8',
-  9: '9'
 }
