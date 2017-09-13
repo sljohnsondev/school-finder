@@ -11,7 +11,7 @@ const MyGoogleMap = withGoogleMap(props => (
     ref={props.onMapMounted}
     zoom={props.zoom}
     center={props.center}
-    options={{streetViewControl: false, myTypeControl: false }}
+    options={{ streetViewControl: false, myTypeControl: false, fullscreenControl: false }}
   >
     { props.directions ? <div/> : props.markers }
     { props.directions === null ? <div/> : <DirectionsRenderer directions={props.directions} /> }
