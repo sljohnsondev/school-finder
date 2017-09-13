@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import Filters from '../components/Filters';
-import { setSchools, setHomeAddress, setDirections } from '../actions';
+import { setSchools, setHomeAddress, setDirections, toggleInfoWindow } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -18,8 +17,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     setDirections: (directions) => {
       dispatch(setDirections(directions))
+    },
+    toggleInfoWindow: (marker) => {
+      dispatch(toggleInfoWindow(marker))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filters);
+export default connect(mapStateToProps, mapDispatchToProps);

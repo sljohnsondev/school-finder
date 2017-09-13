@@ -25,3 +25,10 @@ export const setDirections = (directions) => {
     directions
   }
 }
+
+export const toggleInfoWindow = (targetMarker) => {
+  return {
+    type: 'TOGGLE_INFOWINDOW',
+    targetMarker
+  }
+}

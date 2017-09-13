@@ -5,9 +5,10 @@ import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
 import filterResults from '../Helpers/filterResults.js'
+import filterContainer from '../../containers/Filters-container'
 import './filters-style.css';
 
-export default class Filters extends Component {
+class Filters extends Component {
   constructor() {
     super()
     this.state = {
@@ -63,7 +64,7 @@ export default class Filters extends Component {
   schoolCallback(response) {
     let { schools, commuteDist, commuteTime } = this.state
     let finalSchoolData = response.rows[0].elements.map((school, i) => {
-      return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }} )
+      return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
     })
     this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
     this.toggleFilterView();
@@ -215,3 +216,5 @@ export default class Filters extends Component {
     )
   }
 }
+
+export default filterContainer(Filters)

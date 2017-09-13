@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap } from 'react-google-maps';
+import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap, InfoWindow } from 'react-google-maps';
 import { markerRefObj } from '../Helpers/markerIndex';
+import PopUpWindow from '../PopUpWindow'
+import mapContainer from '../../containers/Filters-container'
 import './map-style.css';
 
-
-const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
+const container = <div style={{height: '100%', width: '100%'}}></div>
 
 const MyGoogleMap = withGoogleMap(props => (
   <GoogleMap
@@ -18,7 +19,7 @@ const MyGoogleMap = withGoogleMap(props => (
   </GoogleMap>
 ))
 
-export default class Map extends Component {
+class Map extends Component {
   constructor() {
     super()
     this.state = {
@@ -40,12 +41,42 @@ export default class Map extends Component {
           lat: school.Location.Lat,
           lng: school.Location.Lng
         },
+        showInfo: school.showInfo,
+        infoContent: (
+          <PopUpWindow { ...school } />
+        ),
         animation: window.google.maps.Animation.DROP,
         label: { text: markerRefObj[i] },
       }
-      return <Marker key={i} {...marker}  />
+      return (
+        <Marker key={i} {...marker} onClick={ () => this.handleMarkerClick(marker) }>
+          {marker.showInfo && (
+            <InfoWindow>
+              <div>{marker.infoContent}</div>
+            </InfoWindow>
+          )}
+        </Marker>
+      )
     })
   }
+
+  handleMarkerClick(targetMarker) {
+    this.props.toggleInfoWindow(targetMarker)
+  }
+  //
+  // handleMarkerClose(targetMarker) {
+  //   this.setState({
+  //     markers: this.state.markers.map(marker => {
+  //       if (marker === targetMarker) {
+  //         return {
+  //           ...marker,
+  //           showInfo: false,
+  //         };
+  //       }
+  //       return marker;
+  //     }),
+  //   });
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.schoolsArr.length > 1 && (nextProps.directions === null || nextProps.directions === undefined)) {
@@ -65,14 +96,16 @@ export default class Map extends Component {
     return (
       <MyGoogleMap
         className='map-container'
-        containerElement={ mapContainer }
-        mapElement={ mapContainer }
+        containerElement={ container }
+        mapElement={ container }
         center={ center }
         zoom={ this.state.zoom }
-        markers={ this.displayMarkers(schoolsArr)}
+        markers={ this.displayMarkers(schoolsArr) }
         directions={ directions }
         onMapMounted={ this.handleMapLoad.bind(this) }
       />
     )
   }
 }
+
+export default mapContainer(Map);
