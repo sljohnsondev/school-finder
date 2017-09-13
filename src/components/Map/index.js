@@ -51,7 +51,7 @@ class Map extends Component {
       return (
         <Marker key={i} {...marker} onClick={ () => this.handleMarkerClick(marker) }>
           {marker.showInfo && (
-            <InfoWindow>
+            <InfoWindow onCloseClick={ () => this.handleMarkerClick(marker) }>
               <div>{marker.infoContent}</div>
             </InfoWindow>
           )}
@@ -63,20 +63,6 @@ class Map extends Component {
   handleMarkerClick(targetMarker) {
     this.props.toggleInfoWindow(targetMarker)
   }
-  //
-  // handleMarkerClose(targetMarker) {
-  //   this.setState({
-  //     markers: this.state.markers.map(marker => {
-  //       if (marker === targetMarker) {
-  //         return {
-  //           ...marker,
-  //           showInfo: false,
-  //         };
-  //       }
-  //       return marker;
-  //     }),
-  //   });
-  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.schoolsArr.length > 1 && (nextProps.directions === null || nextProps.directions === undefined)) {
