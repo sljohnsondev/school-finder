@@ -32,3 +32,9 @@ export const toggleInfoWindow = (targetMarker) => {
     targetMarker
   }
 }
+
+export const activeSearchToggle = () => {
+  return {
+    type: 'ACTIVE_SEARCH'
+  }
+}

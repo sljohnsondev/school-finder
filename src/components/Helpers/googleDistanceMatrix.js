@@ -4,15 +4,20 @@ const googleDistanceMatrix = (homeAddress, schoolData, transitMode , callback) =
   let destinations = schoolData.map((school, i) => {
     return `${school.Address}, Denver, CO`
   })
-
   let service = new window.google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
-    {
-      origins: [origin],
-      destinations: destinations,
-      travelMode: transitMode,
-      unitSystem: window.google.maps.UnitSystem.IMPERIAL
-    }, callback)
+
+  if (destinations.length > 25) {
+    //function to handle more than 25 locations
+    console.log('Too many destinations')
+  } else {
+    service.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations: destinations,
+        travelMode: transitMode,
+        unitSystem: window.google.maps.UnitSystem.IMPERIAL
+      }, callback)
+  }
 }
 
 export default googleDistanceMatrix;

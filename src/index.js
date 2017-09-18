@@ -7,8 +7,9 @@ import Routes from './routes';
 import rootReducer from './reducers';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
+let preloadedState = { FilterResults: {activeSearch: false, schools: []} }
 
-const store = createStore(rootReducer, devToolsEnhancer())
+const store = createStore(rootReducer, preloadedState, devToolsEnhancer())
 
 render(
   <Provider store={store}>

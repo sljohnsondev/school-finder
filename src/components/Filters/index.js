@@ -58,7 +58,26 @@ class Filters extends Component {
         acc.push(school);
       } return acc;
     }, []);
-    this.setState({schools: finalSchools}, () => googleDistanceMatrix(this.props.schoolResults.homeAddress, finalSchools, transitMode, this.schoolCallback.bind(this)))
+    this.getGoogleDistances(finalSchools, transitMode)
+  }
+
+  getGoogleDistances(finalSchools, transitMode) {
+    let dataLength = finalSchools.length
+    let count = Math.ceil(dataLength / 25)
+    for (let i = 0; i < count; i++) {
+      let begin = i * 25
+      let end = i * 25 + 25
+      let data = finalSchools.slice(begin, end)
+      let callBack = (response) => {
+        let { commuteDist, commuteTime } = this.state
+        let finalSchoolData = response.rows[0].elements.map((school, i) => {
+            return Object.assign({}, data[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
+        })
+        this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
+      }
+      googleDistanceMatrix(this.props.schoolResults.homeAddress, data, transitMode, callBack)
+    }
+    this.toggleFilterView();
   }
 
   schoolCallback(response) {
@@ -67,7 +86,6 @@ class Filters extends Component {
       return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
     })
     this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
-    this.toggleFilterView();
   }
 
   //Filter view functionality
@@ -100,6 +118,7 @@ class Filters extends Component {
   }
 
   render() {
+    console.log(this.props.activeSearch)
     return (
       <div>
         <button className={ this.state.hideFilter ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.slideFilterComponent() }>{this.state.hideFilter ? '>' : '<' }</button>
@@ -192,24 +211,25 @@ class Filters extends Component {
                 onClick={ () => this.findSchools() }
               >Find Schools</button>
             </div>
-            :
-            <div className='results-container'>
-              <h2 className='filter-header'>Search Results</h2>
-              <button
-              className='filter-back-btn'
-              onClick={ () => this.toggleFilterView() }
-              >« Back To Filters</button>
-              {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
-                return (
-                  <SearchResults
-                      key={ i }
-                      refNum={ i }
-                      schoolData={ school }
-                      selectedSchool={this.state.selectedSchool}
-                      selectSchool={ this.selectSchool.bind(this) } />
-                )
-              }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
-            </div>
+            : !this.props.activeSearch ?
+                <div className='results-container'>
+                  <h2 className='filter-header'>Search Results</h2>
+                  <button
+                  className='filter-back-btn'
+                  onClick={ () => this.toggleFilterView() }
+                  >« Back To Filters</button>
+                  {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
+                    return (
+                      <SearchResults
+                          key={ i }
+                          refNum={ i }
+                          schoolData={ school }
+                          selectedSchool={this.state.selectedSchool}
+                          selectSchool={ this.selectSchool.bind(this) } />
+                    )
+                  }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
+                </div> : <div></div>
+
             }
         </div>
       </div>

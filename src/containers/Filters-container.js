@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { setSchools, setHomeAddress, setDirections, toggleInfoWindow } from '../actions';
+import { setSchools, setHomeAddress, setDirections, toggleInfoWindow, activeSearchToggle } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
     schoolResults: state.FilterResults,
+    activeSearch: state.FilterResults.activeSearch
   }
 }
 
@@ -20,6 +21,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleInfoWindow: (marker) => {
       dispatch(toggleInfoWindow(marker))
+    },
+    activeSearchToggle: () => {
+      dispatch(activeSearchToggle())
     }
   }
 }
