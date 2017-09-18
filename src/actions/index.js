@@ -5,10 +5,12 @@ export const signInHandler = (user) => {
   }
 }
 
-export const setSchools = (schoolResults) => {
+export const setSchools = (schoolResults, commuteTime, commuteDistance) => {
   return {
     type: 'SET_SCHOOLS',
-    schoolResults
+    schoolResults,
+    commuteTime,
+    commuteDistance
   }
 }
 

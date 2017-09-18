@@ -1,12 +1,12 @@
+import filterResults from '../components/Helpers/filterResults'
+
 const filters = (state = [], action) => {
 
   switch (action.type) {
     case 'SET_SCHOOLS':
       let allSchools = [...state.schools, ...action.schoolResults]
-      console.log('Data coming in: ', action.schoolResults)
-      console.log('state: ', state.schools)
-      console.log('ALL SCHOOLS: ', allSchools)
-      return Object.assign({}, state, {schools: allSchools})
+      let filteredSchools = filterResults(allSchools, action.commuteTime, action.commuteDistance)
+      return Object.assign({}, state, {schools: filteredSchools})
 
     case 'SET_HOME_ADDRESS':
         return Object.assign({}, state, {homeAddress: action.homeAddress})

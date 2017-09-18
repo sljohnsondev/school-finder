@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSchools: (schoolResults) => {
-      dispatch(setSchools(schoolResults))
+    setSchools: (schoolResults, commuteTime, commuteDistance) => {
+      dispatch(setSchools(schoolResults, commuteTime, commuteDistance))
     },
     setHomeAddress: (homeAddress) => {
       dispatch(setHomeAddress(homeAddress))
