@@ -95,7 +95,7 @@ class Filters extends Component {
   resetMap() {
     if (!this.state.viewFilters) {
       this.props.setDirections(null)
-      this.props.setSchools(null)
+      this.props.setSchools([])
     } else this.props.setDirections(null)
   }
 
@@ -210,24 +210,24 @@ class Filters extends Component {
                 onClick={ () => this.findSchools() }
               >Find Schools</button>
             </div>
-            : !this.props.activeSearch ?
-                <div className='results-container'>
-                  <h2 className='filter-header'>Search Results</h2>
-                  <button
-                  className='filter-back-btn'
-                  onClick={ () => this.toggleFilterView() }
-                  >« Back To Filters</button>
-                  {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
-                    return (
-                      <SearchResults
-                          key={ i }
-                          refNum={ i }
-                          schoolData={ school }
-                          selectedSchool={this.state.selectedSchool}
-                          selectSchool={ this.selectSchool.bind(this) } />
-                    )
-                  }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
-                </div> : <div></div>
+            :
+            <div className='results-container'>
+              <h2 className='filter-header'>Search Results</h2>
+              <button
+              className='filter-back-btn'
+              onClick={ () => this.toggleFilterView() }
+              >« Back To Filters</button>
+              {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
+                return (
+                  <SearchResults
+                      key={ i }
+                      refNum={ i }
+                      schoolData={ school }
+                      selectedSchool={this.state.selectedSchool}
+                      selectSchool={ this.selectSchool.bind(this) } />
+                )
+              }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
+            </div>
 
             }
         </div>
