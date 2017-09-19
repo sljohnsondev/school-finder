@@ -6,10 +6,10 @@
   z-index: 1;
   height: 84.5vh;
   max-height: 545px;
-  background: rgba(198, 218, 240, .9);
+  background: rgba(198, 218, 240, .95);
   border-radius: 8px;
   margin-left: 12px;
-  padding: 6px 20px;
+  padding: 0 20px 6px 20px;
   width: 260px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -128,13 +128,19 @@ label {
   background: rgba(255, 99, 71, .9);
 }
 
+.results-header-container {
+  position: sticky;
+  top: 0;
+  padding-top: 10px;
+  background-color: rgba(198, 218, 240, 1);
+}
+
 .filter-back-btn {
   background: none;
   border: none;
   margin: 10px 0 10px 70px;
   color: rgba(255, 99, 71, .8);
   font-size: 16px;
-
 }
 
 .filter-back-btn:hover {
