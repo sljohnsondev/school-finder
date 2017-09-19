@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { ReactDOM, Component } from 'react';
 import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
@@ -211,11 +211,13 @@ class Filters extends Component {
             </div>
             :
             <div className='results-container'>
-              <h2 className='filter-header'>Search Results</h2>
-              <button
-              className='filter-back-btn'
-              onClick={ () => this.toggleFilterView() }
-              >« Back To Filters</button>
+              <div className='results-header-container'>
+                <h2 className='filter-header'>Search Results</h2>
+                <button
+                  className='filter-back-btn'
+                  onClick={ () => this.toggleFilterView() }
+                >« Back To Filters</button>
+              </div>
               { this.props.activeSearch ? <SearchSpinner />
               : this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
                 return (
