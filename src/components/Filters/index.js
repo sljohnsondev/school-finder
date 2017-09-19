@@ -94,9 +94,9 @@ class Filters extends Component {
 
   resetMap() {
     if (!this.state.viewFilters) {
-      this.props.setDirections(null)
-      this.props.setSchools([])
-    } else this.props.setDirections(null)
+      this.props.clearDirections()
+      this.props.clearSchools()
+    } else this.props.clearDirections()
   }
 
   directionsCallback(result, status) {
@@ -217,7 +217,7 @@ class Filters extends Component {
               className='filter-back-btn'
               onClick={ () => this.toggleFilterView() }
               >« Back To Filters</button>
-              {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
+              {this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
                 return (
                   <SearchResults
                       key={ i }
@@ -226,9 +226,8 @@ class Filters extends Component {
                       selectedSchool={this.state.selectedSchool}
                       selectSchool={ this.selectSchool.bind(this) } />
                 )
-              }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
+              }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4>}
             </div>
-
             }
         </div>
       </div>

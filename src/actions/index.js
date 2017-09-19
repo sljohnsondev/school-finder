@@ -14,6 +14,12 @@ export const setSchools = (schoolResults, commuteTime, commuteDistance) => {
   }
 }
 
+export const clearSchools = () => {
+  return {
+    type: 'CLEAR_SCHOOLS'
+  }
+}
+
 export const setHomeAddress = (homeAddress) => {
   return {
     type: 'SET_HOME_ADDRESS',
@@ -25,6 +31,12 @@ export const setDirections = (directions) => {
   return {
     type: 'SET_DIRECTIONS',
     directions
+  }
+}
+
+export const clearDirections = () => {
+  return {
+    type: 'CLEAR_DIRECTIONS'
   }
 }
 

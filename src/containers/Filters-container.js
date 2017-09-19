@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setSchools, setHomeAddress, setDirections, toggleInfoWindow, activeSearchToggle } from '../actions';
+import { setSchools, clearSchools, setHomeAddress, setDirections, clearDirections, toggleInfoWindow, activeSearchToggle } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,11 +13,17 @@ const mapDispatchToProps = (dispatch) => {
     setSchools: (schoolResults, commuteTime, commuteDistance) => {
       dispatch(setSchools(schoolResults, commuteTime, commuteDistance))
     },
+    clearSchools: () => {
+      dispatch(clearSchools())
+    },
     setHomeAddress: (homeAddress) => {
       dispatch(setHomeAddress(homeAddress))
     },
     setDirections: (directions) => {
       dispatch(setDirections(directions))
+    },
+    clearDirections: () => {
+      dispatch(clearDirections())
     },
     toggleInfoWindow: (marker) => {
       dispatch(toggleInfoWindow(marker))
