@@ -79,14 +79,6 @@ class Filters extends Component {
     this.toggleFilterView();
   }
 
-  // schoolCallback(response) {
-  //   let { schools, commuteDist, commuteTime } = this.state
-  //   let finalSchoolData = response.rows[0].elements.map((school, i) => {
-  //     return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
-  //   })
-  //   this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
-  // }
-
   //Filter view functionality
   toggleFilterView() {
     this.setState({ viewFilters: !this.state.viewFilters, selectedSchool: '' }, this.resetMap())
