@@ -42,7 +42,8 @@ class Map extends Component {
           lng: homeAddress.Location.Lng
         },
         animation: window.google.maps.Animation.DROP,
-        label: { text: 'Home' },
+        title: 'HOME',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
       }
       let homeMarker = <Marker key={10000} {...HomeMarkerInfo} />
       let schoolMarkers = schoolsArr.map((school, i) => {
