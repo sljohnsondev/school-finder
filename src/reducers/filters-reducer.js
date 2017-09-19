@@ -6,19 +6,19 @@ const filters = (state = [], action) => {
     case 'SET_SCHOOLS':
       let allSchools = [...state.schools, ...action.schoolResults]
       let filteredSchools = filterResults(allSchools, action.commuteTime, action.commuteDistance)
-      return Object.assign({}, state, {schools: filteredSchools})
+      return Object.assign({}, state, { schools: filteredSchools })
 
     case 'CLEAR_SCHOOLS':
       return Object.assign({}, state, { schools: [] })
 
     case 'SET_HOME_ADDRESS':
-        return Object.assign({}, state, {homeAddress: action.homeAddress})
+        return Object.assign({}, state, { homeAddress: action.homeAddress })
 
     case 'SET_DIRECTIONS':
-        return Object.assign({}, state, {directions: action.directions})
+        return Object.assign({}, state, { directions: action.directions })
 
     case 'CLEAR_DIRECTIONS':
-        return Object.assign({}, state, {directions: null})
+        return Object.assign({}, state, { directions: null })
 
     case 'TOGGLE_INFOWINDOW':
       let updatedSchools = state.schools.map(school => {
@@ -28,11 +28,10 @@ const filters = (state = [], action) => {
         }
         return school
       })
-      return Object.assign({}, state, {schools: updatedSchools })
+      return Object.assign({}, state, { schools: updatedSchools })
 
     case 'ACTIVE_SEARCH':
       let toggleValue = !state.activeSearch
-      console.log(toggleValue)
       return Object.assign({}, state, { activeSearch: toggleValue })
 
     default:

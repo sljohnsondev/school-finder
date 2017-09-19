@@ -95,7 +95,7 @@ class Filters extends Component {
       this.props.clearSchools()
     } else {
       this.props.clearDirections()
-      window.setTimeout(this.props.activeSearchToggle, 100)
+      window.setTimeout(this.props.activeSearchToggle, 300)
     }
   }
 
@@ -210,15 +210,14 @@ class Filters extends Component {
               >Find Schools</button>
             </div>
             :
-            this.props.activeSearch ? <SearchSpinner />
-            :
             <div className='results-container'>
               <h2 className='filter-header'>Search Results</h2>
               <button
               className='filter-back-btn'
               onClick={ () => this.toggleFilterView() }
               >« Back To Filters</button>
-              {this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
+              { this.props.activeSearch ? <SearchSpinner />
+              : this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
                 return (
                   <SearchResults
                       key={ i }
@@ -227,7 +226,7 @@ class Filters extends Component {
                       selectedSchool={this.state.selectedSchool}
                       selectSchool={ this.selectSchool.bind(this) } />
                 )
-              }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4>}
+              }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4> }
             </div>
             }
         </div>
