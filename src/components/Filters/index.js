@@ -4,10 +4,10 @@ import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
-import filterResults from '../Helpers/filterResults.js'
+import filterContainer from '../../containers/Filters-container'
 import './filters-style.css';
 
-export default class Filters extends Component {
+class Filters extends Component {
   constructor() {
     super()
     this.state = {
@@ -57,17 +57,35 @@ export default class Filters extends Component {
         acc.push(school);
       } return acc;
     }, []);
-    this.setState({schools: finalSchools}, () => googleDistanceMatrix(this.props.schoolResults.homeAddress, finalSchools, transitMode, this.schoolCallback.bind(this)))
+    this.getGoogleDistances(finalSchools, transitMode)
   }
 
-  schoolCallback(response) {
-    let { schools, commuteDist, commuteTime } = this.state
-    let finalSchoolData = response.rows[0].elements.map((school, i) => {
-      return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }} )
-    })
-    this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
+  getGoogleDistances(finalSchools, transitMode) {
+    let dataLength = finalSchools.length
+    let count = Math.ceil(dataLength / 25)
+    for (let i = 0; i < count; i++) {
+      let begin = i * 25
+      let end = i * 25 + 25
+      let data = finalSchools.slice(begin, end)
+      let callBack = (response) => {
+        let { commuteDist, commuteTime } = this.state
+        let finalSchoolData = response.rows[0].elements.map((school, i) => {
+            return Object.assign({}, data[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
+        })
+        this.props.setSchools(finalSchoolData, commuteTime, commuteDist);
+      }
+      googleDistanceMatrix(this.props.schoolResults.homeAddress, data, transitMode, callBack)
+    }
     this.toggleFilterView();
   }
+
+  // schoolCallback(response) {
+  //   let { schools, commuteDist, commuteTime } = this.state
+  //   let finalSchoolData = response.rows[0].elements.map((school, i) => {
+  //     return Object.assign({}, schools[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
+  //   })
+  //   this.props.setSchools(filterResults(finalSchoolData, commuteTime, commuteDist));
+  // }
 
   //Filter view functionality
   toggleFilterView() {
@@ -76,9 +94,9 @@ export default class Filters extends Component {
 
   resetMap() {
     if (!this.state.viewFilters) {
-      this.props.setDirections(null)
-      this.props.setSchools(null)
-    } else this.props.setDirections(null)
+      this.props.clearDirections()
+      this.props.clearSchools()
+    } else this.props.clearDirections()
   }
 
   directionsCallback(result, status) {
@@ -99,6 +117,7 @@ export default class Filters extends Component {
   }
 
   render() {
+    console.log(this.props.activeSearch)
     return (
       <div>
         <button className={ this.state.hideFilter ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.slideFilterComponent() }>{this.state.hideFilter ? '>' : '<' }</button>
@@ -198,7 +217,7 @@ export default class Filters extends Component {
               className='filter-back-btn'
               onClick={ () => this.toggleFilterView() }
               >« Back To Filters</button>
-              {this.props.schoolResults.schools ? this.props.schoolResults.schools.map((school, i) => {
+              {this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
                 return (
                   <SearchResults
                       key={ i }
@@ -207,7 +226,7 @@ export default class Filters extends Component {
                       selectedSchool={this.state.selectedSchool}
                       selectSchool={ this.selectSchool.bind(this) } />
                 )
-              }) : <h4>Looks like your search came up empty.  Try again but with different filters</h4>}
+              }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4>}
             </div>
             }
         </div>
@@ -215,3 +234,5 @@ export default class Filters extends Component {
     )
   }
 }
+
+export default filterContainer(Filters)

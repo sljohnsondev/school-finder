@@ -6,7 +6,7 @@ const googleDirections = (homeAddress, schoolAddress, transitMode, callback) => 
     origin: origin,
     destination: destinations,
     travelMode: transitMode,
-    departureTime: 1505309500,
+    transitOptions: {departureTime: new Date(1505309400 *1000) },
     unitSystem: window.google.maps.UnitSystem.IMPERIAL
   }
   let service = new window.google.maps.DirectionsService();

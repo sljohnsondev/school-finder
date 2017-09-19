@@ -5,10 +5,18 @@ export const signInHandler = (user) => {
   }
 }
 
-export const setSchools = (schoolResults) => {
+export const setSchools = (schoolResults, commuteTime, commuteDistance) => {
   return {
     type: 'SET_SCHOOLS',
-    schoolResults
+    schoolResults,
+    commuteTime,
+    commuteDistance
+  }
+}
+
+export const clearSchools = () => {
+  return {
+    type: 'CLEAR_SCHOOLS'
   }
 }
 
@@ -23,5 +31,24 @@ export const setDirections = (directions) => {
   return {
     type: 'SET_DIRECTIONS',
     directions
+  }
+}
+
+export const clearDirections = () => {
+  return {
+    type: 'CLEAR_DIRECTIONS'
+  }
+}
+
+export const toggleInfoWindow = (targetMarker) => {
+  return {
+    type: 'TOGGLE_INFOWINDOW',
+    targetMarker
+  }
+}
+
+export const activeSearchToggle = () => {
+  return {
+    type: 'ACTIVE_SEARCH'
   }
 }
