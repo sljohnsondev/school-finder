@@ -19,11 +19,18 @@ export default class App extends Component {
   }
 
   renderMap() {
-    if (this.props.data.FilterResults.homeAddress && this.props.data.FilterResults.schools) {
-      return <Map homeAddress={this.props.data.FilterResults.homeAddress} schoolsArr={[...this.props.data.FilterResults.schools]} directions={this.props.data.FilterResults.directions} />
+    if (this.props.data.FilterResults.homeAddress && this.props.data.FilterResults.schools.length > 0) {
+      return <Map homeAddress={this.props.data.FilterResults.homeAddress}
+                  schoolsArr={[...this.props.data.FilterResults.schools]}
+                  directions={this.props.data.FilterResults.directions} />
       } else if (this.props.data.FilterResults.homeAddress) {
-        return <Map center={this.getAnchor()} homeAddress={this.props.data.FilterResults.homeAddress} schoolsArr={[]} directions={this.props.data.FilterResults.directions} />
-      } else return <Map center={this.getAnchor()} homeAddress={null} schoolsArr={[]} directions={this.props.data.FilterResults.directions} />
+        return <Map center={this.getAnchor()}
+                    homeAddress={this.props.data.FilterResults.homeAddress}
+                    schoolsArr={[]}
+                    directions={this.props.data.FilterResults.directions} />
+      } else return <Map center={this.getAnchor()}
+                         homeAddress={null} schoolsArr={[]}
+                         directions={this.props.data.FilterResults.directions} />
   }
 
   render() {

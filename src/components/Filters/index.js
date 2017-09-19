@@ -5,6 +5,7 @@ import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
 import filterContainer from '../../containers/Filters-container'
+import SearchSpinner from '../SearchSpinner'
 import './filters-style.css';
 
 class Filters extends Component {
@@ -18,7 +19,6 @@ class Filters extends Component {
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      schools:'',
       selectedSchool: '',
       hideFilter: false
     }
@@ -34,7 +34,9 @@ class Filters extends Component {
 
   //Get home address coords and set in store
   handleHomeAddress(e) {
-    getGeoLocation(e.target.value, this.homeCallback.bind(this));
+    if (e.target.value != "") {
+      getGeoLocation(e.target.value, this.homeCallback.bind(this));
+    }
   }
 
   homeCallback(homeAddressCoords) {
@@ -43,6 +45,7 @@ class Filters extends Component {
 
   //Get schools in FB, filter them, receive commut info from Google, and set to store
   findSchools() {
+    this.props.activeSearchToggle()
     let { schoolType } = this.state;
     firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
       let cleanData = Object.values(snap.val())
@@ -70,13 +73,15 @@ class Filters extends Component {
       let callBack = (response) => {
         let { commuteDist, commuteTime } = this.state
         let finalSchoolData = response.rows[0].elements.map((school, i) => {
-            return Object.assign({}, data[i], {commute: { distance: {text: school.distance.text, value: school.distance.value}, time: {text: school.duration.text, value: school.duration.value} }, showInfo: false } )
+            return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},
+                                                time: {text: school.duration.text, value: school.duration.value} },
+                                                showInfo: false } )
         })
         this.props.setSchools(finalSchoolData, commuteTime, commuteDist);
       }
       googleDistanceMatrix(this.props.schoolResults.homeAddress, data, transitMode, callBack)
     }
-    this.toggleFilterView();
+    this.toggleFilterView()
   }
 
   //Filter view functionality
@@ -88,7 +93,10 @@ class Filters extends Component {
     if (!this.state.viewFilters) {
       this.props.clearDirections()
       this.props.clearSchools()
-    } else this.props.clearDirections()
+    } else {
+      this.props.clearDirections()
+      window.setTimeout(this.props.activeSearchToggle, 300)
+    }
   }
 
   directionsCallback(result, status) {
@@ -109,7 +117,6 @@ class Filters extends Component {
   }
 
   render() {
-    console.log(this.props.activeSearch)
     return (
       <div>
         <button className={ this.state.hideFilter ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.slideFilterComponent() }>{this.state.hideFilter ? '>' : '<' }</button>
@@ -209,7 +216,8 @@ class Filters extends Component {
               className='filter-back-btn'
               onClick={ () => this.toggleFilterView() }
               >« Back To Filters</button>
-              {this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
+              { this.props.activeSearch ? <SearchSpinner />
+              : this.props.schoolResults.schools.length > 0 ? this.props.schoolResults.schools.map((school, i) => {
                 return (
                   <SearchResults
                       key={ i }
@@ -218,7 +226,7 @@ class Filters extends Component {
                       selectedSchool={this.state.selectedSchool}
                       selectSchool={ this.selectSchool.bind(this) } />
                 )
-              }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4>}
+              }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4> }
             </div>
             }
         </div>
