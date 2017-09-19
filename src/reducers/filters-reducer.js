@@ -22,11 +22,8 @@ const filters = (state = [], action) => {
 
     case 'TOGGLE_INFOWINDOW':
       let updatedSchools = state.schools.map(school => {
-        // console.log('target ', action.targetMarker.position.lat)
-        // console.log('school ', school.Location.Lat)
         if (school.Location.Lat === action.targetMarker.position.lat) {
           let toggle = !school.showInfo
-          console.log('Working!')
           return Object.assign({}, school, { showInfo: toggle })
         }
         return school
@@ -36,7 +33,7 @@ const filters = (state = [], action) => {
     case 'ACTIVE_SEARCH':
       let toggleValue = !state.activeSearch
       console.log(toggleValue)
-      return Object.assign({}, state, {activeSearch: toggleValue })
+      return Object.assign({}, state, { activeSearch: toggleValue })
 
     default:
       return state;

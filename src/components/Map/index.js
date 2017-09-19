@@ -29,9 +29,9 @@ class Map extends Component {
 
   handleMapLoad(map) {
     this._mapComponent = map;
-    if (map) {
-      console.log('MAP ', map);
-    }
+    // if (map) {
+    //   console.log('MAP ', map);
+    // }
   }
 
   displayMarkers(homeAddress, schoolsArr) {
@@ -80,7 +80,6 @@ class Map extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('NEXT PROPS', nextProps)
     if (nextProps.schoolsArr.length > 0 && (nextProps.directions === null || nextProps.directions === undefined)) {
       let length = nextProps.schoolsArr.length
       let markers = nextProps.schoolsArr
