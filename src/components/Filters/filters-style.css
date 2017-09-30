@@ -124,6 +124,10 @@ label {
   background: rgba(255, 99, 71, .6);
 }
 
+.search-btn:disabled:hover {
+  background: rgba(255, 99, 71, .6)
+}
+
 .search-btn:hover {
   background: rgba(255, 99, 71, .9);
 }

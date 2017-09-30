@@ -82,7 +82,6 @@ class Map extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.schoolsArr.length > 0 && (nextProps.directions === null || nextProps.directions === undefined)) {
       let length = nextProps.schoolsArr.length
-      let markers = nextProps.schoolsArr
       let bounds = new window.google.maps.LatLngBounds()
       for (let i = 0; i < length; i++) {
         let place = new window.google.maps.LatLng(nextProps.schoolsArr[i].Location.Lat, nextProps.schoolsArr[i].Location.Lng)
@@ -101,7 +100,7 @@ class Map extends Component {
         mapElement={ container }
         center={ center }
         zoom={ this.state.zoom }
-        markers={ this.displayMarkers(homeAddress, schoolsArr) }
+        markers={ this.displayMarkers(homeAddress, schoolsArr)}
         directions={ directions }
         onMapMounted={ this.handleMapLoad.bind(this) }
       />

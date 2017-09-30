@@ -1,4 +1,4 @@
-import React, { ReactDOM, Component } from 'react';
+import React, { Component } from 'react';
 import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
@@ -34,7 +34,7 @@ class Filters extends Component {
 
   //Get home address coords and set in store
   handleHomeAddress(e) {
-    if (e.target.value != "") {
+    if (e.target.value !== "") {
       getGeoLocation(e.target.value, this.homeCallback.bind(this));
     }
   }
@@ -73,9 +73,9 @@ class Filters extends Component {
       let callBack = (response) => {
         let { commuteDist, commuteTime } = this.state
         let finalSchoolData = response.rows[0].elements.map((school, i) => {
-            return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},
-                                                time: {text: school.duration.text, value: school.duration.value} },
-                                                showInfo: false } )
+          return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},
+                                              time: {text: school.duration.text, value: school.duration.value} },
+                                              showInfo: false } )
         })
         this.props.setSchools(finalSchoolData, commuteTime, commuteDist);
       }
@@ -207,6 +207,7 @@ class Filters extends Component {
               <button
                 className='search-btn'
                 onClick={ () => this.findSchools() }
+                disabled={ !this.state.gradeLevel || !this.state.schoolType }
               >Find Schools</button>
             </div>
             :
