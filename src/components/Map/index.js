@@ -43,7 +43,7 @@ class Map extends Component {
         },
         animation: window.google.maps.Animation.DROP,
         title: 'HOME',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+        icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
       }
       let homeMarker = <Marker key={10000} {...HomeMarkerInfo} />
       let schoolMarkers = schoolsArr.map((school, i) => {
