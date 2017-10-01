@@ -49,7 +49,6 @@ class Filters extends Component {
     let { schoolType } = this.state;
     firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
       let cleanData = Object.values(snap.val())
-      console.log('find schools', cleanData)
       this.secondaryFilters(cleanData)
     })
   }
