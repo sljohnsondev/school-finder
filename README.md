@@ -31,7 +31,7 @@ To Visit App:
 
 ## Reflection
 
-This was a self-directed project at the end of Module 3 at Turing School of Software & Design.  
+This was a self-directed project at the end of Module 3 at [Turing School of Software & Design](www.turing.io).  
 
 I set out to build a React - Redux web application built on top of a Firebase Database and Google Maps APIs that allowed users to quickly and easily search for and get directions to schools within their desired commute parameters for their kids. I am very comfortable with React and Redux and was excited to build a robust application with them that presented data from the internet in a more helpful and productive way for parents.
 
