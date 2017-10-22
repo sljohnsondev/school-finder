@@ -40,3 +40,15 @@ This project was a great opportunity to continue building my skills in React and
 The biggest challenge I had was with rendering directions on the page in a React framework.  To solve the problem, I imported a JS library that gave me pre-build components to implement in my code. This ended up being a really great learning opportunity for me and  am excited to continue to explore additional libraries in future projects.
 
 As a former staff member at Teach For America, I care deeply about making sure all children have the opportunity to attain an excellent education and this project reflects my desire to use my skills as a developer and problem solver to ensure that is a reality.
+
+### Additional Development 
+_Give the short amount of time I had to work on this project - approximately 1 week - I do not consider this application to be finished.  The list below represents the remaining issues I will be working on as time allows (also tracked in the issues section of this repo)_
+- Build out testing suite for FE components (and server-side when Postgres DB is implemented)
+- Incorporate CircleCI deployment protocol
+- Transition Firebase DB to Express w/ Knex and Postgres
+- Break out the Google Directions API calls and filtering into more organized components
+- Refactor lifecycles for smoother transition to display school result pins
+- Refactor Google Directions and Distance API calls into Promise.all() functions
+- Add advanced filter options (includes adding necessary data in new Postgres migration and seed files)
+- Add user profile component to save home address and favorited schools
+- Create admin portal for managing "instances" of the app for specific schoool districts (includes data uploads)
