@@ -4,19 +4,20 @@ var chalk = require('chalk');
 var fs = require('fs');
 var RSVP = require('rsvp');
 
+var api = require('../../api');
 var logger = require('../../logger');
 var prompt = require('../../prompt');
 
 var INDEX_TEMPLATE = fs.readFileSync(__dirname + '/../../../templates/init/hosting/index.html', 'utf8');
 var MISSING_TEMPLATE = fs.readFileSync(__dirname + '/../../../templates/init/hosting/404.html', 'utf8');
+var DEFAULT_IGNORES = [
+  'firebase.json',
+  '**/.*',
+  '**/node_modules/**'
+];
+
 module.exports = function(setup, config) {
-  setup.hosting = {
-    ignore: [
-      'firebase.json',
-      '**/.*',
-      '**/node_modules/**'
-    ]
-  };
+  setup.hosting = {};
 
   logger.info();
   logger.info('Your ' + chalk.bold('public') + ' directory is the folder (relative to your project directory) that');
@@ -38,7 +39,7 @@ module.exports = function(setup, config) {
       message: 'Configure as a single-page app (rewrite all urls to /index.html)?'
     }
   ]).then(function() {
-    setup.config.hosting = {public: setup.hosting.public};
+    setup.config.hosting = {public: setup.hosting.public, ignore: DEFAULT_IGNORES};
 
     var next;
     if (setup.hosting.spa) {
@@ -52,7 +53,12 @@ module.exports = function(setup, config) {
     }
 
     return next.then(function() {
-      return config.askWriteProjectFile(setup.hosting.public + '/index.html', INDEX_TEMPLATE);
+      return api.request('GET', '/firebasejs/releases.json', {
+        origin: 'https://www.gstatic.com',
+        json: true
+      });
+    }).then(function(response) {
+      return config.askWriteProjectFile(setup.hosting.public + '/index.html', INDEX_TEMPLATE.replace(/{{VERSION}}/g, response.body.current.version));
     });
   });
 };
