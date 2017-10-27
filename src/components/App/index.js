@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Map from '../Map';
 import SignIn from '../SignIn';
+import Filters from '../Filters';
 import './app-style.css'
 
 export default class App extends Component {
@@ -42,7 +43,7 @@ export default class App extends Component {
         <div />
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
-        {this.props.children}
+        <Filters />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>
