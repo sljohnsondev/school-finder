@@ -3,6 +3,7 @@ import Header from '../Header';
 import Map from '../Map';
 import SignIn from '../SignIn';
 import Filters from '../Filters';
+import Compare from '../Compare';
 import './app-style.css'
 
 export default class App extends Component {
@@ -44,6 +45,7 @@ export default class App extends Component {
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
         <Filters />
+        <Compare />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>

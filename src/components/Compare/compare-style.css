@@ -1,0 +1,138 @@
+h3 {
+  margin: 5px;
+}
+
+p {
+  margin: 5px;
+}
+
+.compare-page, .shrink-compare {
+  animation-name: slide;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  background: rgba(198, 218, 240, .95);
+  border-radius: 5px;
+  font-family: 'Quicksand', sans-serif;
+  height: 450px;
+  padding: 20px;
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  right: 0px;
+  top: 100px;
+  width: 90%;
+  z-index: 1;
+}
+
+@keyframes slide {
+  0% {
+    right: -1080px;
+    z-index: 1;
+  }
+  100% {
+    right: 0;
+    z-index: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    right: -40px;
+    z-index: 1;
+  }
+  100% {
+    right: 0px;
+    z-index: 1;
+  }
+}
+
+.shrink-compare {
+  animation-name: slide-out;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  background: none;
+  padding: 0;
+  width: 40px;
+}
+
+.hide-compare, .show-compare {
+  background-color: #E78574;
+  background-image: url('left-arrow.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 40px;
+  padding: 5px;
+  width: 30px;
+}
+
+.show-compare {
+  background-image: url('right-arrow.png');
+  right: 0px;
+}
+
+.school {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  grid-row: 1;
+  height: 150px;
+  justify-content: center;
+  margin: 20px;
+  width: 150px;
+}
+
+.hide {
+  display: none;
+}
+
+.compare-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 30% 30% 30%;
+
+}
+
+
+.graph {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 150px;
+  margin: 20px;
+  width: 150px;
+}
+
+.graph1 {
+  background-image: url('graph1.png');
+  grid-row: 1;
+}
+
+.graph2 {
+  background-image: url('graph2.png');
+  grid-row: 1;
+}
+
+.graph3 {
+  background-image: url('graph3.png');
+  grid-row: 1;
+}
+
+.remove {
+  background-image: url('cancel.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  grid-row: 1;
+  height: 50px;
+  margin: 20px;
+  width: 50px;
+}
+
+.remove:hover {
+  background-image: url('cancel1.png');
+}
