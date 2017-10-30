@@ -7,6 +7,12 @@ import Compare from '../Compare';
 import './app-style.css'
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showTab: 'filters'
+    }
+  }
 
   getAnchor() {
     if (this.props.data.FilterResults.homeAddress) {
@@ -44,8 +50,8 @@ export default class App extends Component {
         <div />
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
-        <Filters />
-        <Compare />
+        <Filters tab={ this.state.showTab }/>
+        <Compare tab={ this.state.showTab }/>
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>

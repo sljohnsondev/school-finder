@@ -3,10 +3,11 @@ import filterContainer from '../../containers/Filters-container'
 import './compare-style.css';
 
 class Compare extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       showCompare: false,
+      tab: props.showTab,
     }
     this.toggleCompareWindow = this.toggleCompareWindow.bind(this);
   }
@@ -18,7 +19,7 @@ class Compare extends Component {
   };
 
   render() {
-    let showHide = this.state.showCompare ? 'show-compare' : 'hide-compare';
+    let showHide = this.state.tab === 'compare' ? 'show-compare' : 'hide-compare';
     let displayCompare = this.state.showCompare ? 'compare-page' : 'shrink-compare';
     let schoolDisplay = this.state.showCompare ? 'school' : 'hide';
     let infoDisplay = this.state.showCompare ? 'compare-item' : 'hide';
