@@ -71,6 +71,7 @@
 .show-avatar {
   display: unset;
 }
+
 .avatar-photo {
   height: 53px;
   margin: 0;
@@ -91,7 +92,7 @@
 }
 
 .hide-profile {
-  display: none
+  display: none;
 }
 
 .profile-header {
@@ -108,4 +109,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.favorite-schools {
+  display: flex;
+  overflow: scroll;
 }

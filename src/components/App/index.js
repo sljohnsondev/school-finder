@@ -36,7 +36,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log('props in app', this.props);
     const { displayName, email, photoURL } = this.props.data.AppData
     return (
       <div className='app-container'>
@@ -46,7 +45,7 @@ export default class App extends Component {
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
         <Filters />
-        {<UserProfile name={ displayName } email={ email } photo={ photoURL }/>}
+        <UserProfile name={ displayName } email={ email } photo={ photoURL }/>
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>

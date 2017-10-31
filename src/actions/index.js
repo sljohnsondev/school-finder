@@ -52,3 +52,17 @@ export const activeSearchToggle = () => {
     type: 'ACTIVE_SEARCH'
   }
 }
+
+export const addFavorite = (id) => {
+  return {
+    type: 'ADD_FAVORITE',
+    id
+  }
+}
+
+export const removeFavorite = (id) => {
+  return {
+    type: 'REMOVE_FAVORITE',
+    id
+  }
+}
