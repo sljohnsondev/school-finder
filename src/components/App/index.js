@@ -3,6 +3,7 @@ import Header from '../Header';
 import Map from '../Map';
 import SignIn from '../SignIn';
 import Filters from '../Filters';
+import UserProfile from '../UserProfile';
 import Compare from '../Compare';
 import './app-style.css'
 
@@ -49,7 +50,7 @@ export default class App extends Component {
   }
 
   render() {
-
+    const { displayName, email, photoURL } = this.props.data.AppData
     return (
       <div className='app-container'>
         <Header />
@@ -57,6 +58,7 @@ export default class App extends Component {
         <div />
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
+        <UserProfile name={ displayName } email={ email } photo={ photoURL }/>
         <Filters tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <Compare tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
