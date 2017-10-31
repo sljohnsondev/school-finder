@@ -4,7 +4,7 @@ import { addFavorite, removeFavorite } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    favorites: state.FavoritedSchools
+    favorites: state.favorites
   }
 }
 

@@ -9,10 +9,10 @@ const SchoolCard = (props) => {
 
     <div className='school-card-container'>
     
-      <div className='remove-favorite' onClick={ props.removeFavorite() }>X</div>
+      <div className='remove-favorite' onClick={ () => props.removeFavorite(props.school.id) }>X</div>
       <h1>{ props.school.name }</h1>
       <p>School info here</p>
-      <div className='add-favorite' onClick={ props.addFavorite() }>
+      <div className='add-favorite' onClick={ () => props.addFavorite(props.school.id) }>
         Favorite
       </div>
 

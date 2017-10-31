@@ -8,7 +8,7 @@ export default class UserProfile extends Component {
     super()
     this.state = {
       hideProfile: true,
-      favorites: [{name: 'North'}, {name: 'South'}, {name: 'East'}, {name: 'West'}]
+      favorites: [{name: 'North', id: 1}, {name: 'South', id: 2}, {name: 'East', id: 3}, {name: 'West', id: 4}]
     }
   }
 
