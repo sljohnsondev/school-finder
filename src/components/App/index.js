@@ -4,9 +4,17 @@ import Map from '../Map';
 import SignIn from '../SignIn';
 import Filters from '../Filters';
 import UserProfile from '../UserProfile';
+import Compare from '../Compare';
 import './app-style.css'
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showTab: 'filters'
+    }
+    this.toggleTab = this.toggleTab.bind(this);
+  }
 
   getAnchor() {
     if (this.props.data.FilterResults.homeAddress) {
@@ -18,6 +26,12 @@ export default class App extends Component {
       lat: 39.731237,
       lng: -104.973377
     }
+  }
+
+  toggleTab(str) {
+    this.setState({
+      showTab: str,
+    })
   }
 
   renderMap() {
@@ -44,8 +58,9 @@ export default class App extends Component {
         <div />
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
-        <Filters />
         <UserProfile name={ displayName } email={ email } photo={ photoURL }/>
+        <Filters tab={ this.state.showTab } toggleTab={ this.toggleTab } />
+        <Compare tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>
