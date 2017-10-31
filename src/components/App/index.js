@@ -12,6 +12,7 @@ export default class App extends Component {
     this.state = {
       showTab: 'filters'
     }
+    this.toggleTab = this.toggleTab.bind(this);
   }
 
   getAnchor() {
@@ -24,6 +25,12 @@ export default class App extends Component {
       lat: 39.731237,
       lng: -104.973377
     }
+  }
+
+  toggleTab(str) {
+    this.setState({
+      showTab: str,
+    })
   }
 
   renderMap() {
@@ -50,8 +57,8 @@ export default class App extends Component {
         <div />
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
-        <Filters tab={ this.state.showTab }/>
-        <Compare tab={ this.state.showTab }/>
+        <Filters tab={ this.state.showTab } toggleTab={ this.toggleTab } />
+        <Compare tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
           {this.renderMap()}
         </div>
