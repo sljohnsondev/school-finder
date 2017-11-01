@@ -1,23 +1,24 @@
 
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('sf_users', function(table) {
+    knex.schema.createTable('users', function(table) {
       table.increments('id').primary();
       table.string('username');
       table.string('email');
-      table.string('address');
+      table.string('street_address');
+      table.string('oath_id');
 
       table.timestamps(true, true);
     }),
 
-    knex.schema.createTable('sf_favorites', function(table) {
+    knex.schema.createTable('favorites', function(table) {
       table.increments('id').primary();
-      table.string('favorite_id');
-      table.string('favorite_name');
-      table.string('favorite_code');
+      table.string('school_id');
+      table.string('school_name');
+      table.string('school_code');
       table.integer('user_id').unsigned()
       table.foreign('user_id')
-        .references('sf_users.id');
+        .references('users.id');
 
       table.timestamps(true, true);
     })
