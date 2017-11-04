@@ -34,17 +34,20 @@ export default class UserProfile extends Component {
 
         <div className={ hideProfile ? 'profile-container hide-profile' : 'profile-container' }>
           
-          <h2 className='profile-header'>{ name }</h2>
-
-          <img src={ photo ? photo : alias } alt='avatar' className='user-photo' />
-
           <div className='user-info'>
+            <h2 className='profile-header'>{ name }</h2>
+
+            <img src={ photo ? photo : alias } alt='avatar' className='user-photo' />
+
             <h4 className="address">1771 17th St. Denver, CO. 80201 USA MothaLicka</h4>
             <h4 className='email'>{ email }</h4>
           </div>
 
-          <div className='favorite-schools'>
-            { mappedFavorites }
+          <div>
+            <h3 className='your-favorites'>Your Favorites</h3>
+            <div className='favorite-schools'>
+              { mappedFavorites }
+            </div>
           </div>
         
         </div>
