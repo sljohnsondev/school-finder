@@ -91,7 +91,7 @@ describe('API Routes', () => {
     .get('/api/v1/users/202020')
     .end((error, response) =>{
       response.should.have.status(404);
-      response.body.error.should.equal('Could not find user with id 202020');
+      response.body.error.should.equal('Could not find user with an oath_id 202020');
       done();
     });
   });
@@ -163,6 +163,31 @@ describe('API Routes', () => {
       response.body.should.equal('User id not found');
       done();
     });
+  });
+
+  it('should be able to update one key value pair in the users db', (done) => {
+    chai.request(server)
+    .patch('/api/v1/users/1')
+    .send({
+      "email": "dan@danman.com"
+    })
+    .end((error, response) => {
+      response.should.have.status(201);
+      response.body.should.equal('User with id: 1 was updated.');
+      done();
+    });
+  });
+
+  it('should return a 404 if there is a non existing user to update', (done) => {
+    chai.request(server)
+    .patch('/api/v1/users/3053')
+    .send({
+      "email": "benderIsGreat@futurama.com"
+    })
+    .end((error, response) => {
+      response.should.have.status(404);
+      done();
+    })
   });
 
   describe('Favorites Table', () => {
