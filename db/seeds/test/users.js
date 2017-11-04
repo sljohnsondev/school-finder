@@ -14,7 +14,6 @@ exports.seed = function(knex, Promise) {
           oath_id: '1'
         }, 'id')
         .then(user => {
-          console.log('dan', user[0]);
           return knex('favorites').insert([
             {
               id: 1,
