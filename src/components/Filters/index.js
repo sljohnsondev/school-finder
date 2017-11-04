@@ -6,6 +6,7 @@ import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
 import filterContainer from '../../containers/Filters-container'
 import SearchSpinner from '../SearchSpinner'
+// import findSchools from '../Helpers/findSchools.js'
 import './filters-style.css';
 
 class Filters extends Component {
@@ -46,21 +47,12 @@ class Filters extends Component {
   //Get schools in FB, filter them, receive commut info from Google, and set to store
   findSchools() {
     this.props.activeSearchToggle()
-    let { schoolType } = this.state;
-    firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
-      let cleanData = Object.values(snap.val())
-      this.secondaryFilters(cleanData)
+    let { schoolType, gradeLevel, transitMode } = this.state;
+    fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
+    .then(data => data.json())
+    .then(finalSchools => {
+      this.getGoogleDistances(finalSchools, transitMode)
     })
-  }
-
-  secondaryFilters(cleanData) {
-    let { gradeLevel, transitMode } = this.state
-    let finalSchools = cleanData.reduce((acc, school) => {
-      if (school.GradeLevels.indexOf(gradeLevel) !== -1) {
-        acc.push(school);
-      } return acc;
-    }, []);
-    this.getGoogleDistances(finalSchools, transitMode)
   }
 
   getGoogleDistances(finalSchools, transitMode) {

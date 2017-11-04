@@ -2,7 +2,7 @@ import moment from 'moment'
 
 const googleDirections = (homeAddress, schoolAddress, transitMode, callback) => {
   let origin = new window.google.maps.LatLng(homeAddress.Location.Lat, homeAddress.Location.Lng );
-  let destinations = new window.google.maps.LatLng(schoolAddress.Location.Lat, schoolAddress.Location.Lng );
+  let destinations = new window.google.maps.LatLng(schoolAddress.location_lat, schoolAddress.location_lng );
   let departTime = new Date(moment().startOf('isoWeek').add(1, 'week').add(7.5, 'hours').valueOf())
 
   let request = {
