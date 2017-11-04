@@ -18,6 +18,8 @@ exports.seed = function(knex, Promise) {
             {
               id: 1,
               school_name: 'East High School',
+              school_address:
+              website_url:
               school_id: '548',
               school_code: '2398',
               user_id: user[0]

@@ -104,7 +104,7 @@ app.put('/api/v1/users/:id', (request, response) => {
 //     });
 // });
 
-app.get('/api/v1/favorites', (request, response) => {
+app.get('/api/v1/favorites/:id', (request, response) => {
   database('favorites').select()
     .then((favorites) => {
       response.status(200).json(favorites);
