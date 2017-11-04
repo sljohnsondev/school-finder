@@ -101,11 +101,11 @@ app.get('/api/v1/favorites', (request, response) => {
 app.post('/api/v1/favorites', (request, response) => {
   const user = request.body;
 
-  for (let requiredParameter of ['school_id', 'school_name', 'school_address', 'website_url', 'school_code', 'user_id']) {
+  for (let requiredParameter of ['school_id', 'school_address', 'school_website', 'school_name',  'school_code', 'user_id']) {
     if (!user[requiredParameter]) {
       return response
         .status(422)
-        .send({ error: `Expected format: { school_id: <String>, school_name: <String>, school_address: <String>, website_url: <String>, school_code: <String>, user_id: <String>}. You're missing a '${requiredParameter}' property.` });
+        .send({ error: `Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>}. You're missing a '${requiredParameter}' property.` });
     }
   }
 
