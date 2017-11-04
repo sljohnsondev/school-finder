@@ -29,8 +29,8 @@
 .slide-profile-btn {
   z-index: 1;
   position: fixed;
-  right: 84vw;
-  top: 11vh;
+  right: 1075px;
+  top: 77px;
   padding: 15px 7px;
   font-size: 20px;
   font-weight: bold;
@@ -77,11 +77,11 @@
 }
 
 .hidden-profile {
-  -webkit-transform: translate3d(1022px,0,0);
-  -moz-transform: translate3d(1022px,0,0);
-  -o-transform: translate3d(1022px,0,0);
-  -ms-transform: translate3d(1022px,0,0);
-  transform: translate3d(1022px,0,0);
+  -webkit-transform: translate3d(1023px,0,0);
+  -moz-transform: translate3d(1023px,0,0);
+  -o-transform: translate3d(1023px,0,0);
+  -ms-transform: translate3d(1023px,0,0);
+  transform: translate3d(1023px,0,0);
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -ms-transition: all 0.2s linear;

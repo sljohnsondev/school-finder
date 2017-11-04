@@ -8,7 +8,13 @@ export default class UserProfile extends Component {
     super()
     this.state = {
       hideProfile: true,
-      favorites: [{name: 'North', id: 1}, {name: 'South', id: 2}, {name: 'East', id: 3}, {name: 'West', id: 4}]
+      favorites: []
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.userId !== undefined) {
+      this.props.getUserFavorites(nextProps.userId)
     }
   }
 
@@ -17,6 +23,8 @@ export default class UserProfile extends Component {
   }
 
   render() {
+    console.log('props in up ', this.props);
+    
     const { name, email, photo } = this.props;
     const { hideProfile, favorites } = this.state;
 

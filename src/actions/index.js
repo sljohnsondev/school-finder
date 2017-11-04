@@ -60,19 +60,20 @@ export const addFavorite = (id) => {
   }
 }
 
-export const getAllFavorites = userId => {
+export const getUserFavorites = userId => {
+  
 	return dispatch => {
-		fetch(`/api/users/${userId}/favorites`)
+		fetch(`/api/users/favorites/${userId}`)
 			.then(data => data.json())
 			.then(data => console.log('favorites in action ', data))
 	}
 }
 
-export const makeFavorite = schoolId => {
+export const makeFavorite = schoolInfo => {
 	return dispatch => {
-		fetch('/api/favorites', {
+		fetch('/api/favorites/', {
 			method: 'POST',
-			body: JSON.stringify(schoolId),
+			body: JSON.stringify(schoolInfo),
 			headers: {
 				'Content-Type': 'application/json'
 			}
