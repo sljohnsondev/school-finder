@@ -84,7 +84,6 @@ class Map extends Component {
       let length = nextProps.schoolsArr.length
       let bounds = new window.google.maps.LatLngBounds()
       for (let i = 0; i < length; i++) {
-        console.log(nextProps.schoolsArr[i])
         let place = new window.google.maps.LatLng(parseFloat(nextProps.schoolsArr[i].location_lat), parseFloat(nextProps.schoolsArr[i].location_lng))
         bounds.extend(place)
       }

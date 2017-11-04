@@ -51,27 +51,9 @@ class Filters extends Component {
     fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
     .then(data => data.json())
     .then(finalSchools => {
-      console.log(finalSchools)
       this.getGoogleDistances(finalSchools, transitMode)
     })
   }
-
-
-  //   firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
-  //     let cleanData = Object.values(snap.val())
-  //     this.secondaryFilters(cleanData)
-  //   })
-  // }
-  //
-  // secondaryFilters(cleanData) {
-  //   let { gradeLevel, transitMode } = this.state
-  //   let finalSchools = cleanData.reduce((acc, school) => {
-  //     if (school.GradeLevels.indexOf(gradeLevel) !== -1) {
-  //       acc.push(school);
-  //     } return acc;
-  //   }, []);
-  //   this.getGoogleDistances(finalSchools, transitMode)
-  // }
 
   getGoogleDistances(finalSchools, transitMode) {
     let dataLength = finalSchools.length
