@@ -4,7 +4,7 @@ import './spinner-style.css';
 const SearchSpinner = () => {
   return (
     <div className='search-spinner'>
-      SPINNING!
+      <div className="loader"></div>
     </div>
   )
 }

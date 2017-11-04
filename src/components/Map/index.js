@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap, InfoWindow } from 'react-google-maps';
-import { markerRefObj } from '../Helpers/markerIndex';
 import PopUpWindow from '../PopUpWindow'
 import mapContainer from '../../containers/Filters-container'
 import './map-style.css';
@@ -57,7 +56,7 @@ class Map extends Component {
             <PopUpWindow { ...school } />
           ),
           animation: window.google.maps.Animation.DROP,
-          label: { text: markerRefObj[i] },
+          label: { text: `${i + 1}` },
         }
         return (
           <Marker key={i} {...marker} onClick={ () => this.handleMarkerClick(marker) }>
