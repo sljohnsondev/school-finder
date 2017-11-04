@@ -96,11 +96,32 @@ app.delete('/api/v1/favorites/:id', (request, response) => {
   database('favorites').where({ id }).del()
     .then(favorite => {
       if (favorite) {
-        return response.status(202).json(`Favorite ${id} was deleted from database`);
+        return response.status(202).json(`Favorite ${ id } was deleted from database`);
       } else return response.status(422).json({ error: 'Not Found' });
     })
     .catch(error => {
       response.status(500).json({ error });
+    });
+});
+
+app.put('/api/v1/users/:id', (request, response) => {
+  let { id } = request.params;
+  let user = request.body;
+
+  for (let requiredParameter of ['username', 'email', 'street_address', 'oath_id']) {
+    if (!user[requiredParameter]) {
+      return response
+        .status(422)
+        .json({ error: `Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a '${requiredParameter}' property.` });
+    }
+  }
+
+  database('users').where({ id }).update(user, 'id')
+    .then(() => {
+      response.status(201).json({ id });
+    })
+    .catch(error => {
+      response.status(500).json(error);
     });
 });
 
