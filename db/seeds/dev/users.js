@@ -16,12 +16,16 @@ exports.seed = function(knex, Promise) {
           return knex('favorites').insert([
             {
               school_name: 'East High School',
+              school_address: '1600 City Park Esplanade',
+              school_website: 'http://east.dpsk12.org',
               school_id: '548',
               school_code: '2398',
               user_id: user[0]
             },
             {
               school_name: 'George Washington High School',
+              school_address: '655 S. Monaco Parkway',
+              school_website: 'http://gwhs.dpsk12.org',
               school_id: '561',
               school_code: '3378',
               user_id: user[0]
@@ -30,7 +34,7 @@ exports.seed = function(knex, Promise) {
         })
         .then(() => console.log('Seeding complete!'))
         .catch(error => console.log(`Error seeding data: ${error}`))
-      ]) // end return Promise.all
+      ])
     })
     .catch(error => console.log(`Error seeding data: ${error}`));
 };
