@@ -13,8 +13,10 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('favorites', function(table) {
       table.increments('id').primary();
-      table.string('school_id');
       table.string('school_name');
+      table.string('school_address');
+      table.string('website_url');
+      table.string('school_id');
       table.string('school_code');
       table.integer('user_id').unsigned()
       table.foreign('user_id')
@@ -28,7 +30,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('sf_favorites'),
-    knex.schema.dropTable('sf_users')
+    knex.schema.dropTable('favorites'),
+    knex.schema.dropTable('users')
   ]);
 };

@@ -202,13 +202,15 @@ describe('API Routes', () => {
       .send({
         "id": "3",
         "school_name": "George Washington High School",
+        "school_address": "655 S. Monaco Parkway",
+        "website_url": "http://gwhs.dpsk12.org",
         "school_id": "561",
         "user_id": "1"
       })
       .end((error, response) => {
         response.should.have.status(422);
         response.body.should.have.property('error');
-        response.body.error.should.equal("Expected format: { school_id: <String>, school_name: <String>, school_code: <String>, user_id: <String>}. You're missing a 'school_code' property.");
+        response.body.error.should.equal("Expected format: { school_id: <String>, school_name: <String>, school_address: <String>, website_url: <String>, school_code: <String>, user_id: <String>}. You're missing a 'school_code' property.");
         done();
       });
     });
