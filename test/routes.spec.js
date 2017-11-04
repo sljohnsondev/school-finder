@@ -166,14 +166,25 @@ describe('API Routes', () => {
   });
 
   describe('Favorites Table', () => {
-    it('should return the all the favorites in our test database', (done) => {
+    it('should return the all the favorites associated with our first user', (done) => {
       chai.request(server)
-        .get('/api/v1/favorites')
+        .get('/api/v1/favorites/1')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
           response.should.be.a('object');
           response.body.length.should.equal(2);
+          done();
+        });
+    });
+
+    it('should return a 404 if the user id has no favorites associatedwith it', (done) => {
+      chai.request(server)
+        .get('/api/v1/favorites/2000')
+        .end((error,response) => {
+          response.should.have.status(404);
+          response.body.should.have.property('error');
+          response.body.error.should.equal('Could not find favorites with associated with user_id: 2000');
           done();
         });
     });
@@ -184,6 +195,8 @@ describe('API Routes', () => {
       .send({
         "id": "3",
         "school_name": "George Washington High School",
+        "school_address": "655 S. Monaco Parkway",
+        "school_website": "http://gwhs.dpsk12.org",
         "school_id": "561",
         "school_code": "3378",
         "user_id": "1"
@@ -202,13 +215,15 @@ describe('API Routes', () => {
       .send({
         "id": "3",
         "school_name": "George Washington High School",
+        "school_address": "655 S. Monaco Parkway",
+        "school_website": "http://gwhs.dpsk12.org",
         "school_id": "561",
         "user_id": "1"
       })
       .end((error, response) => {
         response.should.have.status(422);
         response.body.should.have.property('error');
-        response.body.error.should.equal("Expected format: { school_id: <String>, school_name: <String>, school_code: <String>, user_id: <String>}. You're missing a 'school_code' property.");
+        response.body.error.should.equal("Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>}. You're missing a 'school_code' property.");
         done();
       });
     });

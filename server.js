@@ -88,40 +88,30 @@ app.put('/api/v1/users/:id', (request, response) => {
     });
 });
 
-//we don't need to delete a user at the moement
-// app.delete('/api/v1/users/:id', (request, response) => {
-//   const { id } = request.params;
-//
-//   database('users').where({ id }).del()
-//     .then(user => {
-//       console.log('hi', user);
-//       if (user) {
-//         return response.status(202).json(`User ${id} was deleted from database`);
-//       } else return response.status(422).json({ error: 'Not Found' });
-//     })
-//     .catch(error => {
-//       response.status(500).json({ error });
-//     });
-// });
-
 app.get('/api/v1/favorites/:id', (request, response) => {
-  database('favorites').select()
-    .then((favorites) => {
-      response.status(200).json(favorites);
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
+  let { id } = request.params;
+
+  database('favorites').where('user_id', id).select()
+  .then((favorites) => {
+    if (favorites.length == 0) {
+      return response.status(404).json({
+        error: `Could not find favorites with associated with user_id: ${id}`
+      });
+    } else return response.status(200).json(favorites);
+  })
+  .catch((error) => {
+    response.status(500).json(error);
+  });
 });
 
 app.post('/api/v1/favorites', (request, response) => {
   const user = request.body;
 
-  for (let requiredParameter of ['school_id', 'school_name', 'school_code', 'user_id']) {
+  for (let requiredParameter of ['school_id', 'school_address', 'school_website', 'school_name',  'school_code', 'user_id']) {
     if (!user[requiredParameter]) {
       return response
         .status(422)
-        .send({ error: `Expected format: { school_id: <String>, school_name: <String>, school_code: <String>, user_id: <String>}. You're missing a '${requiredParameter}' property.` });
+        .send({ error: `Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>}. You're missing a '${requiredParameter}' property.` });
     }
   }
 
@@ -139,7 +129,6 @@ app.delete('/api/v1/favorites/:id', (request, response) => {
 
   database('favorites').where({ id }).del()
     .then(favorite => {
-      console.log('hello', favorite);
       if (favorite) {
         return response.status(202).json(`Favorite ${ id } was deleted from database`);
       } else return response.status(422).json({ error: 'Not Found' });
