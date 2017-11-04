@@ -20,7 +20,7 @@ exports.seed = function(knex, Promise) {
               id: 1,
               school_name: 'East High School',
               school_address: '1600 City Park Esplanade',
-              website_url: 'http://east.dpsk12.org',
+              school_website: 'http://east.dpsk12.org',
               school_id: '548',
               school_code: '2398',
               user_id: 1
@@ -29,7 +29,7 @@ exports.seed = function(knex, Promise) {
               id: 2,
               school_name: 'George Washington High School',
               school_address: '655 S. Monaco Parkway',
-              website_url: 'http://gwhs.dpsk12.org',
+              school_website: 'http://gwhs.dpsk12.org',
               school_id: '561',
               school_code: '3378',
               user_id: 1

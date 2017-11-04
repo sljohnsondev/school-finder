@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('school_name');
       table.string('school_address');
-      table.string('website_url');
+      table.string('school_website');
       table.string('school_id');
       table.string('school_code');
       table.integer('user_id').unsigned()
