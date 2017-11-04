@@ -25,3 +25,47 @@ app.get('/api/v1/users', (request, response) => {
       response.status(500).json({ error });
     });
 });
+
+app.post('/api/v1/users', (request, response) => {
+  let { user } = request.body
+
+  for(let requiredParameter of ['username', 'email', 'street_address', 'oath_id']) {
+    if(!request.body[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: {email: <String>, email: <String>, street_address: <String>, oath_id: <String> }. You are missing a '${requiredParameter}' property`})
+    }
+  }
+
+  database('users').insert(user, 'id')
+    .then(user => {
+      response.status(201).json({ id: user[0] });
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
+app.delete('/api/v1/user/:id', (request, response) => {
+  const { id } = request.params;
+
+  database('users').where({ id }).del()
+    .then(user => {
+      if (user) {
+        return response.status(202).json(`User ${id} was deleted from database`);
+      } else return response.status(422).json({ error: 'Not Found' });
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
+app.get('/api/v1/favorites', (request, response) => {
+  database('school_finder_users').select()
+    .then((users) => {
+      response.status(200).json(users);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
