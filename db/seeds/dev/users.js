@@ -1,29 +1,30 @@
 
 exports.seed = function(knex, Promise) {
-  return knex('sf_favorites').del()
-    .then(() => knex('sf_users').del())
+  return knex('favorites').del()
+    .then(() => knex('users').del())
 
     .then(() => {
       return Promise.all([
 
-        knex('sf_users').insert({
+        knex('users').insert({
           username: 'Dan Alvarez',
           email: 'dan@dan.com',
-          address: '1331 17th'
+          street_address: '1331 17th',
+          oath_id: '1'
         }, 'id')
-        .then(sf_user => {
-          return knex('sf_favorites').insert([
+        .then(user => {
+          return knex('favorites').insert([
             {
-              favorite_name: 'East High School',
-              favorite_id: '548',
-              favorite_code: '2398',
-              user_id: sf_user[0]
+              school_name: 'East High School',
+              school_id: '548',
+              school_code: '2398',
+              user_id: user[0]
             },
             {
-              favorite_name: 'GW',
-              favorite_id: '561',
-              favorite_code: '3378',
-              user_id: sf_user[0]
+              school_name: 'George Washington High School',
+              school_id: '561',
+              school_code: '3378',
+              user_id: user[0]
             }
           ])
         })
