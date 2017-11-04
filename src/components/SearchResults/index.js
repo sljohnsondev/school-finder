@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { refObj } from '../Helpers/markerIndex';
 import './searchresults-style.css';
 
 export default class SearchResults extends Component {
@@ -12,9 +11,11 @@ export default class SearchResults extends Component {
 
   render() {
     let { name, address, website, commute } = this.props.schoolData;
+    let { refNum } = this.props;
+
     return (
       <div className={this.props.selectedSchool === name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
-        <h3 className='results-fields'>{`${refObj[this.props.refNum]}${name}`}</h3>
+        <h3 className='results-fields'>{`${refNum + 1}. ${name}`}</h3>
         <p className='results-fields'>{address}</p>
         <a href={website} className='school-url results-fields' target='_blank'>School Website</a>
         <section className='commute-info results-fields'>
