@@ -17,7 +17,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/users', (request, response) => {
-  database('school_finder_users').select()
+  database('users').select()
     .then((users) => {
       response.status(200).json(users);
     })
@@ -25,3 +25,133 @@ app.get('/api/v1/users', (request, response) => {
       response.status(500).json({ error });
     });
 });
+
+app.get('/api/v1/users/:id', (request, response) => {
+  const { id } = request.params;
+
+  database('users').where('id', id).select()
+    .then((user) => {
+      if (user.length == 0) {
+        return response.status(404).json({
+          error: `Could not find user with id ${id}`
+        });
+      } else return response.status(200).json(user);
+    })
+    .catch((error) => {
+      response.status(500).json(error);
+    });
+});
+
+app.post('/api/v1/users', (request, response) => {
+  const user = request.body;
+
+  for (let requiredParameter of ['username', 'email', 'street_address', 'oath_id']) {
+    if (!user[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a '${requiredParameter}' property.` });
+    }
+  }
+
+  database('users').insert(user, 'id')
+  .then(user => {
+    response.status(201).json({ id: user[0] });
+  })
+  .catch(error => {
+    response.status(500).json({ error });
+  });
+});
+
+app.put('/api/v1/users/:id', (request, response) => {
+  let { id } = request.params;
+  let user = request.body;
+
+  for (let requiredParameter of ['username', 'email', 'street_address', 'oath_id']) {
+    if (!user[requiredParameter]) {
+      return response
+        .status(422)
+        .json({ error: `Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a '${requiredParameter}' property.` });
+    }
+  }
+
+  database('users').where({ id }).update(user, 'id')
+    .then(id => {
+      if(id.length === 0){
+        return response.status(404).json('User id not found');
+      }
+      else {
+        return response.status(201).json(`User id:${id} was updated.`);
+      }
+    })
+    .catch(error => {
+      response.status(500).json(error);
+    });
+});
+
+//we don't need to delete a user at the moement
+// app.delete('/api/v1/users/:id', (request, response) => {
+//   const { id } = request.params;
+//
+//   database('users').where({ id }).del()
+//     .then(user => {
+//       console.log('hi', user);
+//       if (user) {
+//         return response.status(202).json(`User ${id} was deleted from database`);
+//       } else return response.status(422).json({ error: 'Not Found' });
+//     })
+//     .catch(error => {
+//       response.status(500).json({ error });
+//     });
+// });
+
+app.get('/api/v1/favorites', (request, response) => {
+  database('favorites').select()
+    .then((favorites) => {
+      response.status(200).json(favorites);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
+app.post('/api/v1/favorites', (request, response) => {
+  const user = request.body;
+
+  for (let requiredParameter of ['school_id', 'school_name', 'school_code', 'user_id']) {
+    if (!user[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: { school_id: <String>, school_name: <String>, school_code: <String>, user_id: <String>}. You're missing a '${requiredParameter}' property.` });
+    }
+  }
+
+  database('favorites').insert(user, 'id')
+  .then(user => {
+    response.status(201).json({ id: user[0] });
+  })
+  .catch(error => {
+    response.status(500).json({ error });
+  });
+});
+
+app.delete('/api/v1/favorites/:id', (request, response) => {
+  const { id } = request.params;
+
+  database('favorites').where({ id }).del()
+    .then(favorite => {
+      console.log('hello', favorite);
+      if (favorite) {
+        return response.status(202).json(`Favorite ${ id } was deleted from database`);
+      } else return response.status(422).json({ error: 'Not Found' });
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
+
+app.listen(app.get('port'), () => {
+  console.log(`User Data API is running on ${app.get('port')}.`);
+});
+
+module.exports = app;
