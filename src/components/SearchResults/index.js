@@ -5,7 +5,7 @@ import './searchresults-style.css';
 export default class SearchResults extends Component {
 
   toggleSchoolSelect() {
-    if (this.props.schoolData.Name === this.props.selectedSchool) {
+    if (this.props.schoolData.name === this.props.selectedSchool) {
       this.props.selectSchool('');
     } else this.props.selectSchool(this.props.schoolData)
   }

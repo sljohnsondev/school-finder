@@ -51,6 +51,7 @@ class Filters extends Component {
     fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
     .then(data => data.json())
     .then(finalSchools => {
+      console.log(finalSchools)
       this.getGoogleDistances(finalSchools, transitMode)
     })
   }
@@ -58,12 +59,14 @@ class Filters extends Component {
   getGoogleDistances(finalSchools, transitMode) {
     let dataLength = finalSchools.length
     let count = Math.ceil(dataLength / 25)
+    console.log(count)
     for (let i = 0; i < count; i++) {
       let begin = i * 25
       let end = i * 25 + 25
       let data = finalSchools.slice(begin, end)
       let callBack = (response) => {
         let { commuteDist, commuteTime } = this.state
+        console.log(response)
         let finalSchoolData = response.rows[0].elements.map((school, i) => {
           return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},
                                               time: {text: school.duration.text, value: school.duration.value} },
@@ -98,7 +101,7 @@ class Filters extends Component {
   }
 
   selectSchool(school) {
-    this.setState({ selectedSchool: school.Name }, () => {
+    this.setState({ selectedSchool: school.name }, () => {
       googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback.bind(this))
     })
     this.slideFilterComponent()
