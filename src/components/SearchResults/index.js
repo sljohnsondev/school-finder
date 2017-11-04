@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { refObj } from '../Helpers/markerIndex';
+import FavoriteButton from '../../containers/FavoriteButton-container';
 import './searchresults-style.css';
 
 export default class SearchResults extends Component {
@@ -11,6 +12,8 @@ export default class SearchResults extends Component {
   }
 
   render() {
+    console.log('propssdfs', this.props.schoolData);
+    
     let { Name, Address, WebUrl, commute } = this.props.schoolData;
     return (
       <div className={this.props.selectedSchool === Name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
@@ -21,6 +24,7 @@ export default class SearchResults extends Component {
           <h4 className='results-fields'>Commute Time: <span className='commute-info'>{commute.time.text}</span></h4>
           <h4 className='results-fields'>Commute Distance: <span className='commute-info'>{commute.distance.text}</span></h4>
         </section>
+      <FavoriteButton />
       </div>
     )
   }

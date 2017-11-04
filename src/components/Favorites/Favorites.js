@@ -1,6 +1,6 @@
 import React from 'react';
 import './favorites.css';
-import SchoolCard from '../../containers/SchoolCard-container';
+import SchoolCard from '../../components/SchoolCard/SchoolCard';
 
 const Favorites = (props) => {
 

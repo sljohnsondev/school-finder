@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SchoolCard from '../components/SchoolCard/SchoolCard';
+import favoriteButton from '../components/FavoriteButton/FavoriteButton';
 import { addFavorite, removeFavorite } from '../actions';
 
 const mapStateToProps = (state) => {
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SchoolCard);
+export default connect(mapStateToProps, mapDispatchToProps)(favoriteButton);

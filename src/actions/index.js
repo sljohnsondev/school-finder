@@ -60,9 +60,27 @@ export const addFavorite = (id) => {
   }
 }
 
-export const removeFavorite = (id) => {
-  return {
-    type: 'REMOVE_FAVORITE',
-    id
-  }
+export const getAllFavorites = userId => {
+	return dispatch => {
+		fetch(`/api/users/${userId}/favorites`)
+			.then(data => data.json())
+			.then(data => console.log('favorites in action ', data))
+	}
+}
+
+export const makeFavorite = schoolId => {
+	return dispatch => {
+		fetch('/api/favorites', {
+			method: 'POST',
+			body: JSON.stringify(schoolId),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then(data => {
+				return data.ok ? data.json() : alert('error message')
+			})
+			.then(data => { console.log('made favorite ', data)
+			})
+	}
 }
