@@ -81,7 +81,6 @@ class Filters extends Component {
       let end = i * 25 + 25
       let data = finalSchools.slice(begin, end)
       let callBack = (response) => {
-        console.log(response)
         let { commuteDist, commuteTime } = this.state
         let finalSchoolData = response.rows[0].elements.map((school, i) => {
           return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},

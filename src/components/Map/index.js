@@ -49,8 +49,8 @@ class Map extends Component {
       let schoolMarkers = schoolsArr.map((school, i) => {
         const marker = {
           position: {
-            lat: school.Location.Lat,
-            lng: school.Location.Lng
+            lat: parseFloat(school.location_lat),
+            lng: parseFloat(school.location_lng)
           },
           showInfo: school.showInfo,
           infoContent: (
@@ -84,7 +84,8 @@ class Map extends Component {
       let length = nextProps.schoolsArr.length
       let bounds = new window.google.maps.LatLngBounds()
       for (let i = 0; i < length; i++) {
-        let place = new window.google.maps.LatLng(nextProps.schoolsArr[i].Location.Lat, nextProps.schoolsArr[i].Location.Lng)
+        console.log(nextProps.schoolsArr[i])
+        let place = new window.google.maps.LatLng(parseFloat(nextProps.schoolsArr[i].location_lat), parseFloat(nextProps.schoolsArr[i].location_lng))
         bounds.extend(place)
       }
       this._mapComponent.fitBounds(bounds)
