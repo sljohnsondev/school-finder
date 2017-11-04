@@ -166,14 +166,25 @@ describe('API Routes', () => {
   });
 
   describe('Favorites Table', () => {
-    it('should return the all the favorites in our test database', (done) => {
+    it('should return the all the favorites associated with our first user', (done) => {
       chai.request(server)
-        .get('/api/v1/favorites')
+        .get('/api/v1/favorites/1')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
           response.should.be.a('object');
           response.body.length.should.equal(2);
+          done();
+        });
+    });
+
+    it('should return a 404 if the user id has no favorites associatedwith it', (done) => {
+      chai.request(server)
+        .get('/api/v1/favorites/2000')
+        .end((error,response) => {
+          response.should.have.status(404);
+          response.body.should.have.property('error');
+          response.body.error.should.equal('Could not find favorites with associated with user_id: 2000');
           done();
         });
     });

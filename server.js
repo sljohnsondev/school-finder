@@ -88,14 +88,20 @@ app.put('/api/v1/users/:id', (request, response) => {
     });
 });
 
-app.get('/api/v1/favorites', (request, response) => {
-  database('favorites').select()
-    .then((favorites) => {
-      response.status(200).json(favorites);
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
+app.get('/api/v1/favorites/:id', (request, response) => {
+  let { id } = request.params;
+  
+  database('favorites').where('user_id', id).select()
+  .then((favorites) => {
+    if (favorites.length == 0) {
+      return response.status(404).json({
+        error: `Could not find favorites with associated with user_id: ${id}`
+      });
+    } else return response.status(200).json(favorites);
+  })
+  .catch((error) => {
+    response.status(500).json(error);
+  });
 });
 
 app.post('/api/v1/favorites', (request, response) => {
