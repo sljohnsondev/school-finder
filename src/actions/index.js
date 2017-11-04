@@ -60,10 +60,35 @@ export const addFavorite = (id) => {
   }
 }
 
+export const getAllUsers = (oId) => {
+  return dispatch => {
+    fetch('/api/v1/users')
+    .then( response => response.json())
+    .then( data => console.log('user? ',data.includes(oId)))
+  }
+}
+
+export const createUser = userInfo => {
+  return dispatch => {
+    fetch('/api/v1/users', {
+      method: 'POST',
+      body: JSON.stringify(userInfo),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(data => {
+      return data.ok ? data.json() : alert('error message')
+    })
+    .then(data => { console.log('made user ', data)
+    })
+  }
+}
+
 export const getUserFavorites = userId => {
   
 	return dispatch => {
-		fetch(`/api/users/favorites/${userId}`)
+		fetch(`/api/v1/favorites/${userId}`)
 			.then(data => data.json())
 			.then(data => console.log('favorites in action ', data))
 	}
@@ -71,7 +96,7 @@ export const getUserFavorites = userId => {
 
 export const makeFavorite = schoolInfo => {
 	return dispatch => {
-		fetch('/api/favorites/', {
+		fetch('/api/v1/favorites/', {
 			method: 'POST',
 			body: JSON.stringify(schoolInfo),
 			headers: {

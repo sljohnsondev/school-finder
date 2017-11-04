@@ -13,8 +13,24 @@ export default class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    
     if (nextProps.userId !== undefined) {
-      this.props.getUserFavorites(nextProps.userId)
+      Promise.resolve(this.props.getAllUsers(nextProps.userId))
+        .then( user => {
+          console.log('user in promise ', user);
+          
+          if (this.props.getAllUsers(nextProps.userId)) {
+            return this.props.getUserFavorites(nextProps.userId)
+          }
+          return this.props.createUser(
+            {
+              username: nextProps.name,
+              email: nextProps.email,
+              street_address: '',
+              oath_id: nextProps.userId
+            }
+          )
+      })
     }
   }
 
@@ -23,7 +39,6 @@ export default class UserProfile extends Component {
   }
 
   render() {
-    console.log('props in up ', this.props);
     
     const { name, email, photo } = this.props;
     const { hideProfile, favorites } = this.state;

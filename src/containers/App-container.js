@@ -16,18 +16,6 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(signInHandler(user))
       });
     }
-    // fetchSun: (data) => {
-    //   dispatch(fetchSun(data))
-    // },
-    // fetchWeather: (data) => {
-    //   dispatch(fetchWeather(data))
-    // },
-    // receiveForecast: (data) => {
-    //   dispatch(receiveForecast(data))
-    // },
-    // receiveExtForecastApp: (data, city) => {
-    //   dispatch(receiveExtForecastApp(data, city))
-    // }
   }
 }
 
