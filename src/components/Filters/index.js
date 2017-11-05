@@ -19,10 +19,11 @@ class Filters extends Component {
       commuteTime: 30,
       viewFilters: true,
       homeAddress: '',
-      selectedSchool: '',
-      hideFilter: false
-    },
-    this.homeCallback = this.homeCallback.bind(this);
+      selectedSchool: ''
+    }
+    this.homeCallback = this.homeCallback.bind(this)
+    this.selectSchool = this.selectSchool.bind(this)
+    this.directionsCallback = this.directionsCallback.bind(this)
   }
 
   handleChange(evt) {
@@ -103,20 +104,31 @@ class Filters extends Component {
 
   selectSchool(school) {
     this.setState({ selectedSchool: school.name }, () => {
-      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback.bind(this))
+      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback);
     })
-    this.slideFilterComponent()
+    this.toggleTabView();
   }
 
-  slideFilterComponent() {
-    this.setState({ hideFilter: !this.state.hideFilter })
+  toggleTabView() {
+    if (this.props.tab === 'filters') {
+      this.props.toggleTab('');
+    } else this.props.toggleTab('filters');
+  }
+
+  hideComponent() {
+    if (this.props.tab === 'filters') {
+      return false;
+    } else return true;
   }
 
   render() {
+
+    let hideFilters = this.hideComponent();
+
     return (
       <div>
-        <button className={ this.state.hideFilter ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.slideFilterComponent() }>{this.state.hideFilter ? '>' : '<' }</button>
-        <div className={ this.state.hideFilter ? 'filter-container hidden' : 'filter-container'}>
+        <button className={ hideFilters ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.toggleTabView() }>{ hideFilters ? '>' : '<' }</button>
+        <div className={ hideFilters ? 'filter-container hidden' : 'filter-container'}>
           {this.state.viewFilters ?
             <div>
               <h2 className='filter-header'>Search Filters</h2>
@@ -223,7 +235,7 @@ class Filters extends Component {
                       refNum={ i }
                       schoolData={ school }
                       selectedSchool={this.state.selectedSchool}
-                      selectSchool={ this.selectSchool.bind(this) } />
+                      selectSchool={ this.selectSchool } />
                 )
               }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4> }
             </div>

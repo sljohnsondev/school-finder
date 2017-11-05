@@ -14,6 +14,7 @@ export default class App extends Component {
       showTab: 'filters'
     }
     this.toggleTab = this.toggleTab.bind(this);
+    this.getAnchor = this.getAnchor.bind(this);
   }
 
   getAnchor() {
@@ -29,9 +30,7 @@ export default class App extends Component {
   }
 
   toggleTab(str) {
-    this.setState({
-      showTab: str,
-    })
+      this.setState({ showTab: str })
   }
 
   renderMap() {
@@ -50,7 +49,7 @@ export default class App extends Component {
   }
 
   render() {
-    
+
     const { displayName, email, photoURL, uid } = this.props.data.AppData
     return (
       <div className='app-container'>
@@ -59,7 +58,7 @@ export default class App extends Component {
         <div />
         :
         <SignIn signInHandler={ this.props.signInHandler } /> }
-        <UserProfile name={ displayName } email={ email } photo={ photoURL } userId={ uid }/>
+        <UserProfile name={ displayName } email={ email } photo={ photoURL } userId={ uid } toggleTab={ this.toggleTab } />
         <Filters tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <Compare tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
