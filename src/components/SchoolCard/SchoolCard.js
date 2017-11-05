@@ -1,20 +1,18 @@
 import React from 'react';
+import FavoriteButton from '../../containers/FavoriteButton-container';
 import './school-card.css';
 
 const SchoolCard = (props) => {
-  // console.log('props in schoolcard', props);
-
 
   return (
-
     <div className='school-card-container'>
+      
+      <h1 className='school-name'>{ props.school.name }</h1>
 
       <div className='remove-favorite' onClick={ () => props.removeFavorite(props.school.id) }>X</div>
       <h1>{ props.school.name }</h1>
       <p>School info here</p>
-      <div className='add-favorite' onClick={ () => props.addFavorite(props.school.id) }>
-        Favorite
-      </div>
+      <FavoriteButton id={ props.school.id }/>
 
     </div>
   )

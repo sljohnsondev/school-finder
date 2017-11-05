@@ -4,10 +4,9 @@ const favorites = (state = favs, action) => {
     case 'ADD_FAVORITE':
     if ( !state.includes( action.id ) ) {
       return [...state, action.id];
+    } else {
+      return state.filter( id => id !== action.id)
     }
-    return state;
-    case 'REMOVE_FAVORITE':
-    return state.filter(school => school !== action.id);
     default:
     return state;
   }

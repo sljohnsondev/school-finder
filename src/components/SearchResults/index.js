@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
+import { refObj } from '../Helpers/markerIndex';
+import FavoriteButton from '../../containers/FavoriteButton-container';
+=======
+>>>>>>> master
 import './searchresults-style.css';
 
 export default class SearchResults extends Component {
@@ -10,6 +15,7 @@ export default class SearchResults extends Component {
   }
 
   render() {
+
     let { name, address, website, commute } = this.props.schoolData;
     let { refNum } = this.props;
 
@@ -22,6 +28,7 @@ export default class SearchResults extends Component {
           <h4 className='results-fields'>Commute Time: <span className='commute-info'>{commute.time.text}</span></h4>
           <h4 className='results-fields'>Commute Distance: <span className='commute-info'>{commute.distance.text}</span></h4>
         </section>
+      <FavoriteButton />
       </div>
     )
   }

@@ -8,7 +8,29 @@ export default class UserProfile extends Component {
     super()
     this.state = {
       hideProfile: true,
-      favorites: [{name: 'North', id: 1}, {name: 'South', id: 2}, {name: 'East', id: 3}, {name: 'West', id: 4}]
+      favorites: []
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    
+    if (nextProps.userId !== undefined) {
+      Promise.resolve(this.props.getAllUsers(nextProps.userId))
+        .then( user => {
+          console.log('user in promise ', user);
+          
+          if (this.props.getAllUsers(nextProps.userId)) {
+            return this.props.getUserFavorites(nextProps.userId)
+          }
+          return this.props.createUser(
+            {
+              username: nextProps.name,
+              email: nextProps.email,
+              street_address: '',
+              oath_id: nextProps.userId
+            }
+          )
+      })
     }
   }
 
@@ -17,6 +39,7 @@ export default class UserProfile extends Component {
   }
 
   render() {
+    
     const { name, email, photo } = this.props;
     const { hideProfile, favorites } = this.state;
 
@@ -34,17 +57,20 @@ export default class UserProfile extends Component {
 
         <div className={ hideProfile ? 'profile-container hide-profile' : 'profile-container' }>
           
-          <h2 className='profile-header'>{ name }</h2>
-
-          <img src={ photo ? photo : alias } alt='avatar' className='user-photo' />
-
           <div className='user-info'>
+            <h2 className='profile-header'>{ name }</h2>
+
+            <img src={ photo ? photo : alias } alt='avatar' className='user-photo' />
+
             <h4 className="address">1771 17th St. Denver, CO. 80201 USA MothaLicka</h4>
             <h4 className='email'>{ email }</h4>
           </div>
 
-          <div className='favorite-schools'>
-            { mappedFavorites }
+          <div>
+            <h3 className='your-favorites'>Your Favorites</h3>
+            <div className='favorite-schools'>
+              { mappedFavorites }
+            </div>
           </div>
         
         </div>
