@@ -1,4 +1,5 @@
 import './FavoriteButton.css';
+import React from 'react';
 import heart from '../../assets/heart.svg'
 
 const favoriteButton = (props) => {

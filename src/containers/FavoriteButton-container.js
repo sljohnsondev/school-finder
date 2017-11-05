@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import favoriteButton from '../components/FavoriteButton/FavoriteButton';
+import favoriteButton from '../components/FavoriteButton';
 import { addFavorite } from '../actions';
 
 const mapStateToProps = (state) => {
