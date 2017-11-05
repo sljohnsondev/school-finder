@@ -15,20 +15,20 @@ export default class UserProfile extends Component {
   componentWillReceiveProps(nextProps) {
 
     if (nextProps.userId !== undefined) {
-      Promise.resolve(this.props.getAllUsers(nextProps.userId))
+      Promise.resolve(this.props.getUser(nextProps.userId))
         .then( user => {
           console.log('user in promise ', user);
 
-          if (this.props.getAllUsers(nextProps.userId)) {
+          if (user) {
             return this.props.getUserFavorites(nextProps.userId)
           }
-          return this.props.createUser(
-            {
-              username: nextProps.name,
-              email: nextProps.email,
-              oath_id: nextProps.userId
-            }
-          )
+          // return this.props.createUser(
+          //   {
+          //     username: nextProps.name,
+          //     email: nextProps.email,
+          //     oath_id: nextProps.userId
+          //   }
+          // )
       })
     }
   }
