@@ -8,13 +8,14 @@ const database = require('knex')(configuration);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/build'));
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 
 app.get('/', (request, response) => {
   response.sendfile('index.html');
 });
+
 
 app.get('/api/v1/users', (request, response) => {
   database('users').select()
@@ -25,6 +26,7 @@ app.get('/api/v1/users', (request, response) => {
       response.status(500).json({ error });
     });
 });
+
 
 app.get('/api/v1/users/:id', (request, response) => {
   const { id } = request.params;
@@ -42,10 +44,11 @@ app.get('/api/v1/users/:id', (request, response) => {
     });
 });
 
+
 app.post('/api/v1/users', (request, response) => {
   const user = request.body;
 
-  for (let requiredParameter of ['username', 'email', 'street_address', 'oath_id']) {
+  for (let requiredParameter of ['username', 'email', 'oath_id']) {
     if (!user[requiredParameter]) {
       return response
         .status(422)
@@ -55,12 +58,14 @@ app.post('/api/v1/users', (request, response) => {
 
   database('users').insert(user, 'id')
   .then(user => {
-    response.status(201).json({ id: user[0] });
+    console.log('FROM DB ', user)
+    return response.status(201).json({ id: user[0] });
   })
   .catch(error => {
-    response.status(500).json({ error });
+    return response.status(500).json({ error });
   });
 });
+
 
 app.put('/api/v1/users/:id', (request, response) => {
   let { id } = request.params;
@@ -87,6 +92,7 @@ app.put('/api/v1/users/:id', (request, response) => {
       response.status(500).json(error);
     });
 });
+
 
 app.patch('/api/v1/users/:id', (request, response) => {
   let { id } = request.params;
