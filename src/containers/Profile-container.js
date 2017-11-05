@@ -4,6 +4,7 @@ import { getUser, createUser, getUserFavorites } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
+    user: state.CurrentUser,
     favorites: state.favorites
   }
 }

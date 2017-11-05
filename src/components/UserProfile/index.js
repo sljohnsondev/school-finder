@@ -13,14 +13,13 @@ export default class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
-    if (nextProps.userId !== undefined) {
+   
+    if (nextProps.userId !== this.props.userId) {
       Promise.resolve(this.props.getUser(nextProps.userId))
-        .then( user => {
-          console.log('user in promise ', user);
+        .then( () => {
 
-          if (user) {
-            return this.props.getUserFavorites(nextProps.userId)
+          if (this.props.userId) {
+            return this.props.getUserFavorites(this.props.userId)
           }
           // return this.props.createUser(
           //   {

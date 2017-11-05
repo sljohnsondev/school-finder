@@ -73,7 +73,7 @@ export const getUser = (oId) => {
     .then( response => response.json())
     .then( data => {
       console.log('data in getUser ', data);
-      
+      dispatch(getUserFavorites(data[0].id))
       return dispatch(storeUser(data))
     })
   }
