@@ -13,24 +13,16 @@ export default class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-   
+    const userInfo = {
+                        username: nextProps.name,
+                        email: nextProps.email,
+                        oath_id: nextProps.userId
+                      }
+                      
     if (nextProps.userId !== this.props.userId) {
-      Promise.resolve(this.props.getUser(nextProps.userId))
-        .then( () => {
-
-          if (this.props.userId) {
-            return this.props.getUserFavorites(this.props.userId)
-          }
-          // return this.props.createUser(
-          //   {
-          //     username: nextProps.name,
-          //     email: nextProps.email,
-          //     oath_id: nextProps.userId
-          //   }
-          // )
-      })
-    }
+     this.props.getUser(nextProps.userId, userInfo)
   }
+}
 
   slideProfileComponent() {
     this.setState({ hideProfile: !this.state.hideProfile })

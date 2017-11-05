@@ -67,11 +67,16 @@ export const storeUser = user => {
   }
 }
 
-export const getUser = (oId) => {
+export const getUser = (oId, userInfo) => {
+  
   return dispatch => {
     fetch(`/api/v1/users/${oId}`)
     .then( response => response.json())
     .then( data => {
+      
+        if (data.error) {
+          return dispatch(createUser(userInfo))
+        }
       console.log('data in getUser ', data);
       dispatch(getUserFavorites(data[0].id))
       return dispatch(storeUser(data))

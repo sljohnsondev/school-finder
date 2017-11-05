@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: (id) => {
-      dispatch(getUser(id))
+    getUser: (id, userInfo) => {
+      dispatch(getUser(id, userInfo))
     },
     createUser: (userInfo) => {
       dispatch(createUser(userInfo))
