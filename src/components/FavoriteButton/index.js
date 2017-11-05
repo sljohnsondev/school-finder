@@ -1,21 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './FavoriteButton.css';
-import heart from '../../assets/heart.svg'
+import heart from '../../assets/heart.svg';
+import fav from '../../assets/like.svg'
 
-const favoriteButton = (props) => {
-
-  const schoolData = {
-    school_id: props.schoolInfo.id,
-    school_address: props.schoolInfo.address,
-    school_website: props.schoolInfo.website,
-    school_name: props.schoolInfo.name,
-    school_code: props.schoolInfo.school_code,
-    user_id: props.userId
+class favoriteButton extends Component {
+  constructor() {
+    super()
+    this.state = {
+      isFavorite: false
+    }
   }
-  
-  return (
-    <img src={heart} alt='favorite' className='add-favorite' onClick={ () => props.makeFavorite(props.userId, schoolData) } />
+
+  componentDidMount() {
+    console.log('is fav on button ', this.state.isFavorite);
+    console.log('props.favorites in favbtn ', this.props.favorites);
+    console.log('props.schoolInfo in favbtn ', this.props.schoolInfo);
+    
+    
+    for (let i = 0; i < this.props.favorites.length; i++) {
+      if ( this.props.favorites[i].school_code === this.props.schoolInfo.dps_school_code ) {
+        this.setState({
+          isFavorite: true
+        })
+    }
+  }
+  }
+
+  render () {
+    const schoolData = {
+      school_id: this.props.schoolInfo.id,
+      school_address: this.props.schoolInfo.address,
+      school_website: this.props.schoolInfo.website,
+      school_name: this.props.schoolInfo.name,
+      school_code: this.props.schoolInfo.dps_school_code,
+      user_id: this.props.userId
+    }
+    return (
+      <div>
+        { this.state.isFavorite ?
+          <img src={fav} alt='favorite' className='add-favorite' onClick={ () => this.props.deleteFavorite(this.props.schoolInfo.id) } />
+          :
+          <img src={heart} alt='favorite' className='add-favorite' onClick={ () => this.props.makeFavorite(schoolData) } />
+        }      
+      </div>
     )
+  }
 };
 
 export default favoriteButton;

@@ -53,9 +53,16 @@ export const activeSearchToggle = () => {
   }
 }
 
-export const addFavorite = (id) => {
+export const addFavorite = (SchoolData) => {
   return {
     type: 'ADD_FAVORITE',
+    SchoolData
+  }
+}
+
+export const removeFavorite = id => {
+  return {
+    type: 'REMOVE_FAVORITE',
     id
   }
 }
@@ -64,22 +71,6 @@ export const storeUser = user => {
   return {
     type: 'PUSH_USER',
     user
-  }
-}
-
-export const getUser = (oId, userInfo) => {
-  
-  return dispatch => {
-    fetch(`/api/v1/users/${oId}`)
-    .then( response => response.json())
-    .then( data => {
-      
-        if (data.error) {
-          return dispatch(createUser(userInfo))
-        }
-      dispatch(getUserFavorites(data[0].id))
-      return dispatch(storeUser(data))
-    })
   }
 }
 
@@ -100,17 +91,29 @@ export const createUser = (userInfo) => {
 }
 
 export const getUserFavorites = (userId) => {
-
 	return dispatch => {
 		fetch(`/api/v1/favorites/${userId}`)
 			.then(data => data.json())
-			.then(data => console.log('favorites in action ', data))
+			.then(data => dispatch(addFavorite(data)))
 	}
 }
 
-export const makeFavorite = (userId, schoolInfo) => {
-  console.log('shoolInfo in makefav action ', schoolInfo);
-  
+export const getUser = (oId, userInfo) => {
+  return dispatch => {
+    fetch(`/api/v1/users/${oId}`)
+    .then( response => response.json())
+    .then( data => {
+      
+        if (data.error) {
+          return dispatch(createUser(userInfo))
+        }
+      dispatch(getUserFavorites(data[0].id))
+      return dispatch(storeUser(data))
+    })
+  }
+}
+
+export const makeFavorite = (schoolInfo, stateFavorites) => {
 	return dispatch => {
 		fetch('/api/v1/favorites/', {
 			method: 'POST',
@@ -122,8 +125,23 @@ export const makeFavorite = (userId, schoolInfo) => {
 			.then(data => {
 				return data.ok ? data.json() : alert('error message')
 			})
-      .then(data => { console.log('made favorite ', data)
-        return dispatch(addFavorite(schoolInfo.id))
-			})
+      .then(data => {
+        console.log('data in makefav action ', data);
+        
+        dispatch(addFavorite(data))})
 	}
+}
+
+export const deleteFavorite = id => {
+  return dispatch => {
+    fetch(`/api/v1/favorites/${id}`, {
+    method: 'DELETE'
+    })
+    .then( school => {
+      console.log('return from delete ', school);
+      
+      dispatch(removeFavorite(school))
+    }
+    )
+  }
 }
