@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './user-profile.css';
-import Favorites from '../Favorites/Favorites';
+import Favorites from '../Favorites';
 import alias from '../../assets/user.svg';
 
 export default class UserProfile extends Component {
