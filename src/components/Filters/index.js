@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from '../../firebase';
+// import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';

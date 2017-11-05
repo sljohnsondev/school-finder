@@ -1,3 +1,4 @@
+import React from 'react';
 import './FavoriteButton.css';
 import heart from '../../assets/heart.svg'
 
