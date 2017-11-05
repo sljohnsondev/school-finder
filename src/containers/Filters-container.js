@@ -4,7 +4,8 @@ import { setSchools, clearSchools, setHomeAddress, setDirections, clearDirection
 const mapStateToProps = (state) => {
   return {
     schoolResults: state.FilterResults,
-    activeSearch: state.FilterResults.activeSearch
+    activeSearch: state.FilterResults.activeSearch,
+    CurrentUser: state.CurrentUser
   }
 }
 
@@ -30,9 +31,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     activeSearchToggle: () => {
       dispatch(activeSearchToggle())
-    },
-    makeFavorite: (id) => {
-      dispatch(makeFavorite(id))
     }
   }
 }

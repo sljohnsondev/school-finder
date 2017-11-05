@@ -223,7 +223,8 @@ class Filters extends Component {
                       refNum={ i }
                       schoolData={ school }
                       selectedSchool={this.state.selectedSchool}
-                      selectSchool={ this.selectSchool.bind(this) } />
+                      selectSchool={ this.selectSchool.bind(this) }
+                      userId={ this.props.CurrentUser[0].id } />
                 )
               }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4> }
             </div>

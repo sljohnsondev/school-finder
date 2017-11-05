@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import favoriteButton from '../components/FavoriteButton';
-import { addFavorite } from '../actions';
+import { makeFavorite } from '../actions';
 
 const mapStateToProps = (state) => {
   return state;
@@ -8,8 +8,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFavorite: (id) => {
-      dispatch(addFavorite(id))
+    makeFavorite: (userId, schoolData) => {
+      dispatch(makeFavorite(userId, schoolData))
     }
   }
 }

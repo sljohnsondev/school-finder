@@ -4,19 +4,17 @@ import heart from '../../assets/heart.svg'
 
 const favoriteButton = (props) => {
 
-  console.log('props in favorite ', props.schoolInfo);
-
-  // const schoolData = {
-  //   school_id: ,
-  //   school_address: ,
-  //   school_website: ,
-  //   school_name: ,
-  //   school_code: ,
-  //   user_id: 
-  // }
+  const schoolData = {
+    school_id: props.schoolInfo.id,
+    school_address: props.schoolInfo.address,
+    school_website: props.schoolInfo.website,
+    school_name: props.schoolInfo.name,
+    school_code: props.schoolInfo.school_code,
+    user_id: props.userId
+  }
   
   return (
-    <img src={heart} alt='favorite' className='add-favorite' onClick={ () => props.addFavorite(props.schoolInfo) } />
+    <img src={heart} alt='favorite' className='add-favorite' onClick={ () => props.makeFavorite(props.userId, schoolData) } />
     )
 };
 

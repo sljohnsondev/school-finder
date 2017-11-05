@@ -13,8 +13,8 @@ export default class SearchResults extends Component {
   render() {
 
     let { name, address, website, commute } = this.props.schoolData;
-    let { refNum } = this.props;
-    console.log('schoolData ', this.props.schoolData);
+    let { refNum, userId } = this.props;
+    console.log('user id in serasdf restul ', userId);
     
 
     return (
@@ -26,7 +26,7 @@ export default class SearchResults extends Component {
           <h4 className='results-fields'>Commute Time: <span className='commute-info'>{commute.time.text}</span></h4>
           <h4 className='results-fields'>Commute Distance: <span className='commute-info'>{commute.distance.text}</span></h4>
         </section>
-      <FavoriteButton schoolInfo={ this.props.schoolData }/>
+      <FavoriteButton schoolInfo={ this.props.schoolData } userId={ this.props.userId }/>
       </div>
     )
   }
