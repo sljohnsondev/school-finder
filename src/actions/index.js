@@ -60,11 +60,22 @@ export const addFavorite = (id) => {
   }
 }
 
-export const getAllUsers = (oId) => {
+export const storeUser = user => {
+  return {
+    type: 'PUSH_USER',
+    user
+  }
+}
+
+export const getUser = (oId) => {
   return dispatch => {
-    fetch('/api/v1/users')
+    fetch(`/api/v1/users/${oId}`)
     .then( response => response.json())
-    .then( data => console.log('user? ', data.includes(oId)))
+    .then( data => {
+      console.log('data in getUser ', data);
+      
+      return dispatch(storeUser(data))
+    })
   }
 }
 
