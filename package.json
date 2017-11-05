@@ -48,6 +48,7 @@
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "airbnb"
   }

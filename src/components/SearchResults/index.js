@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { refObj } from '../Helpers/markerIndex';
 import FavoriteButton from '../../containers/FavoriteButton-container';
-=======
->>>>>>> master
 import './searchresults-style.css';
 
 export default class SearchResults extends Component {

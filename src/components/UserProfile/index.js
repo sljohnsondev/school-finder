@@ -13,12 +13,12 @@ export default class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    
+
     if (nextProps.userId !== undefined) {
       Promise.resolve(this.props.getAllUsers(nextProps.userId))
         .then( user => {
           console.log('user in promise ', user);
-          
+
           if (this.props.getAllUsers(nextProps.userId)) {
             return this.props.getUserFavorites(nextProps.userId)
           }
@@ -26,7 +26,6 @@ export default class UserProfile extends Component {
             {
               username: nextProps.name,
               email: nextProps.email,
-              street_address: '',
               oath_id: nextProps.userId
             }
           )
@@ -39,7 +38,7 @@ export default class UserProfile extends Component {
   }
 
   render() {
-    
+
     const { name, email, photo } = this.props;
     const { hideProfile, favorites } = this.state;
 
@@ -48,15 +47,15 @@ export default class UserProfile extends Component {
     return (
 
       <div className='profile'>
-      
+
         <button className={ hideProfile ? "slide-profile-btn hidden-profile" : "slide-profile-btn"} onClick={ () => this.slideProfileComponent() }>{hideProfile ? '<' : '>' }</button>
 
         <div className={ hideProfile ? 'avatar show-avatar' : 'avatar'}>
-          <img src={ photo ? photo : alias } alt='avatar' className='avatar-photo' />          
+          <img src={ photo ? photo : alias } alt='avatar' className='avatar-photo' />
         </div>
 
         <div className={ hideProfile ? 'profile-container hide-profile' : 'profile-container' }>
-          
+
           <div className='user-info'>
             <h2 className='profile-header'>{ name }</h2>
 
@@ -72,7 +71,7 @@ export default class UserProfile extends Component {
               { mappedFavorites }
             </div>
           </div>
-        
+
         </div>
 
       </div>
