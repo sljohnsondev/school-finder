@@ -21,12 +21,14 @@ class Filters extends Component {
       homeAddress: '',
       selectedSchool: '',
       hideFilter: false
-    }
+    },
+    this.homeCallback = this.homeCallback.bind(this);
   }
 
   handleChange(evt) {
     let key = evt.target.id;
     let val = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+    console.log(val)
     let obj = {};
     obj[key] = val;
     this.setState(obj);
@@ -35,7 +37,7 @@ class Filters extends Component {
   //Get home address coords and set in store
   handleHomeAddress(e) {
     if (e.target.value !== "") {
-      getGeoLocation(e.target.value, this.homeCallback.bind(this));
+      getGeoLocation(e.target.value, this.homeCallback);
     }
   }
 
@@ -50,7 +52,7 @@ class Filters extends Component {
     fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
     .then(data => data.json())
     .then(finalSchools => {
-      console.log(finalSchools)
+      console.log('FINAL SCHOOLS FROM DB', finalSchools)
       this.getGoogleDistances(finalSchools, transitMode)
     })
   }
@@ -64,13 +66,13 @@ class Filters extends Component {
       let end = i * 25 + 25
       let data = finalSchools.slice(begin, end)
       let callBack = (response) => {
-        let { commuteDist, commuteTime } = this.state
-        console.log(response)
+        let { commuteDist, commuteTime } = this.state;
         let finalSchoolData = response.rows[0].elements.map((school, i) => {
           return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},
                                               time: {text: school.duration.text, value: school.duration.value} },
                                               showInfo: false } )
         })
+        console.log('FINAL SCHOOL DATA ', finalSchoolData);
         this.props.setSchools(finalSchoolData, commuteTime, commuteDist);
       }
       googleDistanceMatrix(this.props.schoolResults.homeAddress, data, transitMode, callBack)
@@ -137,9 +139,9 @@ class Filters extends Component {
                   <h4>School Type</h4>
                   <select id='schoolType' value={ this.state.schoolType } onChange={(e) => this.handleChange(e)}>
                     <option value=''>Select school type...</option>
-                    <option value='Public'>Public/District</option>
-                    <option value='Charter'>Charter</option>
-                    <option value='Other'>Other</option>
+                    <option value='public'>Public/District</option>
+                    <option value='charter'>Charter</option>
+                    <option value='other'>Other</option>
                   </select>
                 </article>
                 <article className='filter-item'>
