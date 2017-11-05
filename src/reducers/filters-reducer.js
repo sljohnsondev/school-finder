@@ -34,6 +34,13 @@ const filters = (state = [], action) => {
       let toggleValue = !state.activeSearch
       return Object.assign({}, state, { activeSearch: toggleValue })
 
+    case 'ADD_FAVORITE':
+      if ( !state.includes( action.id ) ) {
+        return [...state, action.id];
+      } else {
+        return state.filter( id => id !== action.id)
+      }
+
     default:
       return state;
   }

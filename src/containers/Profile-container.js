@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Profile from '../components/UserProfile/index';
-import { getUser, createUser, getUserFavorites } from '../actions';
+import { getUser } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,12 +13,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (id, userInfo) => {
       dispatch(getUser(id, userInfo))
-    },
-    createUser: (userInfo) => {
-      dispatch(createUser(userInfo))
-    },
-    getUserFavorites: (id) => {
-      dispatch(getUserFavorites(id))
     }
   }
 }
