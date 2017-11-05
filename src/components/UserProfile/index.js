@@ -13,25 +13,16 @@ export default class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
-    if (nextProps.userId !== undefined) {
-      Promise.resolve(this.props.getUser(nextProps.userId))
-        .then( user => {
-          console.log('user in promise ', user);
-
-          if (user) {
-            return this.props.getUserFavorites(nextProps.userId)
-          }
-          // return this.props.createUser(
-          //   {
-          //     username: nextProps.name,
-          //     email: nextProps.email,
-          //     oath_id: nextProps.userId
-          //   }
-          // )
-      })
-    }
+    const userInfo = {
+                        username: nextProps.name,
+                        email: nextProps.email,
+                        oath_id: nextProps.userId
+                      }
+                      
+    if (nextProps.userId !== this.props.userId) {
+     this.props.getUser(nextProps.userId, userInfo)
   }
+}
 
   slideProfileComponent() {
     this.setState({ hideProfile: !this.state.hideProfile })

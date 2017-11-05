@@ -1,6 +1,6 @@
 import React from 'react';
-import heart from '../../assets/heart.svg'
 import './FavoriteButton.css';
+import heart from '../../assets/heart.svg'
 
 const favoriteButton = (props) => {
   return (
