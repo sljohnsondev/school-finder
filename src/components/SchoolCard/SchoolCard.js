@@ -8,6 +8,9 @@ const SchoolCard = (props) => {
     <div className='school-card-container'>
       
       <h1 className='school-name'>{ props.school.name }</h1>
+
+      <div className='remove-favorite' onClick={ () => props.removeFavorite(props.school.id) }>X</div>
+      <h1>{ props.school.name }</h1>
       <p>School info here</p>
       <FavoriteButton id={ props.school.id }/>
 
