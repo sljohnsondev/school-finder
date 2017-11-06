@@ -138,9 +138,9 @@ app.post('/api/v1/favorites', (request, response) => {
     }
   }
 
-  database('favorites').insert(favorite, 'id')
+  database('favorites').insert(favorite, '*')
     .then((user) => {
-      response.status(201).json({ id: user[0] });
+      response.status(201).json( user );
     })
     .catch((error) => {
       response.status(500).json({ error });
@@ -150,10 +150,10 @@ app.post('/api/v1/favorites', (request, response) => {
 app.delete('/api/v1/favorites/:id', (request, response) => {
   const { id } = request.params;
 
-  database('favorites').where({ id }).del()
+  database('favorites').where('school_code', id ).del()
     .then((favorite) => {
       if (favorite) {
-        return response.status(202).json(`Favorite ${id} was deleted from database`);
+        return response.sendStatus(204);
       }
       return response.status(422).json({ error: 'Not Found' });
     })
