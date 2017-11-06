@@ -68,16 +68,15 @@ export const storeUser = user => {
 }
 
 export const getUser = (oId, userInfo) => {
-  
+
   return dispatch => {
     fetch(`/api/v1/users/${oId}`)
     .then( response => response.json())
     .then( data => {
-      
+
         if (data.error) {
           return dispatch(createUser(userInfo))
         }
-      console.log('data in getUser ', data);
       dispatch(getUserFavorites(data[0].id))
       return dispatch(storeUser(data))
     })
@@ -96,8 +95,8 @@ export const createUser = (userInfo) => {
     .then(response => {
       return response.ok ? response.json() : console.log('error message', response)
     })
-    .then(data => { console.log('made user ', data)
-    })
+    // .then(data => { console.log('made user ', data)
+    // })
   }
 }
 
@@ -106,7 +105,7 @@ export const getUserFavorites = (userId) => {
 	return dispatch => {
 		fetch(`/api/v1/favorites/${userId}`)
 			.then(data => data.json())
-			.then(data => console.log('favorites in action ', data))
+			// .then(data => console.log('favorites in action ', data))
 	}
 }
 
@@ -122,7 +121,8 @@ export const makeFavorite = (schoolInfo) => {
 			.then(data => {
 				return data.ok ? data.json() : alert('error message')
 			})
-			.then(data => { console.log('made favorite ', data)
-			})
+			// .then(data => { console.log('made favorite ', data)
+			// })
+      .catch(error => console.log({error}));
 	}
 }
