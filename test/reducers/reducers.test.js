@@ -2,7 +2,7 @@
 import app from '../../src/reducers/app-reducer';
 import filters from '../../src/reducers/filters-reducer.js';
 import profile from '../../src/reducers/profile-reducer.js';
-import favorites from '../../src/reducers/school-card-reducer.js';
+import favorites from '../../src/reducers/favorite-button-reducer.js';
 
 describe('todos reducer', () => {
 
@@ -155,7 +155,7 @@ describe('todos reducer', () => {
 
   describe('school card reducer', () => {
     it('should start with nothing in store', () => {
-      expect(favorites(undefined, {})).toEqual([1, 2, 3, 4]);
+      expect(favorites(undefined, {})).toEqual([]);
     });
 
     it('should not do anything when other reducers fire', ()=> {
