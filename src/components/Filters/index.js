@@ -4,6 +4,7 @@ import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
 import filterContainer from '../../containers/Filters-container'
+import AdvancedFilters from '../AdvancedFilters'
 import SearchSpinner from '../SearchSpinner'
 import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import './filters-style.css';
@@ -17,6 +18,11 @@ class Filters extends Component {
       transitMode: 'DRIVING',
       commuteDist: 15,
       commuteTime: 30,
+      elaScore: 0,
+      geometryScore: 0,
+      scienceScore: 0,
+      satScore: 0,
+      studentTeacherRatio: 0,
       viewFilters: true,
       homeAddress: '',
       selectedSchool: ''
@@ -24,6 +30,7 @@ class Filters extends Component {
     this.homeCallback = this.homeCallback.bind(this)
     this.selectSchool = this.selectSchool.bind(this)
     this.directionsCallback = this.directionsCallback.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange(evt) {
@@ -114,6 +121,10 @@ class Filters extends Component {
     return (
       <div>
         <button className={ hideFilters ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => toggleTabView(tab, toggleTab, 'filters') }>{ hideFilters ? '>' : '<' }</button>
+        <AdvancedFilters tab={ tab }
+                         handleChange={ this.handleChange }
+                         { ...this.state }
+        />
         <div className={ hideFilters ? 'filter-container hidden' : 'filter-container'}>
           {this.state.viewFilters ?
             <div>
@@ -201,7 +212,7 @@ class Filters extends Component {
               <button
                 className='search-btn'
                 onClick={ () => this.findSchools() }
-                disabled={ !this.state.gradeLevel || !this.state.schoolType }
+                disabled={ !this.state.gradeLevel || !this.state.schoolType || this.state.homeAddress === '' }
               >Find Schools</button>
             </div>
             :
