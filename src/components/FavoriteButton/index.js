@@ -33,6 +33,7 @@ class favoriteButton extends Component {
       user_id: this.props.userId
     }
     
+    
     return (
       <div>
         { this.state.isFavorite ?
