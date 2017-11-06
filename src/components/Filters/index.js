@@ -114,7 +114,7 @@ class Filters extends Component {
 
   render() {
 
-    let { tab, toggleTab } = this.props;
+    let { tab, toggleTab, patchUser, CurrentUser } = this.props;
 
     let hideFilters = hideComponent(tab, 'filters');
 
@@ -211,7 +211,7 @@ class Filters extends Component {
               </form>
               <button
                 className='search-btn'
-                onClick={ () => this.findSchools() }
+                onClick={ (e) => { this.findSchools(),  patchUser({ street_address: document.getElementById('homeAddress').value }, CurrentUser[0].id)}}
                 disabled={ !this.state.gradeLevel || !this.state.schoolType || this.state.homeAddress === '' }
               >Find Schools</button>
             </div>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setSchools, clearSchools, setHomeAddress, setDirections, clearDirections, toggleInfoWindow, activeSearchToggle } from '../actions';
+import { patchUserAddress, setSchools, clearSchools, setHomeAddress, setDirections, clearDirections, toggleInfoWindow, activeSearchToggle } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -31,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     activeSearchToggle: () => {
       dispatch(activeSearchToggle())
+    },
+    patchUser: (address, userId) => {
+      dispatch(patchUserAddress(address, userId))
     }
   }
 }

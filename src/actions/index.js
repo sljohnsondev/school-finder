@@ -140,3 +140,19 @@ export const deleteFavorite = id => {
     .then( school => dispatch(removeFavorite(id)))
   }
 }
+
+export const patchUserAddress = (address, userId) => {
+  console.log('addy and id ', address, userId);
+  
+  return dispatch => {
+    fetch(`/api/v1/users/${userId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(address),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then( data => console.log('data in patch ', data)
+    )
+  }
+}
