@@ -54,6 +54,8 @@ export const activeSearchToggle = () => {
 }
 
 export const addFavorite = (SchoolData) => {
+  console.log('data in add fav ', SchoolData);
+  
   return {
     type: 'ADD_FAVORITE',
     SchoolData
@@ -113,7 +115,8 @@ export const getUser = (oId, userInfo) => {
   }
 }
 
-export const makeFavorite = (schoolInfo, stateFavorites) => {
+export const makeFavorite = (schoolInfo) => {
+  
 	return dispatch => {
 		fetch('/api/v1/favorites/', {
 			method: 'POST',

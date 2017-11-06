@@ -24,15 +24,19 @@ class favoriteButton extends Component {
   }
 
   render () {
-    const schoolData = {
-      school_id: this.props.schoolInfo.id,
-      school_address: this.props.schoolInfo.address,
-      school_website: this.props.schoolInfo.website,
-      school_name: this.props.schoolInfo.name,
-      school_code: this.props.schoolInfo.dps_school_code,
-      user_id: this.props.userId
-    }
+    const { schoolInfo, commuteInfo, userId } = this.props
+    console.log('commute Info', commuteInfo);
     
+    const schoolData = {
+      school_id: schoolInfo.id,
+      school_address: schoolInfo.address,
+      school_website: schoolInfo.website,
+      school_name: schoolInfo.name,
+      school_code: schoolInfo.dps_school_code,
+      commute_time: commuteInfo.time.text,
+      commute_distance: commuteInfo.distance.text,
+      user_id: userId
+    }
     
     return (
       <div>
