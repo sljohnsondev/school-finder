@@ -29,7 +29,6 @@ class Filters extends Component {
   handleChange(evt) {
     let key = evt.target.id;
     let val = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
-    console.log(val)
     let obj = {};
     obj[key] = val;
     this.setState(obj);
@@ -53,7 +52,6 @@ class Filters extends Component {
     fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
     .then(data => data.json())
     .then(finalSchools => {
-      console.log('FINAL SCHOOLS FROM DB', finalSchools)
       this.getGoogleDistances(finalSchools, transitMode)
     })
   }
@@ -61,7 +59,6 @@ class Filters extends Component {
   getGoogleDistances(finalSchools, transitMode) {
     let dataLength = finalSchools.length
     let count = Math.ceil(dataLength / 25)
-    console.log(count)
     for (let i = 0; i < count; i++) {
       let begin = i * 25
       let end = i * 25 + 25
@@ -73,7 +70,6 @@ class Filters extends Component {
                                               time: {text: school.duration.text, value: school.duration.value} },
                                               showInfo: false } )
         })
-        console.log('FINAL SCHOOL DATA ', finalSchoolData);
         this.props.setSchools(finalSchoolData, commuteTime, commuteDist);
       }
       googleDistanceMatrix(this.props.schoolResults.homeAddress, data, transitMode, callBack)

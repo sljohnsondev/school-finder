@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setSchools, clearSchools, setHomeAddress, setDirections, clearDirections, toggleInfoWindow, activeSearchToggle, makeFavorite } from '../actions';
+import { setSchools, clearSchools, setHomeAddress, setDirections, clearDirections, toggleInfoWindow, activeSearchToggle } from '../actions';
 
 const mapStateToProps = (state) => {
   return {

@@ -150,7 +150,7 @@ app.post('/api/v1/favorites', (request, response) => {
 app.delete('/api/v1/favorites/:id', (request, response) => {
   const { id } = request.params;
 
-  database('favorites').where({ id }).del()
+  database('favorites').where('school_id', id ).del()
     .then((favorite) => {
       if (favorite) {
         return response.status(202).json(favorite);
