@@ -35,7 +35,7 @@
   font-size: 20px;
   font-weight: bold;
   outline: none;
-  background-color: rgba(255, 99, 71, 0.7);
+  background-color: rgba(255, 99, 71, 0.8);
   border: none;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
@@ -52,7 +52,7 @@
 }
 
 .slide-profile-btn:hover {
-  background: rgba(255, 99, 71, .9);
+  background: rgba(255, 99, 71, 1);
 }
 
 .avatar {

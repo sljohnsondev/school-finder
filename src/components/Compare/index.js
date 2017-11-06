@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import filterContainer from '../../containers/Filters-container'
 import './compare-style.css';
 
@@ -6,50 +7,21 @@ class Compare extends Component {
   constructor(props) {
     super()
     this.state = {
-      showCompare: false,
-      tab: props.showTab,
     }
-    this.toggleCompareWindow = this.toggleCompareWindow.bind(this);
   }
 
-  toggleCompareWindow() {
-    this.setState({
-      showCompare: !this.state.showCompare,
-    });
-  };
-
   render() {
-    let showHide = this.state.tab === 'compare' ? 'show-compare' : 'hide-compare';
-    let displayCompare = this.state.showCompare ? 'compare-page' : 'shrink-compare';
-    let schoolDisplay = this.state.showCompare ? 'school' : 'hide';
-    let infoDisplay = this.state.showCompare ? 'compare-item' : 'hide';
+
+    let { tab, toggleTab } = this.props;
+    let hideCompare = hideComponent(tab, 'compare');
+
     return (
-      <div className={ displayCompare }>
-        <div
-          className={ showHide }
-          onClick={ () => this.toggleCompareWindow()}
-        ></div>
-        <div className={ infoDisplay }>
-          <div className={ schoolDisplay }>
-            <h3>East High School</h3>
-            <p>East is the best high school in Denver</p>
-            <p>East is located off of Colfax</p>
-          </div>
-          <div className='graph graph1'></div>
-          <div className='graph graph2'></div>
-          <div className='graph graph3'></div>
-          <div className='remove'></div>
-        </div>
-        <div className={ infoDisplay }>
-          <div className={ schoolDisplay }>
-            <h3>Kent Denver</h3>
-            <p>Kent is pretty much cool I guess...</p>
-            <p>Kent is a gated community</p>
-          </div>
-          <div className='graph graph1'></div>
-          <div className='graph graph2'></div>
-          <div className='graph graph3'></div>
-          <div className='remove'></div>
+      <div>
+        <button className={ hideCompare ? "slide-compare-btn hidden-compare" : "slide-compare-btn"}
+                onClick={ () => toggleTabView(tab, toggleTab, 'compare') }
+        >{ hideCompare ? 'UP' : 'DOWN' }</button>
+        <div className={ hideCompare ? 'compare-container hidden-compare' : 'compare-container'}>
+          THIS IS WHERE THE COMPARE STUFF WILL GO!!
         </div>
       </div>
     )
