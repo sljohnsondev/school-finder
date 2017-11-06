@@ -11,7 +11,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      showTab: 'filters'
+      showTab: ''
     }
     this.toggleTab = this.toggleTab.bind(this);
     this.getAnchor = this.getAnchor.bind(this);
@@ -50,14 +50,15 @@ export default class App extends Component {
 
   render() {
 
-    const { displayName, email, photoURL, uid } = this.props.data.AppData
+    const { displayName, email, photoURL, uid } = this.props.data.AppData;
+
     return (
       <div className='app-container'>
         <Header />
         { this.props.data.AppData.displayName ?
         <div />
         :
-        <SignIn signInHandler={ this.props.signInHandler } /> }
+        <SignIn signInHandler={ this.props.signInHandler } toggleTab={ this.toggleTab } /> }
         <UserProfile name={ displayName } email={ email } photo={ photoURL } userId={ uid } tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <Filters tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <Compare tab={ this.state.showTab } toggleTab={ this.toggleTab } />
