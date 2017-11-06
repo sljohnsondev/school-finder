@@ -24,7 +24,7 @@ export default class SearchResults extends Component {
           <h4 className='results-fields'>Commute Time: <span className='commute-info'>{commute.time.text}</span></h4>
           <h4 className='results-fields'>Commute Distance: <span className='commute-info'>{commute.distance.text}</span></h4>
         </section>
-      <FavoriteButton schoolInfo={ schoolData } commuteInfo={ commute } userId={ userId }/>
+      <FavoriteButton schoolInfo={ schoolData } commuteInfo={ commute } userId={ userId } />
       </div>
     )
   }
