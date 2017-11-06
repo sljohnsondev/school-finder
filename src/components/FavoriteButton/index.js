@@ -24,21 +24,31 @@ class favoriteButton extends Component {
   }
 
   render () {
-    const schoolData = {
-      school_id: this.props.schoolInfo.id,
-      school_address: this.props.schoolInfo.address,
-      school_website: this.props.schoolInfo.website,
-      school_name: this.props.schoolInfo.name,
-      school_code: this.props.schoolInfo.dps_school_code,
-      user_id: this.props.userId
+    const { schoolInfo, commuteInfo, userId, deleteFavorite, makeFavorite } = this.props
+    let schoolData = {};
+    
+    if (commuteInfo) {
+      schoolData = {
+        school_id: schoolInfo.id,
+        school_address: schoolInfo.address,
+        school_website: schoolInfo.website,
+        school_name: schoolInfo.name,
+        school_code: schoolInfo.dps_school_code,
+        commute_time: commuteInfo.time.text,
+        commute_distance: commuteInfo.distance.text,
+        user_id: userId
+      }
     }
+
+    console.log('commuteInfo data object ', commuteInfo);
+    
     
     return (
       <div>
         { this.state.isFavorite ?
-          <img src={fav} alt='favorite' className='add-favorite' onClick={ () => this.props.deleteFavorite(this.props.schoolInfo.dps_school_code) } />
+          <img src={fav} alt='favorite' className='add-favorite' onClick={ () => deleteFavorite(schoolInfo.dps_school_code) } />
           :
-          <img src={heart} alt='favorite' className='add-favorite' onClick={ () => this.props.makeFavorite(schoolData) } />
+          <img src={heart} alt='favorite' className='add-favorite' onClick={ () => makeFavorite(schoolData) } />
         }      
       </div>
     )

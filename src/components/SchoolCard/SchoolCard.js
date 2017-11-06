@@ -7,12 +7,11 @@ const SchoolCard = (props) => {
   return (
     <div className='school-card-container'>
       
-      <h1 className='school-name'>{ props.school.name }</h1>
+      <h1 className='school-name'>{ props.school.school_name }</h1>
 
-      <div className='remove-favorite' onClick={ () => props.removeFavorite(props.school.id) }>X</div>
-      <h1>{ props.school.name }</h1>
-      <p>School info here</p>
-      <FavoriteButton id={ props.school.id }/>
+      <p className='results-fields'>{props.school.school_address}</p>
+        <a href={props.school.website} className='school-url results-fields' target='_blank'>School Website</a>
+      <FavoriteButton id={ props.school.id } schoolInfo={ props.school }/>
 
     </div>
   )

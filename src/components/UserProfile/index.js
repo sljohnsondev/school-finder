@@ -5,12 +5,6 @@ import alias from '../../assets/user.svg';
 import './user-profile.css';
 
 export default class UserProfile extends Component {
-  constructor() {
-    super()
-    this.state = {
-      favorites: []
-    }
-  }
 
   componentWillReceiveProps(nextProps) {
     const userInfo = {
@@ -26,9 +20,9 @@ export default class UserProfile extends Component {
 
   render() {
 
-    const { name, email, photo, tab, toggleTab } = this.props;
-    const { favorites } = this.state;
-    const mappedFavorites = this.state.favorites.map( school => <Favorites school={ school } key={ school.name } /> );
+    const { name, email, photo, tab, toggleTab, favorites } = this.props;
+    
+    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ false } key={ school.school_id } /> );
 
     let hideProfile = hideComponent(tab, 'profile');
 
