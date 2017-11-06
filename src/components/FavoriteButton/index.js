@@ -12,7 +12,7 @@ class favoriteButton extends Component {
   }
 
   componentDidMount() {
-    
+
     for (let i = 0; i < this.props.favorites.length; i++) {
 
       if ( this.props.favorites[i].school_code === this.props.schoolInfo.dps_school_code ) {
@@ -24,9 +24,9 @@ class favoriteButton extends Component {
   }
 
   render () {
-    const { schoolInfo, commuteInfo, userId } = this.props
+    const { schoolInfo, commuteInfo, userId, commuteType } = this.props
     console.log('commute Info', commuteInfo);
-    
+
     const schoolData = {
       school_id: schoolInfo.id,
       school_address: schoolInfo.address,
@@ -35,16 +35,17 @@ class favoriteButton extends Component {
       school_code: schoolInfo.dps_school_code,
       commute_time: commuteInfo.time.text,
       commute_distance: commuteInfo.distance.text,
+      commute_type: commuteType,
       user_id: userId
     }
-    
+
     return (
       <div>
         { this.state.isFavorite ?
           <img src={fav} alt='favorite' className='add-favorite' onClick={ () => this.props.deleteFavorite(this.props.schoolInfo.dps_school_code) } />
           :
           <img src={heart} alt='favorite' className='add-favorite' onClick={ () => this.props.makeFavorite(schoolData) } />
-        }      
+        }
       </div>
     )
   }

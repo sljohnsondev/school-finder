@@ -13,18 +13,30 @@ export default class SearchResults extends Component {
   render() {
 
     let { name, address, website, commute } = this.props.schoolData;
-    let { refNum, schoolData, userId } = this.props;
+    let { refNum, schoolData, userId, commuteType } = this.props;
 
     return (
-      <div className={this.props.selectedSchool === name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
+      <div className={this.props.selectedSchool === name ?
+                        'school-container selected' :
+                        'school-container'}
+            onClick={() => this.toggleSchoolSelect()}
+      >
+
         <h3 className='results-fields'>{`${refNum + 1}. ${name}`}</h3>
         <p className='results-fields'>{address}</p>
-        <a href={website} className='school-url results-fields' target='_blank'>School Website</a>
+        <a href={website} className='school-url results-fields'
+                          target='_blank'>School Website</a>
+
         <section className='commute-info results-fields'>
           <h4 className='results-fields'>Commute Time: <span className='commute-info'>{commute.time.text}</span></h4>
           <h4 className='results-fields'>Commute Distance: <span className='commute-info'>{commute.distance.text}</span></h4>
         </section>
-      <FavoriteButton schoolInfo={ schoolData } commuteInfo={ commute } userId={ userId }/>
+
+        <FavoriteButton schoolInfo={ schoolData }
+                        commuteType={ commuteType }
+                        commuteInfo={ commute }
+                        userId={ userId }
+        />
       </div>
     )
   }

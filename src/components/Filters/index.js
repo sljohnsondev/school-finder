@@ -230,6 +230,7 @@ class Filters extends Component {
                   <SearchResults
                       key={ i }
                       refNum={ i }
+                      commuteType={ this.state.commuteType }
                       schoolData={ school }
                       selectedSchool={this.state.selectedSchool}
                       selectSchool={ this.selectSchool }
