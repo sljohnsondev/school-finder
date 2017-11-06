@@ -5,7 +5,7 @@ import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
 import filterContainer from '../../containers/Filters-container'
 import SearchSpinner from '../SearchSpinner'
-// import findSchools from '../Helpers/findSchools.js'
+import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import './filters-style.css';
 
 class Filters extends Component {
@@ -106,28 +106,18 @@ class Filters extends Component {
     this.setState({ selectedSchool: school.name }, () => {
       googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback);
     })
-    this.toggleTabView();
-  }
-
-  toggleTabView() {
-    if (this.props.tab === 'filters') {
-      this.props.toggleTab('');
-    } else this.props.toggleTab('filters');
-  }
-
-  hideComponent() {
-    if (this.props.tab === 'filters') {
-      return false;
-    } else return true;
+    toggleTabView(this.props.tab, this.props.toggleTab, 'filters')
   }
 
   render() {
 
-    let hideFilters = this.hideComponent();
+    let { tab, toggleTab } = this.props;
+
+    let hideFilters = hideComponent(tab, 'filters');
 
     return (
       <div>
-        <button className={ hideFilters ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.toggleTabView() }>{ hideFilters ? '>' : '<' }</button>
+        <button className={ hideFilters ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => toggleTabView(tab, toggleTab, 'filters') }>{ hideFilters ? '>' : '<' }</button>
         <div className={ hideFilters ? 'filter-container hidden' : 'filter-container'}>
           {this.state.viewFilters ?
             <div>
