@@ -1,47 +1,44 @@
 import React, { Component } from 'react';
-import './user-profile.css';
+import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import Favorites from '../Favorites';
 import alias from '../../assets/user.svg';
+import './user-profile.css';
 
 export default class UserProfile extends Component {
   constructor() {
     super()
     this.state = {
-      hideProfile: true,
       favorites: []
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const userInfo = {
-                        username: nextProps.name,
-                        email: nextProps.email,
-                        oath_id: nextProps.userId
-                      }
-                      
-    if (nextProps.userId !== this.props.userId) {
-     this.props.getUser(nextProps.userId, userInfo)
-  }
-}
+      username: nextProps.name,
+      email: nextProps.email,
+      oath_id: nextProps.userId
+    }
 
-  slideProfileComponent() {
-    this.setState({ hideProfile: !this.state.hideProfile })
+    if (nextProps.userId !== this.props.userId) {
+      this.props.getUser(nextProps.userId, userInfo)
+    }
   }
 
   render() {
 
-    const { name, email, photo } = this.props;
-    const { hideProfile, favorites } = this.state;
-
+    const { name, email, photo, tab, toggleTab } = this.props;
+    const { favorites } = this.state;
     const mappedFavorites = this.state.favorites.map( school => <Favorites school={ school } key={ school.name } /> );
+
+    let hideProfile = hideComponent(tab, 'profile');
 
     return (
 
       <div className='profile'>
 
-        <button className={ hideProfile ? "slide-profile-btn hidden-profile" : "slide-profile-btn"} onClick={ () => this.slideProfileComponent() }>{hideProfile ? '<' : '>' }</button>
+        <button className={ hideProfile ? "slide-profile-btn hidden-profile" : "slide-profile-btn" } onClick={ () => toggleTabView(tab, toggleTab, 'profile') }>{ hideProfile ? '<' : '>' }</button>
 
-        <div className={ hideProfile ? 'avatar show-avatar' : 'avatar'}>
+        <div className={ hideProfile ? 'avatar show-avatar' : 'avatar hide-avatar'}>
           <img src={ photo ? photo : alias } alt='avatar' className='avatar-photo' />
         </div>
 

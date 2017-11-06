@@ -6,134 +6,95 @@ p {
   margin: 5px;
 }
 
-.compare-page, .shrink-compare {
-  animation-name: slide;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  background: rgba(198, 218, 240, .95);
-  border-radius: 5px;
+.compare-container {
   font-family: 'Quicksand', sans-serif;
-  height: 450px;
-  padding: 20px;
-  position: absolute;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  bottom: 0px;
-  left: 0px;
-  width: 90%;
   z-index: 1;
+  position: fixed;
+  bottom: 5px;
+  right: 8.5vw;
+  width: 83vw;
+  height: 88vh;
+  background: rgba(198, 218, 240, 1);
+  border-radius: 8px;
+  padding: 0 20px 6px 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 
-@keyframes slide {
-  0% {
-    bottom: -600px;
-    z-index: 1;
-  }
-  100% {
-    bottom: 0;
-    z-index: 1;
-  }
+.compare-tab-container p {
+  display: inline-block;
+  width: auto;
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-left: 45px;
 }
 
-@keyframes slide-out {
-  0% {
-    bottom: -40px;
-    z-index: 1;
-  }
-  100% {
-    bottom: 0px;
-    z-index: 1;
-  }
-}
-
-.shrink-compare {
-  animation-name: slide-out;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  background: none;
-  padding: 0;
-  width: 40px;
-}
-
-.hide-compare, .show-compare {
-  background-color: #E78574;
-  background-image: url('arrow-up.png');
+.compare-tab-container img {
+  height: 20px;
+  width: 20px;
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  height: 40px;
-  padding: 5px;
-  width: 30px;
+  float: right;
+  margin-right: 15px;
+  margin-top: 4px;
 }
 
-.show-compare {
+.downArrow {
   background-image: url('arrow-down.png');
-  top: 0px;
-  left: 0px;
 }
 
-.school {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  grid-row: 1;
-  height: 150px;
-  justify-content: center;
-  margin: 20px;
-  width: 150px;
+.upArrow {
+  background-image: url('arrow-up.png');
 }
 
-.hide {
-  display: none;
+.slide-compare-btn {
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  right: 10vw;
+  bottom: 89vh;
+  height: 35px;
+  width: 320px;
+  background-color: rgba(255, 99, 71, .8);
+  border: none;
+  border-radius: 0;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 
-.compare-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 30% 30% 30%;
-
+.slide-compare-btn:hover {
+  background: rgba(255, 99, 71, 1);
 }
 
-
-.graph {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 150px;
-  margin: 20px;
-  width: 150px;
-}
-
-.graph1 {
-  background-image: url('graph1.png');
-  grid-row: 1;
-}
-
-.graph2 {
-  background-image: url('graph2.png');
-  grid-row: 1;
-}
-
-.graph3 {
-  background-image: url('graph3.png');
-  grid-row: 1;
-}
-
-.remove {
-  background-image: url('cancel.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  grid-row: 1;
-  height: 50px;
-  margin: 20px;
-  width: 50px;
-}
-
-.remove:hover {
-  background-image: url('cancel1.png');
+.hidden-compare {
+  -webkit-transform: translate3d(0,88vh,0);
+  -moz-transform: translate3d(0,88vh,0);
+  -o-transform: translate3d(0,88vh,0);
+  -ms-transform: translate3d(0,88vh,0);
+  transform: translate3d(0,88vh,0);
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
