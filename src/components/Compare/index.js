@@ -17,10 +17,10 @@ class Compare extends Component {
 
     return (
       <div>
-        <button className={ hideCompare ? "slide-compare-btn compare-hidden" : "slide-compare-btn"}
+        <button className={ hideCompare ? "slide-compare-btn hidden-compare" : "slide-compare-btn"}
                 onClick={ () => toggleTabView(tab, toggleTab, 'compare') }
         >{ hideCompare ? 'UP' : 'DOWN' }</button>
-        <div className={ hideCompare ? 'compare-container compare-hidden' : 'compare-container'}>
+        <div className={ hideCompare ? 'compare-container hidden-compare' : 'compare-container'}>
           THIS IS WHERE THE COMPARE STUFF WILL GO!!
         </div>
       </div>
