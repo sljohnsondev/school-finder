@@ -1,15 +1,20 @@
 import { connect } from 'react-redux';
 import favoriteButton from '../components/FavoriteButton';
-import { addFavorite } from '../actions';
+import { makeFavorite, deleteFavorite } from '../actions';
 
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    favorites: state.Favorites
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFavorite: (id) => {
-      dispatch(addFavorite(id))
+    makeFavorite: (schoolData) => {
+      dispatch(makeFavorite(schoolData))
+    },
+    deleteFavorite: (id) => {
+      dispatch(deleteFavorite(id))
     }
   }
 }

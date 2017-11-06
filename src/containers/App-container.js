@@ -7,12 +7,14 @@ const mapStateToProps = (state) => {
   return {
     data: state,
   }
+
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInHandler: () => {
+    signInHandler: (toggleTab) => {
       signIn().then((user) => {
+        toggleTab('filters');
         dispatch(signInHandler(user))
       });
     }
