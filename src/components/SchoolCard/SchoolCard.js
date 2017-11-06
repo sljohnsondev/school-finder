@@ -4,13 +4,19 @@ import './school-card.css';
 
 const SchoolCard = (props) => {
 
+  const { school_name, school_address, commute_time, commute_distance, website } = props.school
+
   return (
     <div className='school-card-container'>
       
-      <h1 className='school-name'>{ props.school.school_name }</h1>
+      <h1 className='school-name'>{ school_name }</h1>
 
-      <p className='results-fields'>{props.school.school_address}</p>
-        <a href={props.school.website} className='school-url results-fields' target='_blank'>School Website</a>
+      <p className='results-fields'>{ school_address }</p>
+        <a href={ website } className='school-url results-fields' target='_blank'>School Website</a>
+        <section className='commute-info results-fields'>
+          <h4 className='fav-commute-data'>Commute Time: <span className='commute-info'>{ commute_time }</span></h4>
+          <h4 className='fav-commute-data'>Commute Distance: <span className='commute-info'>{ commute_distance }</span></h4>
+        </section>
       <FavoriteButton id={ props.school.id } schoolInfo={ props.school }/>
 
     </div>
