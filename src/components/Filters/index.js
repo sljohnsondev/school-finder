@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import firebase from '../../firebase';
 import SearchResults from '../SearchResults';
 import getGeoLocation from '../Helpers/getGeoLocation.js';
 import googleDistanceMatrix from '../Helpers/googleDistanceMatrix.js';
 import googleDirections from '../Helpers/googleDirections.js';
 import filterContainer from '../../containers/Filters-container'
+import AdvancedFilters from '../AdvancedFilters'
 import SearchSpinner from '../SearchSpinner'
+import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import './filters-style.css';
 
 class Filters extends Component {
@@ -17,11 +18,19 @@ class Filters extends Component {
       transitMode: 'DRIVING',
       commuteDist: 15,
       commuteTime: 30,
+      elaScore: 0,
+      geometryScore: 0,
+      scienceScore: 0,
+      satScore: 0,
+      studentTeacherRatio: 0,
       viewFilters: true,
       homeAddress: '',
-      selectedSchool: '',
-      hideFilter: false
+      selectedSchool: ''
     }
+    this.homeCallback = this.homeCallback.bind(this)
+    this.selectSchool = this.selectSchool.bind(this)
+    this.directionsCallback = this.directionsCallback.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange(evt) {
@@ -35,7 +44,7 @@ class Filters extends Component {
   //Get home address coords and set in store
   handleHomeAddress(e) {
     if (e.target.value !== "") {
-      getGeoLocation(e.target.value, this.homeCallback.bind(this));
+      getGeoLocation(e.target.value, this.homeCallback);
     }
   }
 
@@ -46,21 +55,12 @@ class Filters extends Component {
   //Get schools in FB, filter them, receive commut info from Google, and set to store
   findSchools() {
     this.props.activeSearchToggle()
-    let { schoolType } = this.state;
-    firebase.database().ref().orderByChild('SchoolTypeDescription').equalTo(schoolType).once('value', snap => {
-      let cleanData = Object.values(snap.val())
-      this.secondaryFilters(cleanData)
+    let { schoolType, gradeLevel, transitMode } = this.state;
+    fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
+    .then(data => data.json())
+    .then(finalSchools => {
+      this.getGoogleDistances(finalSchools, transitMode)
     })
-  }
-
-  secondaryFilters(cleanData) {
-    let { gradeLevel, transitMode } = this.state
-    let finalSchools = cleanData.reduce((acc, school) => {
-      if (school.GradeLevels.indexOf(gradeLevel) !== -1) {
-        acc.push(school);
-      } return acc;
-    }, []);
-    this.getGoogleDistances(finalSchools, transitMode)
   }
 
   getGoogleDistances(finalSchools, transitMode) {
@@ -71,7 +71,7 @@ class Filters extends Component {
       let end = i * 25 + 25
       let data = finalSchools.slice(begin, end)
       let callBack = (response) => {
-        let { commuteDist, commuteTime } = this.state
+        let { commuteDist, commuteTime } = this.state;
         let finalSchoolData = response.rows[0].elements.map((school, i) => {
           return Object.assign({}, data[i], { commute: { distance: {text: school.distance.text, value: school.distance.value},
                                               time: {text: school.duration.text, value: school.duration.value} },
@@ -106,21 +106,26 @@ class Filters extends Component {
   }
 
   selectSchool(school) {
-    this.setState({ selectedSchool: school.Name }, () => {
-      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback.bind(this))
+    this.setState({ selectedSchool: school.name }, () => {
+      googleDirections(this.props.schoolResults.homeAddress, school, this.state.transitMode, this.directionsCallback);
     })
-    this.slideFilterComponent()
-  }
-
-  slideFilterComponent() {
-    this.setState({ hideFilter: !this.state.hideFilter })
+    toggleTabView(this.props.tab, this.props.toggleTab, 'filters')
   }
 
   render() {
+
+    let { tab, toggleTab } = this.props;
+
+    let hideFilters = hideComponent(tab, 'filters');
+
     return (
       <div>
-        <button className={ this.state.hideFilter ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => this.slideFilterComponent() }>{this.state.hideFilter ? '>' : '<' }</button>
-        <div className={ this.state.hideFilter ? 'filter-container hidden' : 'filter-container'}>
+        <button className={ hideFilters ? "slide-filter-btn hidden" : "slide-filter-btn"} onClick={ () => toggleTabView(tab, toggleTab, 'filters') }>{ hideFilters ? '>' : '<' }</button>
+        <AdvancedFilters tab={ tab }
+                         handleChange={ this.handleChange }
+                         { ...this.state }
+        />
+        <div className={ hideFilters ? 'filter-container hidden' : 'filter-container'}>
           {this.state.viewFilters ?
             <div>
               <h2 className='filter-header'>Search Filters</h2>
@@ -143,9 +148,9 @@ class Filters extends Component {
                   <h4>School Type</h4>
                   <select id='schoolType' value={ this.state.schoolType } onChange={(e) => this.handleChange(e)}>
                     <option value=''>Select school type...</option>
-                    <option value='Public'>Public/District</option>
-                    <option value='Charter'>Charter</option>
-                    <option value='Other'>Other</option>
+                    <option value='public'>Public/District</option>
+                    <option value='charter'>Charter</option>
+                    <option value='other'>Other</option>
                   </select>
                 </article>
                 <article className='filter-item'>
@@ -207,7 +212,7 @@ class Filters extends Component {
               <button
                 className='search-btn'
                 onClick={ () => this.findSchools() }
-                disabled={ !this.state.gradeLevel || !this.state.schoolType }
+                disabled={ !this.state.gradeLevel || !this.state.schoolType || this.state.homeAddress === '' }
               >Find Schools</button>
             </div>
             :
@@ -227,7 +232,8 @@ class Filters extends Component {
                       refNum={ i }
                       schoolData={ school }
                       selectedSchool={this.state.selectedSchool}
-                      selectSchool={ this.selectSchool.bind(this) } />
+                      selectSchool={ this.selectSchool }
+                      userId={ this.props.CurrentUser[0].id } />
                 )
               }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4> }
             </div>

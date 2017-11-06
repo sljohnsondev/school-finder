@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker, DirectionsRenderer, withGoogleMap, InfoWindow } from 'react-google-maps';
-import { markerRefObj } from '../Helpers/markerIndex';
 import PopUpWindow from '../PopUpWindow'
 import mapContainer from '../../containers/Filters-container'
 import './map-style.css';
@@ -49,15 +48,15 @@ class Map extends Component {
       let schoolMarkers = schoolsArr.map((school, i) => {
         const marker = {
           position: {
-            lat: school.Location.Lat,
-            lng: school.Location.Lng
+            lat: parseFloat(school.location_lat),
+            lng: parseFloat(school.location_lng)
           },
           showInfo: school.showInfo,
           infoContent: (
             <PopUpWindow { ...school } />
           ),
           animation: window.google.maps.Animation.DROP,
-          label: { text: markerRefObj[i] },
+          label: { text: `${i + 1}` },
         }
         return (
           <Marker key={i} {...marker} onClick={ () => this.handleMarkerClick(marker) }>
@@ -84,7 +83,7 @@ class Map extends Component {
       let length = nextProps.schoolsArr.length
       let bounds = new window.google.maps.LatLngBounds()
       for (let i = 0; i < length; i++) {
-        let place = new window.google.maps.LatLng(nextProps.schoolsArr[i].Location.Lat, nextProps.schoolsArr[i].Location.Lng)
+        let place = new window.google.maps.LatLng(parseFloat(nextProps.schoolsArr[i].location_lat), parseFloat(nextProps.schoolsArr[i].location_lng))
         bounds.extend(place)
       }
       this._mapComponent.fitBounds(bounds)

@@ -22,7 +22,7 @@ const filters = (state = [], action) => {
 
     case 'TOGGLE_INFOWINDOW':
       let updatedSchools = state.schools.map(school => {
-        if (school.Location.Lat === action.targetMarker.position.lat) {
+        if (school.Location.location_lat === action.targetMarker.position.lat) {
           let toggle = !school.showInfo
           return Object.assign({}, school, { showInfo: toggle })
         }

@@ -4,7 +4,8 @@ import { setSchools, clearSchools, setHomeAddress, setDirections, clearDirection
 const mapStateToProps = (state) => {
   return {
     schoolResults: state.FilterResults,
-    activeSearch: state.FilterResults.activeSearch
+    activeSearch: state.FilterResults.activeSearch,
+    CurrentUser: state.CurrentUser
   }
 }
 

@@ -20,6 +20,10 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 node_modules/
 .DS_Store
 

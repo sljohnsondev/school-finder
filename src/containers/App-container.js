@@ -7,27 +7,17 @@ const mapStateToProps = (state) => {
   return {
     data: state,
   }
+
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInHandler: () => {
+    signInHandler: (toggleTab) => {
       signIn().then((user) => {
+        toggleTab('filters');
         dispatch(signInHandler(user))
       });
     }
-    // fetchSun: (data) => {
-    //   dispatch(fetchSun(data))
-    // },
-    // fetchWeather: (data) => {
-    //   dispatch(fetchWeather(data))
-    // },
-    // receiveForecast: (data) => {
-    //   dispatch(receiveForecast(data))
-    // },
-    // receiveExtForecastApp: (data, city) => {
-    //   dispatch(receiveExtForecastApp(data, city))
-    // }
   }
 }
 

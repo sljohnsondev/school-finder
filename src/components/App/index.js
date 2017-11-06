@@ -3,7 +3,7 @@ import Header from '../Header';
 import Map from '../Map';
 import SignIn from '../SignIn';
 import Filters from '../Filters';
-import UserProfile from '../UserProfile';
+import UserProfile from '../../containers/Profile-container';
 import Compare from '../Compare';
 import './app-style.css'
 
@@ -11,9 +11,10 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      showTab: 'filters'
+      showTab: ''
     }
     this.toggleTab = this.toggleTab.bind(this);
+    this.getAnchor = this.getAnchor.bind(this);
   }
 
   getAnchor() {
@@ -29,9 +30,7 @@ export default class App extends Component {
   }
 
   toggleTab(str) {
-    this.setState({
-      showTab: str,
-    })
+      this.setState({ showTab: str })
   }
 
   renderMap() {
@@ -50,15 +49,17 @@ export default class App extends Component {
   }
 
   render() {
-    const { displayName, email, photoURL } = this.props.data.AppData
+
+    const { displayName, email, photoURL, uid } = this.props.data.AppData;
+
     return (
       <div className='app-container'>
         <Header />
         { this.props.data.AppData.displayName ?
         <div />
         :
-        <SignIn signInHandler={ this.props.signInHandler } /> }
-        <UserProfile name={ displayName } email={ email } photo={ photoURL }/>
+        <SignIn signInHandler={ this.props.signInHandler } toggleTab={ this.toggleTab } /> }
+        <UserProfile name={ displayName } email={ email } photo={ photoURL } userId={ uid } tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <Filters tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <Compare tab={ this.state.showTab } toggleTab={ this.toggleTab } />
         <div style={{width: '100vw', height: '100vh', background: 'peru'}}>
