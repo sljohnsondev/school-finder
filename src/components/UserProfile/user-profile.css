@@ -11,7 +11,7 @@
   padding: 0 20px 6px 20px;
   position: fixed;
   right: 0;
-  top: 8vh;
+  top: 5vh;
   width: 80vw;
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
@@ -30,13 +30,14 @@
   z-index: 1;
   position: fixed;
   right: 1075px;
-  top: 77px;
+  top: 6vh;
   padding: 15px 7px;
   font-size: 20px;
   font-weight: bold;
   outline: none;
   background-color: rgba(255, 99, 71, 0.8);
   border: none;
+  border-radius: 0;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   -webkit-transform: translate3d(0,0,0);
@@ -57,11 +58,10 @@
 
 .avatar {
   background: rgba(198, 218, 240, .95);
-  display: none;
   height: 53px;
   position: fixed;
   right: 0;
-  top: 77px;
+  top: 6vh;
   width: 53px;
   z-index: 1;
 }
@@ -70,10 +70,15 @@
   display: unset;
 }
 
+.hide-avatar {
+  display: none;
+}
+
 .avatar-photo {
+  border-radius: 50%;
   height: 53px;
-  margin: 0;
   width: 53px;
+
 }
 
 .hidden-profile {
@@ -99,6 +104,7 @@
 }
 
 .user-photo {
+  border-radius: 50%;
   height: 150px;
   width: 150px;
 }

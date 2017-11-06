@@ -38,7 +38,7 @@ export default class UserProfile extends Component {
 
         <button className={ hideProfile ? "slide-profile-btn hidden-profile" : "slide-profile-btn" } onClick={ () => toggleTabView(tab, toggleTab, 'profile') }>{ hideProfile ? '<' : '>' }</button>
 
-        <div className={ hideProfile ? 'avatar show-avatar' : 'avatar'}>
+        <div className={ hideProfile ? 'avatar show-avatar' : 'avatar hide-avatar'}>
           <img src={ photo ? photo : alias } alt='avatar' className='avatar-photo' />
         </div>
 
