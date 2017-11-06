@@ -121,13 +121,13 @@ describe('API Routes', () => {
     .send({
       "id": "3",
       "username": "Jonathan Beckman",
-      "email": "jbexxy@man.com",
+      "street_address": "1234 Upyos St.",
       "oath_id": "2"
     })
     .end((error, response) => {
       response.should.have.status(422);
       response.body.should.have.property('error');
-      response.body.error.should.equal("Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a 'street_address' property.");
+      response.body.error.should.equal("Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a 'email' property.");
       done();
     });
   });
