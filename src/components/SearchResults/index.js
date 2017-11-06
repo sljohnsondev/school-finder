@@ -14,8 +14,6 @@ export default class SearchResults extends Component {
 
     let { name, address, website, commute } = this.props.schoolData;
     let { refNum, userId } = this.props;
-    console.log('user id in serasdf restul ', userId);
-    
 
     return (
       <div className={this.props.selectedSchool === name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>

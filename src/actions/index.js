@@ -122,13 +122,10 @@ export const makeFavorite = (schoolInfo, stateFavorites) => {
 				'Content-Type': 'application/json'
 			}
 		})
-			.then(data => {
-				return data.ok ? data.json() : alert('error message')
-			})
-      .then(data => {
-        console.log('data in makefav action ', data);
-        
-        dispatch(addFavorite(data))})
+    .then(data => {
+      return data.ok ? data.json() : alert('error message')
+    })
+    .then(data => dispatch(addFavorite(data)))
 	}
 }
 
@@ -137,11 +134,6 @@ export const deleteFavorite = id => {
     fetch(`/api/v1/favorites/${id}`, {
     method: 'DELETE'
     })
-    .then( school => {
-      console.log('return from delete ', school);
-      
-      dispatch(removeFavorite(school))
-    }
-    )
+    .then( school => dispatch(removeFavorite(id)))
   }
 }

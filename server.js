@@ -150,10 +150,10 @@ app.post('/api/v1/favorites', (request, response) => {
 app.delete('/api/v1/favorites/:id', (request, response) => {
   const { id } = request.params;
 
-  database('favorites').where('school_id', id ).del()
+  database('favorites').where('school_code', id ).del()
     .then((favorite) => {
       if (favorite) {
-        return response.status(202).json(favorite);
+        return response.sendStatus(204);
       }
       return response.status(422).json({ error: 'Not Found' });
     })
