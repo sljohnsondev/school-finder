@@ -10,7 +10,6 @@ export default class AdvancedFilters extends Component {
   }
 
   toggleAdvancedFilter(tab) {
-    console.log('WORKING')
     if (this.state.hideAdvFilter === true) {
       this.setState({ hideAdvFilter: false });
     } else if (this.state.hideAdvFilter === false) {
@@ -21,7 +20,6 @@ export default class AdvancedFilters extends Component {
   displayGradeFilters(props) {
 
     let { gradeLevel, elaScore, geometryScore, scienceScore, satScore, handleChange} = props;
-    console.log('Display grade filters ', props);
 
     if (gradeLevel === '1') {
       return (<p className='filter-item'>There are currently no additional metrics to share for Pre-K and ECE programs</p>)
@@ -173,7 +171,6 @@ export default class AdvancedFilters extends Component {
 
     let { tab, gradeLevel, viewFilters, studentTeacherRatio, handleChange } = this.props;
     let hidden = tab !== 'filters' ? true : false;
-    console.log('VIEW FILTERS ', viewFilters)
     let hideAdvFilter  = this.state.hideAdvFilter || !viewFilters ? true : false;
 
     if (tab !== 'filters' && !this.state.hideAdvFilter) {

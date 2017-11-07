@@ -22,7 +22,7 @@ export default class UserProfile extends Component {
 
     const { name, email, photo, tab, toggleTab, favorites } = this.props;
     
-    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ false } key={ school.school_id } /> );
+    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ null } key={ school.school_id } /> );
 
     let hideProfile = hideComponent(tab, 'profile');
 
