@@ -39,9 +39,6 @@ class favoriteButton extends Component {
         user_id: userId
       }
     }
-
-    console.log('commuteInfo data object ', commuteInfo);
-    
     
     return (
       <div>

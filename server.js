@@ -103,7 +103,7 @@ app.patch('/api/v1/users/:id', (request, response) => {
       if (!data.length) {
         return response.status(404).json('User id not found');
       }
-      return response.status(201).json(`User with id: ${id} was updated.`);
+      return response.status(201).json(data);
     })
     .catch((error) => {
       response.status(500).json(error);
