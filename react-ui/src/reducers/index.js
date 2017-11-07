@@ -1,3 +1,4 @@
+/* eslint-disable no-alert, import/no-extraneous-dependencies */
 import { combineReducers } from 'redux';
 import FilterResults from './filters-reducer';
 import AppData from './app-reducer';
@@ -8,7 +9,7 @@ const rootReducer = combineReducers({
   FilterResults,
   AppData,
   CurrentUser,
-  Favorites
-})
+  Favorites,
+});
 
 export default rootReducer;

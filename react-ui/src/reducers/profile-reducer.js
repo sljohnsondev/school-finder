@@ -1,6 +1,5 @@
 const profile = (state = {}, action) => {
   switch (action.type) {
-
     case 'PUSH_USER':
       return Object.assign({}, ...action.user);
 
@@ -8,8 +7,8 @@ const profile = (state = {}, action) => {
       return Object.assign(state, { street_address: action.address });
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default profile;
