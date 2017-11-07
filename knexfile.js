@@ -1,5 +1,3 @@
-// Update with your config settings.
-
 module.exports = {
 
   development: {
@@ -12,6 +10,7 @@ module.exports = {
       directory: './db/seeds/dev'
     },
   },
+
   test: {
     client: 'pg',
     connection: process.env.DATABASE_URL || 'postgres://localhost/school_finder_users_test',
@@ -23,6 +22,7 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+  
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL + `?ssl=true`,
