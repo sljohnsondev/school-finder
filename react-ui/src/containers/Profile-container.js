@@ -5,7 +5,7 @@ import { getUser } from '../actions';
 const mapStateToProps = (state) => {
   return {
     user: state.CurrentUser,
-    favorites: state.Favorites
+    favorites: state.Favorites,
   }
 }
 

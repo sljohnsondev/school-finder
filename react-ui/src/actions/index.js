@@ -114,8 +114,10 @@ export const getUser = (oId, userInfo) => {
         if (data.error) {
           return dispatch(createUser(userInfo))
         }
-      dispatch(getUserFavorites(data[0].id))
-      return dispatch(storeUser(data))
+      return (
+        dispatch(getUserFavorites(data[0].id)),
+        dispatch(storeUser(data))
+      );
     })
   }
 }
