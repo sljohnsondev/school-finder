@@ -103,7 +103,7 @@ export const getUser = (oId, userInfo) => {
     fetch(`/api/v1/users/${oId}`)
     .then( response => response.json())
     .then( data => {
-      
+
         if (data.error) {
           return dispatch(createUser(userInfo))
         }
@@ -113,7 +113,7 @@ export const getUser = (oId, userInfo) => {
   }
 }
 
-export const makeFavorite = schoolInfo => {
+export const makeFavorite = (schoolInfo) => {
 	return dispatch => {
 		fetch('/api/v1/favorites/', {
 			method: 'POST',
@@ -122,9 +122,7 @@ export const makeFavorite = schoolInfo => {
 				'Content-Type': 'application/json'
 			}
 		})
-    .then(data => {
-      return data.ok ? data.json() : alert('error message')
-    })
+    .then(data => data.json())
     .then(data => dispatch(addFavorite(data)))
 	}
 }
