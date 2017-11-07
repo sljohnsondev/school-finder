@@ -74,6 +74,13 @@ export const storeUser = user => {
   }
 }
 
+export const updateAddress = address => {
+  return {
+    type: 'UPDATE_ADDRESS',
+    address
+  }
+}
+
 export const createUser = (userInfo) => {
   return dispatch => {
     fetch('/api/v1/users', {
@@ -147,9 +154,5 @@ export const patchUserAddress = (address, userId, updatedUser) => {
         'Content-Type': 'application/json'
       }
     })
-    .then( () => {
-      console.log('');
-      
-      storeUser(updatedUser)})
   }
 }
