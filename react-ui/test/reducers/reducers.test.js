@@ -141,7 +141,7 @@ describe('todos reducer', () => {
 
   describe('profile reducer', () => {
     it('should start with nothing in store', () => {
-      expect(profile(undefined, {})).toEqual([]);
+      expect(profile(undefined, {})).toEqual({});
     });
 
     it('should not do anything when other reducers fire', ()=> {
