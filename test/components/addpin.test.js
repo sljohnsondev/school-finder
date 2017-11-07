@@ -1,27 +1,27 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import AddPin from '../../src/components/AddPin';
-import { Provider } from 'react-redux'
+import Signin from '../../src/components/SignIn';
+import { Provider } from 'react-redux';
 const { splitLocation, filterData } = require('../Helpers/ForecastHelpers');
 
 const setup = () => {
   const props = {
-    handleClick: jest.fn(),
+    signInHandler: jest.fn(),
   }
 
   const wrapper = mount(
-    <AddPin handleClick={props.getForecast}/>
+    <SignIn signInHandler={ this.props.signInHandler } toggleTab={ this.toggleTab }/>
   );
 
-  const Component = wrapper.find(AddPin);
+  const Component = wrapper.find(SignIn);
 
   return {
     props,
     Component
   };
-}
+};
 
-describe('AddPin', () => {
+describe('SignIn', () => {
 
   it('should render an input field', () => {
     const { Component } = setup();

@@ -83,12 +83,12 @@ describe('actions', () => {
   });
 
   it('should be able to add a favorite ', () => {
-    const id = 14;
+    const SchoolData = 14;
     const expectedAction = {
       type: 'ADD_FAVORITE',
-      id
+      SchoolData
     }
-    expect(actions.addFavorite(id)).toEqual(expectedAction);
+    expect(actions.addFavorite(SchoolData)).toEqual(expectedAction);
   });
 
   it('should be able to push a user into storage', () => {
