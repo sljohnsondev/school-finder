@@ -218,13 +218,13 @@ describe('API Routes', () => {
       chai.request(server)
       .post('/api/v1/favorites')
       .send({
-        "id": "3",
+        "id": 1,
         "school_name": "George Washington High School",
         "school_address": "655 S. Monaco Parkway",
         "school_website": "http://gwhs.dpsk12.org",
         "school_id": "561",
         "school_code": "3378",
-        "user_id": "1",
+        "user_id": 1,
         "commute_time": "20 min",
         "commute_distance": "15 miles"
       })

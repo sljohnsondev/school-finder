@@ -24,7 +24,8 @@ exports.seed = function(knex, Promise) {
               school_code: '2398',
               user_id: 1,
               commute_time: '20 min',
-              commute_distance: '15 miles'
+              commute_distance: '15 miles',
+              commute_type: 'WALKING'
             },
             {
               id: 2,
@@ -35,7 +36,8 @@ exports.seed = function(knex, Promise) {
               school_code: '3378',
               user_id: 1,
               commute_time: '20 min',
-              commute_distance: '15 miles'
+              commute_distance: '15 miles',
+              commute_type: 'WALKING'
             }
           ])
         })
