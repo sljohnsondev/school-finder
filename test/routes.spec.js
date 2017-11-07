@@ -173,7 +173,9 @@ describe('API Routes', () => {
     })
     .end((error, response) => {
       response.should.have.status(201);
-      response.body.should.equal('User with id: 1 was updated.');
+      response.body.should.be.a('array');
+      response.body[0].id.should.equal(1);
+      response.body[0].email.should.equal('dan@danman.com');
       done();
     });
   });
@@ -218,7 +220,7 @@ describe('API Routes', () => {
       chai.request(server)
       .post('/api/v1/favorites')
       .send({
-        "id": 1,
+        "id": 3,
         "school_name": "George Washington High School",
         "school_address": "655 S. Monaco Parkway",
         "school_website": "http://gwhs.dpsk12.org",
@@ -226,12 +228,14 @@ describe('API Routes', () => {
         "school_code": "3378",
         "user_id": 1,
         "commute_time": "20 min",
-        "commute_distance": "15 miles"
+        "commute_distance": "15 miles",
+        "commute_type": "WALKING"
       })
       .end((error, response) => {
         response.should.have.status(201);
-        response.body.should.have.property('id')
-        response.body.id.should.equal(3)
+        response.body.should.be.a('array')
+        response.body[0].should.have.property('id')
+        response.body[0].id.should.equal(3)
         done();
       });
     });
@@ -259,10 +263,9 @@ describe('API Routes', () => {
 
     it('should be able to delete a favorite', (done) => {
       chai.request(server)
-      .delete('/api/v1/favorites/2')
+      .delete('/api/v1/favorites/3378')
       .end((error, response) => {
-        response.should.have.status(202);
-        response.body.should.equal('Favorite 2 was deleted from database')
+        response.should.have.status(204);
         done();
       });
     });

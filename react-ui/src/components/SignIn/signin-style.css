@@ -1,0 +1,41 @@
+.sign-in-container {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  position: fixed;
+  z-index: 10;
+  margin: 5px;
+  padding: 5px;
+  top: 35%;
+  left: 40%;
+  width: 300px;
+  background: rgba(198, 218, 240, 1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/*.lock-page {
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  z-index: 5;
+  background-color: none;
+}*/
+
+.sign-in-container h2 {
+  margin: 20px 0 10px;
+}
+
+.sign-in-container p {
+  height: 50px;
+}
+
+.google-btn-img {
+  margin-bottom: 15px;
+  transform: scale(.7);
+  width: inherit;
+}
+
+.google-btn-img:hover {
+  transform: scale(.8);
+  opacity: .9;
+}

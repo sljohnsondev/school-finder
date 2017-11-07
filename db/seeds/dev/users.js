@@ -22,7 +22,8 @@ exports.seed = function(knex, Promise) {
               school_code: '2398',
               user_id: user[0],
               commute_time: '20 min',
-              commute_distance: '15 miles'
+              commute_distance: '15 miles',
+              commute_type: 'WALKING'
             },
             {
               school_name: 'George Washington High School',
@@ -32,7 +33,8 @@ exports.seed = function(knex, Promise) {
               school_code: '3378',
               user_id: user[0],
               commute_time: '20 min',
-              commute_distance: '15 miles'
+              commute_distance: '15 miles',
+              commute_type: 'WALKING'
             }
           ])
         })
