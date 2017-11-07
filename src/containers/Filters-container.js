@@ -32,8 +32,8 @@ const mapDispatchToProps = (dispatch) => {
     activeSearchToggle: () => {
       dispatch(activeSearchToggle())
     },
-    patchUser: (address, userId) => {
-      dispatch(patchUserAddress(address, userId))
+    patchUser: (address, userId, updatedUser) => {
+      dispatch(patchUserAddress(address, userId, updatedUser))
     }
   }
 }

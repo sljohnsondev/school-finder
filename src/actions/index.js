@@ -53,9 +53,7 @@ export const activeSearchToggle = () => {
   }
 }
 
-export const addFavorite = (SchoolData) => {
-  console.log('data in add fav ', SchoolData);
-  
+export const addFavorite = SchoolData => {
   return {
     type: 'ADD_FAVORITE',
     SchoolData
@@ -116,7 +114,6 @@ export const getUser = (oId, userInfo) => {
 }
 
 export const makeFavorite = schoolInfo => {
-  
 	return dispatch => {
 		fetch('/api/v1/favorites/', {
 			method: 'POST',
@@ -141,9 +138,7 @@ export const deleteFavorite = id => {
   }
 }
 
-export const patchUserAddress = (address, userId) => {
-  console.log('addy and id ', address, userId);
-  
+export const patchUserAddress = (address, userId, updatedUser) => {
   return dispatch => {
     fetch(`/api/v1/users/${userId}`, {
       method: 'PATCH',
@@ -152,7 +147,6 @@ export const patchUserAddress = (address, userId) => {
         'Content-Type': 'application/json'
       }
     })
-    .then( data => console.log('data in patch ', data)
-    )
+    .then( () => storeUser(updatedUser))
   }
 }

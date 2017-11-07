@@ -211,7 +211,7 @@ class Filters extends Component {
               </form>
               <button
                 className='search-btn'
-                onClick={ (e) => { this.findSchools(),  patchUser({ street_address: document.getElementById('homeAddress').value }, CurrentUser[0].id)}}
+                onClick={ () => { this.findSchools(),  patchUser({ street_address: document.getElementById('homeAddress').value }, CurrentUser[0].id, { id: CurrentUser[0].id, username: CurrentUser[0].username, street_address: document.getElementById('homeAddress').value, email: CurrentUser[0].email, oath_id: CurrentUser[0].oath_id })}}
                 disabled={ !this.state.gradeLevel || !this.state.schoolType || this.state.homeAddress === '' }
               >Find Schools</button>
             </div>
