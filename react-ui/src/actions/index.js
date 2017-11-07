@@ -147,6 +147,9 @@ export const patchUserAddress = (address, userId, updatedUser) => {
         'Content-Type': 'application/json'
       }
     })
-    .then( () => storeUser(updatedUser))
+    .then( () => {
+      console.log('');
+      
+      storeUser(updatedUser)})
   }
 }
