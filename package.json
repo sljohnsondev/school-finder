@@ -6,6 +6,7 @@
   },
   "scripts": {
     "start": "node server",
+    "test": "npm run test-backend && npm run test-frontend",
     "test-backend": "NODE_ENV=test ./node_modules/.bin/mocha --exit",
     "test-frontend": "cd react-ui/ && npm run test",
     "test:watch": "npm test -- --watch"

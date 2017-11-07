@@ -132,7 +132,7 @@ app.get('/api/v1/favorites/:id', (request, response) => {
 app.post('/api/v1/favorites', (request, response) => {
   const favorite = request.body;
 
-  for (const requiredParameter of ['school_id', 'school_address', 'school_website', 'school_name', 'school_code', 'user_id', 'commute_time', 'commute_distance']) {
+  for (const requiredParameter of ['school_id', 'school_address', 'school_website', 'school_name', 'school_code', 'user_id', 'commute_time', 'commute_distance', 'commute_type']) {
     if (!favorite[requiredParameter]) {
       return response
         .status(422)
@@ -142,7 +142,7 @@ app.post('/api/v1/favorites', (request, response) => {
 
   database('favorites').insert(favorite, '*')
     .then((user) => {
-      response.status(201).json( user );
+      response.status(201).json(user);
     })
     .catch((error) => {
       response.status(500).json({ error });

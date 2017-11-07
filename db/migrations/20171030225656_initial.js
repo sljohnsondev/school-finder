@@ -20,6 +20,7 @@ exports.up = function(knex, Promise) {
       table.string('school_code');
       table.string('commute_time');
       table.string('commute_distance');
+      table.string('commute_type');
       table.integer('user_id').unsigned()
       table.foreign('user_id')
         .references('users.id');
