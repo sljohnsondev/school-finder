@@ -121,13 +121,13 @@ describe('API Routes', () => {
     .send({
       "id": "3",
       "username": "Jonathan Beckman",
-      "email": "jbexxy@man.com",
+      "street_address": "1234 Fake St.",
       "oath_id": "2"
     })
     .end((error, response) => {
       response.should.have.status(422);
       response.body.should.have.property('error');
-      response.body.error.should.equal("Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a 'street_address' property.");
+      response.body.error.should.equal("Expected format: { name: <String>, email: <String>, street_address: <String>, oath_id: <String>}. You're missing a 'email' property.");
       done();
     });
   });
@@ -173,7 +173,9 @@ describe('API Routes', () => {
     })
     .end((error, response) => {
       response.should.have.status(201);
-      response.body.should.equal('User with id: 1 was updated.');
+      response.body.should.be.a('array');
+      response.body[0].id.should.equal(1);
+      response.body[0].email.should.equal('dan@danman.com');
       done();
     });
   });
@@ -218,18 +220,22 @@ describe('API Routes', () => {
       chai.request(server)
       .post('/api/v1/favorites')
       .send({
-        "id": "3",
+        "id": 3,
         "school_name": "George Washington High School",
         "school_address": "655 S. Monaco Parkway",
         "school_website": "http://gwhs.dpsk12.org",
         "school_id": "561",
         "school_code": "3378",
-        "user_id": "1"
+        "user_id": 1,
+        "commute_time": "20 min",
+        "commute_distance": "15 miles",
+        "commute_type": "WALKING"
       })
       .end((error, response) => {
         response.should.have.status(201);
-        response.body.should.have.property('id')
-        response.body.id.should.equal(3)
+        response.body.should.be.a('array')
+        response.body[0].should.have.property('id')
+        response.body[0].id.should.equal(3)
         done();
       });
     });
@@ -243,22 +249,23 @@ describe('API Routes', () => {
         "school_address": "655 S. Monaco Parkway",
         "school_website": "http://gwhs.dpsk12.org",
         "school_id": "561",
-        "user_id": "1"
+        "user_id": "1",
+        "commute_time": "20 min",
+        "commute_distance": "15 miles"
       })
       .end((error, response) => {
         response.should.have.status(422);
         response.body.should.have.property('error');
-        response.body.error.should.equal("Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>}. You're missing a 'school_code' property.");
+        response.body.error.should.equal("Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>, commute_time: <String>, commute_distance: <String>}. You're missing a 'school_code' property.");
         done();
       });
     });
 
     it('should be able to delete a favorite', (done) => {
       chai.request(server)
-      .delete('/api/v1/favorites/2')
+      .delete('/api/v1/favorites/3378')
       .end((error, response) => {
-        response.should.have.status(202);
-        response.body.should.equal('Favorite 2 was deleted from database')
+        response.should.have.status(204);
         done();
       });
     });

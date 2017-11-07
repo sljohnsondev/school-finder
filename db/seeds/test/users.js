@@ -22,7 +22,10 @@ exports.seed = function(knex, Promise) {
               school_website: 'http://east.dpsk12.org',
               school_id: '548',
               school_code: '2398',
-              user_id: 1
+              user_id: 1,
+              commute_time: '20 min',
+              commute_distance: '15 miles',
+              commute_type: 'WALKING'
             },
             {
               id: 2,
@@ -31,7 +34,10 @@ exports.seed = function(knex, Promise) {
               school_website: 'http://gwhs.dpsk12.org',
               school_id: '561',
               school_code: '3378',
-              user_id: 1
+              user_id: 1,
+              commute_time: '20 min',
+              commute_distance: '15 miles',
+              commute_type: 'WALKING'
             }
           ])
         })

@@ -10,12 +10,14 @@ const database = require('knex')(configuration);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.resolve(__dirname, './react-ui/build')));
 
 app.set('port', process.env.PORT || 3001);
 
 app.get('/', (request, response) => {
-  response.sendfile('index.html');
+  response.readFile(path.resolve(__dirname, './react-ui/build', 'index.html', (err, file) => {
+    response.send(file);
+  }));
 });
 
 
@@ -103,7 +105,7 @@ app.patch('/api/v1/users/:id', (request, response) => {
       if (!data.length) {
         return response.status(404).json('User id not found');
       }
-      return response.status(201).json(`User with id: ${id} was updated.`);
+      return response.status(201).json(data);
     })
     .catch((error) => {
       response.status(500).json(error);
@@ -130,17 +132,17 @@ app.get('/api/v1/favorites/:id', (request, response) => {
 app.post('/api/v1/favorites', (request, response) => {
   const favorite = request.body;
 
-  for (const requiredParameter of ['school_id', 'school_address', 'school_website', 'school_name', 'school_code', 'user_id']) {
+  for (const requiredParameter of ['school_id', 'school_address', 'school_website', 'school_name', 'school_code', 'user_id', 'commute_time', 'commute_distance', 'commute_type']) {
     if (!favorite[requiredParameter]) {
       return response
         .status(422)
-        .send({ error: `Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>}. You're missing a '${requiredParameter}' property.` });
+        .send({ error: `Expected format: { school_id: <String>, school_address: <String>, school_website: <String>, school_name: <String>,  school_code: <String>, user_id: <String>, commute_time: <String>, commute_distance: <String>}. You're missing a '${requiredParameter}' property.` });
     }
   }
 
-  database('favorites').insert(favorite, 'id')
+  database('favorites').insert(favorite, '*')
     .then((user) => {
-      response.status(201).json({ id: user[0] });
+      response.status(201).json(user);
     })
     .catch((error) => {
       response.status(500).json({ error });
@@ -150,10 +152,10 @@ app.post('/api/v1/favorites', (request, response) => {
 app.delete('/api/v1/favorites/:id', (request, response) => {
   const { id } = request.params;
 
-  database('favorites').where({ id }).del()
+  database('favorites').where('school_code', id ).del()
     .then((favorite) => {
       if (favorite) {
-        return response.status(202).json(`Favorite ${id} was deleted from database`);
+        return response.sendStatus(204);
       }
       return response.status(422).json({ error: 'Not Found' });
     })
