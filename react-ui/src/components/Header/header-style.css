@@ -1,0 +1,12 @@
+.header h1 {
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 4px 3px rgba(198, 218, 240, .9);
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  position: fixed;
+  left: 37vw;
+  top: 0;
+  margin: 5px 0 0;
+  z-index: 1;
+}

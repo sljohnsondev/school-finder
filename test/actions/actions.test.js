@@ -1,4 +1,4 @@
-import * as actions from '../../src/actions';
+import * as actions from '../../react-ui/src/actions';
 import fetchMock from 'fetch-mock';
 
 describe('actions', () => {

@@ -10,12 +10,12 @@ const database = require('knex')(configuration);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 app.set('port', process.env.PORT || 3001);
 
 app.get('/', (request, response) => {
-  response.sendfile('index.html');
+  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 });
 
 

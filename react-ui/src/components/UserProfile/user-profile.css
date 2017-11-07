@@ -1,0 +1,128 @@
+.profile-container {
+  align-items: center;
+  background: rgba(198, 218, 240, .95);
+  border-radius: 8px;
+  display: flex;
+  font-family: 'Quicksand', sans-serif;
+  height: 84.5vh;
+  justify-content: space-around;
+  margin-right: 12px;
+  max-height: 545px;
+  padding: 0 20px 6px 20px;
+  position: fixed;
+  right: 0;
+  top: 5vh;
+  width: 80vw;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  z-index: 1;
+}
+
+.slide-profile-btn {
+  z-index: 1;
+  position: fixed;
+  right: 1075px;
+  top: 6vh;
+  padding: 15px 7px;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  background-color: rgba(255, 99, 71, 0.8);
+  border: none;
+  border-radius: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.slide-profile-btn:hover {
+  background: rgba(255, 99, 71, 1);
+}
+
+.avatar {
+  background: rgba(198, 218, 240, .95);
+  height: 53px;
+  position: fixed;
+  right: 0;
+  top: 6vh;
+  width: 53px;
+  z-index: 1;
+}
+
+.show-avatar {
+  display: unset;
+}
+
+.hide-avatar {
+  display: none;
+}
+
+.avatar-photo {
+  border-radius: 50%;
+  height: 53px;
+  width: 53px;
+
+}
+
+.hidden-profile {
+  -webkit-transform: translate3d(1023px,0,0);
+  -moz-transform: translate3d(1023px,0,0);
+  -o-transform: translate3d(1023px,0,0);
+  -ms-transform: translate3d(1023px,0,0);
+  transform: translate3d(1023px,0,0);
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.hide-profile {
+  display: none;
+}
+
+.profile-header {
+  font-size: 30px;
+  margin: 8px 0 0;
+}
+
+.user-photo {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorite-schools {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  overflow-y: scroll;
+  width: 350px;
+}
+
+.your-favorites {
+  text-align: center;
+}

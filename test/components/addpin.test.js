@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Signin from '../../src/components/SignIn';
+import Signin from '../../react-ui/src/components/SignIn';
 import { Provider } from 'react-redux';
-const { splitLocation, filterData } = require('../Helpers/ForecastHelpers');
 
 const setup = () => {
   const props = {

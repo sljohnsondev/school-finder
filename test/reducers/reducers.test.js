@@ -1,8 +1,8 @@
 // import app from '../../src/reducers/app-reducer';
-import app from '../../src/reducers/app-reducer';
-import filters from '../../src/reducers/filters-reducer.js';
-import profile from '../../src/reducers/profile-reducer.js';
-import favorites from '../../src/reducers/favorite-button-reducer.js';
+import app from '../../react-ui/src/reducers/app-reducer';
+import filters from '../../react-ui/src/reducers/filters-reducer.js';
+import profile from '../../react-ui/src/reducers/profile-reducer.js';
+import favorites from '../../react-ui/src/reducers/favorite-button-reducer.js';
 
 describe('todos reducer', () => {
 
