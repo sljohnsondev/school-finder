@@ -7,7 +7,7 @@ const getGeoLocation = (address, callback) => {
   geocoder.geocode({address: formattedAddress}, (results, status) => {
     let coords_obj = results[0].geometry.location;
     let coords = {Lat: coords_obj.lat(), Lng: coords_obj.lng()};
-    callback({Location: coords});
+    callback({Location: coords}, address);
   })
 }
 
