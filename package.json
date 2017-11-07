@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server",
     "test-backend": "NODE_ENV=test ./node_modules/.bin/mocha --exit",
-    "test-frontend": "react-scripts test --env=jsdom",
+    "test-frontend": "cd react-ui/ && npm run test",
     "test:watch": "npm test -- --watch"
   },
   "cacheDirectories": [
