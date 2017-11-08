@@ -18,6 +18,6 @@ deployment:
     heroku:
       appname: denver-school-finder
 
-# test:
-#   pre:
-#     - eslint *.js
+test:
+  pre:
+    - eslint *.js

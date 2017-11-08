@@ -177,14 +177,14 @@ export default class AdvancedFilters extends Component {
     );
   }
 
-  render(props) {
+  render() {
     const {
       tab,
       gradeLevel,
       viewFilters,
       studentTeacherRatio,
       handleChange,
-    } = props;
+    } = this.props;
     const hidden = tab !== 'filters';
     const hideAdvFilter = this.state.hideAdvFilter || !viewFilters;
 

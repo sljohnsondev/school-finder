@@ -38,7 +38,7 @@ export default class SearchResults extends Component {
               </span>
             </h4>
             <h4 className="results-fields">
-              Commute Distance:
+              Commute Distance: 
               <span className="commute-info">
                 {commute.distance.text}
               </span>
