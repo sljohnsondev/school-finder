@@ -3,11 +3,10 @@
   font-size: 14px;
   position: fixed;
   z-index: 10;
-  margin: 5px;
   padding: 5px;
-  top: 35%;
-  left: 40%;
-  width: 300px;
+  top: 30%;
+  left: 37vw;
+  width: 310px;
   background: rgba(198, 218, 240, 1);
   border-radius: 8px;
   text-align: center;

@@ -7,7 +7,7 @@
   height: 84.5vh;
   justify-content: space-around;
   margin-right: 12px;
-  max-height: 545px;
+  max-height: 750px;
   padding: 0 20px 6px 20px;
   position: fixed;
   right: 0;
@@ -30,7 +30,7 @@
   z-index: 1;
   position: fixed;
   right: 1125px;
-  top: 27px;
+  top: 50px;
   height: 53px;
   padding: 15px 7px;
   font-size: 20px;
@@ -68,7 +68,7 @@
   height: 53px;
   position: fixed;
   right: 0;
-  top: 27px;
+  top: 50px;
   width: 53px;
   z-index: 1;
 }
