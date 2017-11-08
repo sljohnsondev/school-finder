@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import './signin-style.css'
+import './signin-style.css';
 
 export class SignIn extends Component {
-
   constructor() {
-    super()
+    super();
     this.state = {
-      loginError: false
-    }
+      loginError: false,
+    };
   }
 
   setError() {
-    console.log(this.state.loginError)
-    if (this.state.loginError == false) {
+    if (this.state.loginError === false) {
       this.setState({ loginError: true });
     }
   }
@@ -25,25 +23,28 @@ export class SignIn extends Component {
 
 
   render() {
-
-    let { loginError } = this.state;
-    let { toggleTab } = this.props;
+    const { loginError } = this.state;
+    const { toggleTab } = this.props;
 
     return (
       <div>
         <div className="lock-page" onClick={() => this.setError()} />
-        <div className='sign-in-container'>
+        <div className="sign-in-container">
           <h2>Welcome to School Finder!</h2>
-          <p style={ loginError ? this.errorStyle : {} }>Please sign-in to the app to<br/>begin your school search</p>
+          <p style={loginError ? this.errorStyle : {}}>
+            Please sign-in to the app to
+            <br />
+            begin your school search
+          </p>
           <img
-            className='google-btn-img'
-            alt='Google sign-in link'
+            className="google-btn-img"
+            alt="Google sign-in link"
             src={require('../../assets/btn_google_signin.png')}
-            onClick={ () => this.props.signInHandler(toggleTab) }
-        />
+            onClick={() => this.props.signInHandler(toggleTab)}
+          />
         </div>
       </div>
-    )
+    );
   }
 }
 
