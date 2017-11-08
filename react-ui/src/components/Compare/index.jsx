@@ -5,8 +5,9 @@ import filterContainer from '../../containers/Filters-container';
 import './compare-style.css';
 
 class Compare extends Component {
-  render(props) {
-    const { tab, toggleTab } = props;
+
+  render() {
+    const { tab, toggleTab } = this.props;
     const hideCompare = hideComponent(tab, 'compare');
     const buttonText = tab === 'compare' ?
       (
