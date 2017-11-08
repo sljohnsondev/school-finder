@@ -14,17 +14,18 @@ export default class SearchResults extends Component {
       name,
       address,
       website,
-      commute,
-      commuteType
+      commute
     } = this.props.schoolData;
     const {
       refNum,
       schoolData,
       userId,
+      commuteType
     } = this.props;
 
     return (
       <div>
+
         <div className={this.props.selectedSchool === name ? 'school-container selected' : 'school-container'} onClick={() => this.toggleSchoolSelect()}>
           <h3 className="results-fields">{`${refNum + 1}. ${name}`}</h3>
           <p className="results-fields">{address}</p>
@@ -37,13 +38,14 @@ export default class SearchResults extends Component {
               </span>
             </h4>
             <h4 className="results-fields">
-              Commute Distance:
+              Commute Distance: 
               <span className="commute-info">
                 {commute.distance.text}
               </span>
             </h4>
           </section>
         </div>
+
         <FavoriteButton schoolInfo={ schoolData } commuteInfo={ commute } commuteType={ commuteType } userId={ userId } />
       </div>
     );

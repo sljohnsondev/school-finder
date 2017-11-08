@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import filterContainer from '../../containers/Filters-container';
+import Chart from '../Chart';
 import './compare-style.css';
 
 class Compare extends Component {
-  render(props) {
-    const { tab, toggleTab } = props;
+
+  render() {
+    const { tab, toggleTab, comparedSchools, favorites } = this.props;
     const hideCompare = hideComponent(tab, 'compare');
     const buttonText = tab === 'compare' ?
       (
@@ -31,8 +33,9 @@ class Compare extends Component {
         >
           { buttonText }
         </button>
-        <div className={hideCompare ? 'compare-container hidden-compare' : 'compare-container'}>
-          THIS IS WHERE THE COMPARE STUFF WILL GO!!
+        <div className={ hideCompare ? 'compare-container hidden-compare' : 'compare-container'}>
+          <Chart schools={ comparedSchools[0] } favorites={ favorites } />
+          <Chart schools={ comparedSchools[1] } favorites={ favorites } />
         </div>
       </div>
     );

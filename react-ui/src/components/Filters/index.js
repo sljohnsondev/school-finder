@@ -269,7 +269,6 @@ class Filters extends Component {
               { this.props.activeSearch ? <SearchSpinner />
               : this.props.schoolResults.schools.length > 0 ?
               this.props.schoolResults.schools.map((school, i) => (
-                (
                   <SearchResults
                       key={ i }
                       refNum={ i }
@@ -278,7 +277,7 @@ class Filters extends Component {
                       selectSchool={ this.selectSchool }
                       userId={ CurrentUser.id }
                       commuteType={ this.state.transitMode } />
-                )))
+                ))
                 :
                 <h4>
                   Looks like your search came up empty. Try again but with different filter settings!

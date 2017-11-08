@@ -15,11 +15,11 @@ export class SignIn extends Component {
     }
   }
 
-  // errorStyle = {
-  //     fontWeight: "bold",
-  //     color: "rgba(255, 99, 71, 1)",
-  //     fontSize: "16px"
-  // }
+  errorStyle = {
+      fontWeight: "bold",
+      color: "rgba(255, 99, 71, 1)",
+      fontSize: "16px"
+  }
 
 
   render() {
@@ -27,7 +27,7 @@ export class SignIn extends Component {
     const { toggleTab } = this.props;
 
     return (
-      <div>
+      <div class='sign-in-center'>
         <div className="lock-page" onClick={() => this.setError()} />
         <div className="sign-in-container">
           <h2>Welcome to School Finder!</h2>

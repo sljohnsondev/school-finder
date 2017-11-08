@@ -9,6 +9,7 @@ p {
 .compare-container {
   font-family: 'Quicksand', sans-serif;
   z-index: 1;
+  display: flex;
   position: fixed;
   bottom: 5px;
   right: 8.5vw;
@@ -89,4 +90,12 @@ p {
   -ms-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
+}
+
+.up-arrow {
+  background-image: url('../../assets/up-arrow.svg');
+}
+
+.down-arrow {
+  background-image: url('../../assets/angle-arrow-down.svg');
 }

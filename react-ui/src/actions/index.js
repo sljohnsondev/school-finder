@@ -128,6 +128,7 @@ export const getUser = (oId, userInfo) => {
 }
 
 export const makeFavorite = (schoolInfo) => {
+  console.log("SCHOOL INFO",schoolInfo)
 	return dispatch => {
 		fetch('/api/v1/favorites/', {
 			method: 'POST',
