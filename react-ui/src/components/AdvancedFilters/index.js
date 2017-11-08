@@ -19,7 +19,7 @@ export default class AdvancedFilters extends Component {
 
   displayGradeFilters(props) {
 
-    let { gradeLevel, elaScore, geometryScore, scienceScore, satScore, handleChange} = props;
+    let { gradeLevel, elaScore, mathScore, scienceScore, satScore, handleChange} = props;
 
     if (gradeLevel === '1') {
       return (<p className='filter-item'>There are currently no additional metrics to share for Pre-K and ECE programs</p>)
@@ -29,28 +29,16 @@ export default class AdvancedFilters extends Component {
       return (
         <div>
           <article className='filter-item'>
-            <h5>ELA (5th grade)</h5>
-            <input
-              id='elaScore'
-              className='slider'
-              type="range"
-              max="100"
-              value={ elaScore }
-              onChange={(e) => handleChange(e)}
-            />
-            <p className='slider-data'>{ elaScore }%</p>
-          </article>
-          <article className='filter-item'>
             <h5>Math (5th grade)</h5>
             <input
-              id='geometryScore'
+              id='mathScore'
               className='slider'
               type="range"
               max="100"
-              value={ geometryScore }
+              value={ mathScore }
               onChange={(e) => handleChange(e)}
             />
-            <p className='slider-data'>{ geometryScore }%</p>
+            <p className='slider-data'>{ mathScore }%</p>
           </article>
           <article className='filter-item'>
             <h5>Science (5th grade)</h5>
@@ -72,28 +60,16 @@ export default class AdvancedFilters extends Component {
       return (
         <div>
           <article className='filter-item'>
-            <h5>ELA (8th grade)</h5>
-            <input
-              id='elaScore'
-              className='slider'
-              type="range"
-              max="100"
-              value={ elaScore }
-              onChange={(e) => handleChange(e)}
-            />
-            <p className='slider-data'>{ elaScore }%</p>
-          </article>
-          <article className='filter-item'>
             <h5>Math (8th grade)</h5>
             <input
-              id='geometryScore'
+              id='mathScore'
               className='slider'
               type="range"
               max="100"
-              value={ geometryScore }
+              value={ mathScore }
               onChange={(e) => handleChange(e)}
             />
-            <p className='slider-data'>{ geometryScore }%</p>
+            <p className='slider-data'>{ mathScore }%</p>
           </article>
           <article className='filter-item'>
             <h5>Science (8th grade)</h5>
@@ -115,28 +91,16 @@ export default class AdvancedFilters extends Component {
       return (
         <div>
           <article className='filter-item'>
-            <h5>ELA (9th grade)</h5>
-            <input
-              id='elaScore'
-              className='slider'
-              type="range"
-              max="100"
-              value={ elaScore }
-              onChange={(e) => handleChange(e)}
-            />
-            <p className='slider-data'>{ elaScore }%</p>
-          </article>
-          <article className='filter-item'>
             <h5>HS Geometry</h5>
             <input
-              id='geometryScore'
+              id='mathScore'
               className='slider'
               type="range"
               max="100"
-              value={ geometryScore }
+              value={ mathScore }
               onChange={(e) => handleChange(e)}
             />
-            <p className='slider-data'>{ geometryScore }%</p>
+            <p className='slider-data'>{ mathScore }%</p>
           </article>
           <article className='filter-item'>
             <h5>HS Science</h5>
@@ -156,11 +120,11 @@ export default class AdvancedFilters extends Component {
               id='satScore'
               className='slider'
               type="range"
-              max="100"
+              max="1250"
               value={ satScore }
               onChange={(e) => handleChange(e)}
             />
-            <p className='slider-data'>{ satScore }%</p>
+            <p className='slider-data'>{ satScore }</p>
           </article>
         </div>
       )
