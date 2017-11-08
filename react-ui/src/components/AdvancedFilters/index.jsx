@@ -188,7 +188,7 @@ export default class AdvancedFilters extends Component {
     const hidden = tab !== 'filters';
     const hideAdvFilter = this.state.hideAdvFilter || !viewFilters;
 
-    if (tab !== 'filters' && !this.state.hideAdvFilter) {
+    if (tab !== 'filters' && !this.state.hideAdvFilter || !viewFilters) {
       this.setState({ hideAdvFilter: true });
     }
 
