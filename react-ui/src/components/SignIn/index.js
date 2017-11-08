@@ -15,11 +15,11 @@ export class SignIn extends Component {
     }
   }
 
-  // errorStyle = {
-  //     fontWeight: "bold",
-  //     color: "rgba(255, 99, 71, 1)",
-  //     fontSize: "16px"
-  // }
+  errorStyle = {
+      fontWeight: "bold",
+      color: "rgba(255, 99, 71, 1)",
+      fontSize: "16px"
+  }
 
 
   render() {
