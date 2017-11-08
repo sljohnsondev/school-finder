@@ -131,15 +131,22 @@ export default class AdvancedFilters extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    let {tab, viewFilters} = nextProps;
+
+    if (tab !== 'filters' && !this.state.hideAdvFilter) {
+      this.setState({ hideAdvFilter: true });
+    }
+    if (!viewFilters && !this.state.hideAdvFilter) {
+      this.setState({ hideAdvFilter: true });
+    }
+  }
+
   render() {
 
     let { tab, gradeLevel, viewFilters, studentTeacherRatio, handleChange } = this.props;
     let hidden = tab !== 'filters' ? true : false;
     let hideAdvFilter  = this.state.hideAdvFilter || !viewFilters ? true : false;
-
-    if (tab !== 'filters' && !this.state.hideAdvFilter) {
-      this.setState({ hideAdvFilter: true })
-    }
 
     return (
 
