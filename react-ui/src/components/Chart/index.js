@@ -8,7 +8,7 @@ class Chart extends Component {
     const { schools, favorites } = this.props;
     let chartData = {};
     let schoolName = "";
-    
+
     if (schools) {
       favorites.forEach( el => {
         if (el.school_id == schools.school_id) {
@@ -23,14 +23,14 @@ class Chart extends Component {
       const nativeHawiaanOrPacificIslander = schools.female_nh_opi_count + schools.male_nh_opi_count;
       const white = schools.female_white_count + schools.male_white_count;
       const divideBy = americanIndainAlaskanNative + asian + blackAfricanAmerican + hispanicLatino + multiRacial + nativeHawiaanOrPacificIslander + white;
-      
+
       chartData = {
         datasets: [{
             data: [(americanIndainAlaskanNative / divideBy) * 100, (asian / divideBy) * 100, (blackAfricanAmerican / divideBy) * 100, (hispanicLatino / divideBy) * 100, (multiRacial / divideBy) * 100, (nativeHawiaanOrPacificIslander / divideBy) * 100, (white / divideBy) * 100],
             backgroundColor: ['blue', 'green', 'purple', '#cc207f', 'yellow', 'cyan', 'coral']
         }],
-    
-        
+
+
         labels: ['American Indain or Alaskan Native', 'Asian', 'Black African-American', 'Hispanic Latino', 'Multi Racial', 'Native Hawiaan Or Pacific Islander', 'White']
       };
     }
