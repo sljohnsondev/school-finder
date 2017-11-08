@@ -12,11 +12,11 @@ class Compare extends Component {
     let buttonText = tab == 'compare' ?
       <div className='compare-tab-container'>
         <p>Compare</p>
-        <img className='downArrow' />
+        <img className='down-arrow' />
       </div> :
       <div className='compare-tab-container'>
         <p>Compare</p>
-        <img className='upArrow' />
+        <img className='up-arrow' />
       </div>
 
     return (

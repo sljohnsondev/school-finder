@@ -91,3 +91,11 @@ p {
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
+
+.up-arrow {
+  background-image: url('../../assets/up-arrow.svg');
+}
+
+.down-arrow {
+  background-image: url('../../assets/angle-arrow-down.svg');
+}
