@@ -51,6 +51,7 @@ p {
 
 .downArrow {
   background-image: url('arrow-down.png');
+  border: none;
 }
 
 .upArrow {
