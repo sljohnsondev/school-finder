@@ -1,16 +1,14 @@
-// import app from '../../src/reducers/app-reducer';
 import app from '../../src/reducers/app-reducer';
-import filters from '../../src/reducers/filters-reducer.js';
-import profile from '../../src/reducers/profile-reducer.js';
-import favorites from '../../src/reducers/favorite-button-reducer.js';
+import filters from '../../src/reducers/filters-reducer';
+import profile from '../../src/reducers/profile-reducer';
+import favorites from '../../src/reducers/favorite-button-reducer';
 
 describe('todos reducer', () => {
-
   const mockSignInInfo = {
     username: 'Danman',
     email: 'dan@dan.com',
     street_address: '12345 St.',
-    oath_id: '1'
+    oath_id: '1',
   };
 
   const mockSchoolInfo = {
@@ -18,7 +16,7 @@ describe('todos reducer', () => {
     school_address: '1600 City Park Esplanade',
     school_website: 'http://east.dpsk12.org',
     school_id: '548',
-    school_code: '2398'
+    school_code: '2398',
   };
 
   const mockHomeAddressInfo = { homeAddress: '1234 Fake St.' };
@@ -30,63 +28,63 @@ describe('todos reducer', () => {
         school_address: '1600 City Park Esplanade',
         school_website: 'http://east.dpsk12.org',
         school_id: '548',
-        school_code: '2398'
+        school_code: '2398',
       },
       {
         school_name: 'George Washington High School',
         school_address: '655 S. Monaco Parkway',
         school_website: 'http://gwhs.dpsk12.org',
         school_id: '561',
-        school_code: '3378'
-      }
-    ]
+        school_code: '3378',
+      },
+    ],
   };
 
   const mockSearchInfo = { activeSearch: true };
 
   const mockSignInAction = {
     type: 'SIGN_IN',
-    data: mockSignInInfo
+    data: mockSignInInfo,
   };
 
   const mockSetSchoolAction = {
     type: 'SET_SCHOOLS',
-    data: mockSchoolInfo
+    data: mockSchoolInfo,
   };
 
   const mockClearSchoolAction = {
-    type:'CLEAR_SCHOOLS',
-    data: []
+    type: 'CLEAR_SCHOOLS',
+    data: [],
   };
 
   const mockSetHomeAddressAction = {
     type: 'SET_HOME_ADDRESS',
-    data: mockHomeAddressInfo
+    data: mockHomeAddressInfo,
   };
 
   const mockClearAddressAction = {
     type: 'CLEAR_DIRECTIONS',
-    data: {}
+    data: {},
   };
 
   const mockInfoWindowAction = {
     type: 'TOGGLE_INFOWINDOW',
-    data: mockWindowInfo
+    data: mockWindowInfo,
   };
 
   const mockActiveSearchAction = {
     type: 'ACTIVE_SEARCH',
-    data: mockSearchInfo
+    data: mockSearchInfo,
   };
 
   const mockPushUserAction = {
     type: 'PUSH_USER',
-    data: mockSignInInfo
+    data: mockSignInInfo,
   };
 
   const mockFavoritesAction = {
     type: 'ADD_FAVORITE',
-    data: mockWindowInfo
+    data: mockWindowInfo,
   };
 
   const state = {};
@@ -96,7 +94,7 @@ describe('todos reducer', () => {
       expect(app(undefined, {})).toEqual([]);
     });
 
-    it('should not do anything when other reducers fire', ()=> {
+    it('should not do anything when other reducers fire', () => {
       expect(app(state, mockSetSchoolAction.type)).toEqual({});
     });
 
@@ -107,10 +105,10 @@ describe('todos reducer', () => {
 
   describe('filter reducer', () => {
     it('should start with nothing in store', () => {
-      expect(filters(undefined, {}) ).toEqual([]);
+      expect(filters(undefined, {})).toEqual([]);
     });
 
-    it('should not do anything when other reducers fire', ()=> {
+    it('should not do anything when other reducers fire', () => {
       expect(filters(state, mockSignInAction.type)).toEqual({});
     });
 
@@ -123,7 +121,8 @@ describe('todos reducer', () => {
     });
 
     it('should be able to set the user/s home address', () => {
-      expect(filters(mockSetHomeAddressAction.data, mockSetHomeAddressAction.type)).toEqual(mockHomeAddressInfo);
+      expect(filters(mockSetHomeAddressAction.data, mockSetHomeAddressAction.type))
+        .toEqual(mockHomeAddressInfo);
     });
 
     it('should be able to clear the directions', () => {
@@ -135,7 +134,8 @@ describe('todos reducer', () => {
     });
 
     it('should know whether you are actively searching or not', () => {
-      expect(filters(mockActiveSearchAction.data, mockActiveSearchAction.type)).toEqual(mockSearchInfo);
+      expect(filters(mockActiveSearchAction.data, mockActiveSearchAction.type))
+        .toEqual(mockSearchInfo);
     });
   });
 
@@ -144,7 +144,7 @@ describe('todos reducer', () => {
       expect(profile(undefined, {})).toEqual({});
     });
 
-    it('should not do anything when other reducers fire', ()=> {
+    it('should not do anything when other reducers fire', () => {
       expect(profile(state, mockSetSchoolAction.type)).toEqual({});
     });
 
@@ -158,7 +158,7 @@ describe('todos reducer', () => {
       expect(favorites(undefined, {})).toEqual([]);
     });
 
-    it('should not do anything when other reducers fire', ()=> {
+    it('should not do anything when other reducers fire', () => {
       expect(favorites(state, mockSetSchoolAction.type)).toEqual({});
     });
 
@@ -166,6 +166,4 @@ describe('todos reducer', () => {
       expect(favorites(mockFavoritesAction.data, mockFavoritesAction.type)).toEqual(mockWindowInfo);
     });
   });
-
-
 });

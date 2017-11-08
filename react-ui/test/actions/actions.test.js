@@ -1,23 +1,22 @@
-import * as actions from '../../src/actions';
 import fetchMock from 'fetch-mock';
+import * as actions from '../../src/actions';
 
 describe('actions', () => {
-
   const schoolResults = [
     {
       school_name: 'East High School',
       school_address: '1600 City Park Esplanade',
       school_website: 'http://east.dpsk12.org',
       school_id: '548',
-      school_code: '2398'
+      school_code: '2398',
     },
     {
       school_name: 'George Washington High School',
       school_address: '655 S. Monaco Parkway',
       school_website: 'http://gwhs.dpsk12.org',
       school_id: '561',
-      school_code: '3378'
-    }
+      school_code: '3378',
+    },
   ];
   const commuteTime = '17 min';
   const commuteDistance = '17 miles';
@@ -26,8 +25,8 @@ describe('actions', () => {
     const user = 'dan';
     const expectedAction = {
       type: 'SIGN_IN',
-      user
-    }
+      user,
+    };
     expect(actions.signInHandler(user)).toEqual(expectedAction);
   });
 
@@ -36,15 +35,15 @@ describe('actions', () => {
       type: 'SET_SCHOOLS',
       schoolResults,
       commuteTime,
-      commuteDistance
+      commuteDistance,
     };
     expect(actions.setSchools(schoolResults, commuteTime, commuteDistance)).toEqual(expectedAction);
   });
 
   it('should be able to clear the schools array', () => {
     const expectedAction = {
-      type: 'CLEAR_SCHOOLS'
-    }
+      type: 'CLEAR_SCHOOLS',
+    };
     expect(actions.clearSchools()).toEqual(expectedAction);
   });
 
@@ -52,8 +51,8 @@ describe('actions', () => {
     const homeAddress = '1234 Fake St.';
     const expectedAction = {
       type: 'SET_HOME_ADDRESS',
-      homeAddress
-    }
+      homeAddress,
+    };
     expect(actions.setHomeAddress(homeAddress)).toEqual(expectedAction);
   });
 
@@ -61,24 +60,24 @@ describe('actions', () => {
     const directions = 'Left, then right, then left... right?';
     const expectedAction = {
       type: 'SET_DIRECTIONS',
-      directions
-    }
+      directions,
+    };
     expect(actions.setDirections(directions)).toEqual(expectedAction);
   });
 
   it('should be able to clear the directions', () => {
     const expectedAction = {
-      type: 'CLEAR_DIRECTIONS'
-    }
+      type: 'CLEAR_DIRECTIONS',
+    };
     expect(actions.clearDirections()).toEqual(expectedAction);
   });
 
   it('should be able to toggle the window information', () => {
-    const targetMarker = {schools: schoolResults};
+    const targetMarker = { schools: schoolResults };
     const expectedAction = {
       type: 'TOGGLE_INFOWINDOW',
-      targetMarker
-    }
+      targetMarker,
+    };
     expect(actions.toggleInfoWindow(targetMarker)).toEqual(expectedAction);
   });
 
@@ -86,8 +85,8 @@ describe('actions', () => {
     const SchoolData = 14;
     const expectedAction = {
       type: 'ADD_FAVORITE',
-      SchoolData
-    }
+      SchoolData,
+    };
     expect(actions.addFavorite(SchoolData)).toEqual(expectedAction);
   });
 
@@ -95,8 +94,8 @@ describe('actions', () => {
     const user = 'dan';
     const expectedAction = {
       type: 'PUSH_USER',
-      user
-    }
+      user,
+    };
     expect(actions.storeUser(user)).toEqual(expectedAction);
   });
 
@@ -106,7 +105,7 @@ describe('actions', () => {
       username: 'Dan Alvarez',
       email: 'dan@dan.com',
       street_address: '1331 17th',
-      oath_id: '1'
+      oath_id: '1',
     };
 
     const mockFavorites = [
@@ -119,7 +118,7 @@ describe('actions', () => {
         user_id: 1,
         commute_time: '20 min',
         commute_distance: '15 miles',
-        commute_type: 'WALKING'
+        commute_type: 'WALKING',
       },
       {
         school_name: 'George Washington High School',
@@ -130,8 +129,8 @@ describe('actions', () => {
         user_id: 1,
         commute_time: '20 min',
         commute_distance: '15 miles',
-        commute_type: 'WALKING'
-      }
+        commute_type: 'WALKING',
+      },
     ];
 
     const mockFavorite = {
@@ -144,15 +143,15 @@ describe('actions', () => {
       user_id: 1,
       commute_time: '20 min',
       commute_distance: '15 miles',
-      commute_type: 'WALKING'
+      commute_type: 'WALKING',
     };
 
     it('should be able to fetch a user', () => {
       fetchMock.get('/api/v1/users/1', {
         status: 200,
         body: mockUser,
-      })
-      actions.getUser(1, 1)()
+      });
+      actions.getUser(1, 1)();
       expect(fetchMock.routes[0].method).toEqual('GET');
       expect(fetchMock.routes[0].response.body).toEqual(mockUser);
       expect(fetchMock.lastUrl()).toEqual('/api/v1/users/1');
@@ -162,8 +161,8 @@ describe('actions', () => {
       fetchMock.post('/api/v1/users', {
         status: 201,
         body: mockUser,
-      })
-      actions.createUser(mockUser)()
+      });
+      actions.createUser(mockUser)();
       expect(fetchMock.routes[1].method).toEqual('POST');
       expect(fetchMock.routes[1].response.body).toEqual(mockUser);
       expect(fetchMock.lastUrl()).toEqual('/api/v1/users');
@@ -172,9 +171,9 @@ describe('actions', () => {
     it('should be able to fetch favorite schools based on a user id', () => {
       fetchMock.get('/api/v1/favorites/1', {
         status: 200,
-        body: mockFavorites
-      })
-      actions.getUserFavorites(mockUser.id)()
+        body: mockFavorites,
+      });
+      actions.getUserFavorites(mockUser.id)();
       expect(fetchMock.routes[2].method).toEqual('GET');
       expect(fetchMock.routes[2].response.body).toEqual(mockFavorites);
       expect(fetchMock.lastUrl()).toEqual('/api/v1/favorites/1');
@@ -184,16 +183,11 @@ describe('actions', () => {
       fetchMock.post('/api/v1/favorites', {
         status: 201,
         body: mockFavorite,
-      })
-      // setImplementations(require('makeFavorite')(mockFavorite))
-      actions.makeFavorite(mockFavorite)
+      });
+      actions.makeFavorite(mockFavorite);
       expect(fetchMock.routes[3].method).toEqual('POST');
-      // expect(fetchMock.routes[3].response.body).toEqual(mockFavorite.id);
-      // expect(fetchMock.lastUrl()).toEqual('/api/v1/favorites');
+      expect(fetchMock.routes[3].response.body).toEqual(mockFavorite);
+      expect(fetchMock.lastUrl()).toEqual('/api/v1/favorites/1');
     });
-
-
-
   });
-
 });
