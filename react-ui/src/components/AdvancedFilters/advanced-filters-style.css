@@ -1,5 +1,5 @@
 .adv-filter-container {
-  background: rgba(198, 218, 240, .95);
+  background: rgba(198, 218, 240, 1);
   border-radius: 0;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: flex-start;
   font-family: 'Quicksand', sans-serif;
-  height: 450px;
+  height: 416px;
   left: 295px;;
   position: fixed;
   padding: 10px 25px;

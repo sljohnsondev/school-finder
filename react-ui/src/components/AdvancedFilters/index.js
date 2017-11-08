@@ -162,7 +162,7 @@ export default class AdvancedFilters extends Component {
                     value={ studentTeacherRatio }
                     onChange={(e) => handleChange(e)}
                   />
-                  <p className='slider-data'>{studentTeacherRatio}</p>
+                  <p className='slider-data'>{studentTeacherRatio} students/teacher</p>
                 </article>
                 <h5 className='filter-header' style={{ textDecoration: 'underline', fontSize: '16px' }}>CMAS Metrics (2016)</h5>
                 <p>% of students who met/exceeded expectations</p>
