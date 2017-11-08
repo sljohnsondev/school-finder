@@ -12,13 +12,13 @@
   text-align: center;
 }
 
-/*.lock-page {
+.lock-page {
   height: 100vh;
   position: absolute;
   width: 100vw;
   z-index: 5;
   background-color: none;
-}*/
+}
 
 .sign-in-container h2 {
   margin: 20px 0 10px;
