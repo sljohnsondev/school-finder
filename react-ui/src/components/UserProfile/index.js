@@ -19,10 +19,8 @@ export default class UserProfile extends Component {
   }
 
   render() {
-console.log('props in UP ', this.props);
-
-    const { name, email, photo, tab, toggleTab, favorites, user } = this.props;
-    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ null } key={ school.school_id } /> );
+    const { name, email, photo, tab, toggleTab, favorites, user, getPopulation } = this.props;
+    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ null } getPopulation={ getPopulation } key={ school.school_id } /> );
     let hideProfile = hideComponent(tab, 'profile');
 
     return (

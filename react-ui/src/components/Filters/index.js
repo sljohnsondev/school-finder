@@ -233,9 +233,10 @@ class Filters extends Component {
                       key={ i }
                       refNum={ i }
                       schoolData={ school }
-                      selectedSchool={this.state.selectedSchool}
+                      selectedSchool={ this.state.selectedSchool }
                       selectSchool={ this.selectSchool }
-                      userId={ CurrentUser.id } />
+                      userId={ CurrentUser.id }
+                      commuteType={ this.state.transitMode } />
                 )
               }) : <h4>Looks like your search came up empty.  Try again but with different filter settings!</h4> }
             </div>
