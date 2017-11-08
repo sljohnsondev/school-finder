@@ -5,7 +5,8 @@ const mapStateToProps = (state) => {
   return {
     schoolResults: state.FilterResults,
     activeSearch: state.FilterResults.activeSearch,
-    CurrentUser: state.CurrentUser
+    CurrentUser: state.CurrentUser,
+    comparedSchools: state.ComparedSchools
   }
 }
 

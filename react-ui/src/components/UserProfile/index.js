@@ -19,11 +19,8 @@ export default class UserProfile extends Component {
   }
 
   render() {
-
-    const { name, email, photo, tab, toggleTab, favorites } = this.props;
-    
-    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ null } key={ school.school_id } /> );
-
+    const { name, email, photo, tab, toggleTab, favorites, user, getPopulation } = this.props;
+    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ null } getPopulation={ getPopulation } key={ school.school_id } /> );
     let hideProfile = hideComponent(tab, 'profile');
 
     return (
@@ -45,7 +42,7 @@ export default class UserProfile extends Component {
 
             <img src={ photo ? photo : alias } alt='avatar' className='user-photo' />
 
-            <h4 className="address">1771 17th St. Denver, CO. 80201 USA MothaLicka</h4>
+            <h4 className="address">{ user.street_address } Denver, CO</h4>
             <h4 className='email'>{ email }</h4>
           </div>
 

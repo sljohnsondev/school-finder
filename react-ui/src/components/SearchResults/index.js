@@ -11,9 +11,8 @@ export default class SearchResults extends Component {
   }
 
   render() {
-
     let { name, address, website, commute } = this.props.schoolData;
-    let { refNum, schoolData, userId } = this.props;
+    let { refNum, schoolData, userId, commuteType } = this.props;
 
     return (
       <div>

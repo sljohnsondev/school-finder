@@ -4,7 +4,7 @@ import './school-card.css';
 
 const SchoolCard = (props) => {
 
-  const { school_name, school_address, commute_time, commute_distance, website } = props.school
+  const { school_name, school_address, commute_time, commute_distance, website, id, school_id } = props.school
 
   return (
     <div className='school-card-container'>
@@ -17,8 +17,10 @@ const SchoolCard = (props) => {
           <h4 className='fav-commute-data'>Commute Time: <span className='commute-info'>{ commute_time }</span></h4>
           <h4 className='fav-commute-data'>Commute Distance: <span className='commute-info'>{ commute_distance }</span></h4>
         </section>
-      <FavoriteButton id={ props.school.id } schoolInfo={ props.school }/>
-
+      <div>
+        <FavoriteButton id={ id } schoolInfo={ props.school }/>
+        <button onClick={ () => props.getPopulation(school_id) }></button>
+      </div>
     </div>
   )
 };
