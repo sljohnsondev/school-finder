@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier'],
+  extends: 'airbnb',
   globals: {
     fetch: 'false',
     localStorage: 'false',
@@ -22,7 +22,9 @@ module.exports = {
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
     'prefer-destructuring': 'off',
-    'jsx-a11y/anchor-is-valid': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-named-as-default': 'off',
+    'consistent-return': 'off',
     'no-shadow': 'off',
     'no-unused-vars': 'off',
     'no-unused-expressions': 'off',
