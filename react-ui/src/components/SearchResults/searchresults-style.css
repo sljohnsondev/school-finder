@@ -19,8 +19,9 @@ h4 {
   width: 110%;
 }
 
-.commute-info {
+.commute-info span {
   color: rgb(72, 133, 237);
+  padding-left: 7px;
 }
 
 a {
