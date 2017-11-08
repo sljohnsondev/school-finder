@@ -65,13 +65,13 @@ class Filters extends Component {
   schoolFetchBuilder() {
     let { gradeLevel, schoolType, mathScore, scienceScore, satScore, studentTeacherRatio } = this.state;
 
-    if (gradeLevel == '1') {
+    if (gradeLevel === '1') {
       return fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}&stRatio=${studentTeacherRatio}`)
     }
-    if (gradeLevel == '2' || gradeLevel == '3') {
+    if (gradeLevel === '2' || gradeLevel === '3') {
       return fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}&stRatio=${studentTeacherRatio}&mathRate=${mathScore}&scienceRate=${scienceScore}`)
     }
-    if (gradeLevel == '4') {
+    if (gradeLevel === '4') {
       return fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}&stRatio=${studentTeacherRatio}&mathRate=${mathScore}&scienceRate=${scienceScore}&satRate=${satScore}`)
     }
   }
