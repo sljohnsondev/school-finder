@@ -11,16 +11,6 @@ class favoriteButton extends Component {
     }
   }
 
-  componentDidMount() {
-    for (let i = 0; i < this.props.favorites.length; i++) {
-      if ( this.props.favorites[i].school_code === this.props.schoolInfo.dps_school_code ) {
-        this.setState({
-          isFavorite: true
-        })
-      }
-    }
-  }
-
   isFavorite() {
     let favIDs = []
     this.props.favorites.forEach(fav => favIDs.push(fav.school_code))
@@ -47,9 +37,6 @@ class favoriteButton extends Component {
       }
     }
 
-
-
-    console.log('FAVS BUTTONS ', this.props.favorites)
     return (
       <div>
         { this.isFavorite() ?
