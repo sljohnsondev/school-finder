@@ -22,7 +22,7 @@ export default class AdvancedFilters extends Component {
     let { gradeLevel, elaScore, mathScore, scienceScore, satScore, handleChange} = props;
 
     if (gradeLevel === '1') {
-      return (<p className='filter-item'>There are currently no additional metrics to share for Pre-K and ECE programs</p>)
+      return (<p className='filter-item' style={{ marginTop: '18px', padding: '0 12px' }}>There are currently no additional metrics to share for Pre-K and ECE programs.</p>)
     }
 
     if (gradeLevel === '2') {
@@ -114,8 +114,8 @@ export default class AdvancedFilters extends Component {
             />
             <p className='slider-data'>{ scienceScore }%</p>
           </article>
-          <article className='filter-item'>
-            <h5>SAT</h5>
+          <article className='filter-item' style={{ marginTop: '30px' }}>
+            <h5 style={{ fontSize: '15px' }}>SAT (mean score)</h5>
             <input
               id='satScore'
               className='slider'
@@ -153,7 +153,7 @@ export default class AdvancedFilters extends Component {
             <div className={ hideAdvFilter ? 'adv-filter-container hidden-adv-filter' : 'adv-filter-container'}>
               <form className='filter-fields'>
                 <article className='filter-item'>
-                  <h5>Student/Teacher Ratio</h5>
+                  <h5 style={{ fontSize: '15px' }}>Student/Teacher Ratio</h5>
                   <input
                     id='studentTeacherRatio'
                     className='slider'
@@ -164,8 +164,8 @@ export default class AdvancedFilters extends Component {
                   />
                   <p className='slider-data'>{studentTeacherRatio} students/teacher</p>
                 </article>
-                <h5 className='filter-header' style={{ textDecoration: 'underline', fontSize: '16px' }}>CMAS Metrics (2016)</h5>
-                <p>% of students who met/exceeded expectations</p>
+                <h5 className='filter-header' style={{ marginTop: '25px', textDecoration: 'underline', fontSize: '18px' }}>CMAS Metrics (2016)</h5>
+                <p style={{ fontSize: '14px', marginTop: '5px', padding: '0 10px' }}>% of students who met or exceeded expectations</p>
                 { gradeLevel ?
                   this.displayGradeFilters(this.props)
                   :

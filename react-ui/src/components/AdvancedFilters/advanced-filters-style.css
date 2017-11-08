@@ -12,7 +12,7 @@
   position: fixed;
   padding: 10px 25px;
   text-align: center;
-  top: 20vh;
+  top: 158px;
   width: 240px;
   z-index: 1;
   -webkit-transform: translate3d(0,0,0);
@@ -29,12 +29,12 @@
 
 .adv-filter-container h5 {
   font-size: 14px;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
 }
 
 .adv-filter-container p {
   font-size: 14px;
-  margin: 0
+  margin: 0;
 }
 
 .adv-filter-container .slider {
@@ -56,7 +56,7 @@
   padding: 3px;
   position: fixed;
   outline: none;
-  top: 26vh;
+  top: 225px;
   width: 30px;
   z-index: 1;
   -webkit-transform: translate3d(0,0,0);
