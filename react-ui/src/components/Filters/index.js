@@ -18,11 +18,10 @@ class Filters extends Component {
       transitMode: 'DRIVING',
       commuteDist: 15,
       commuteTime: 30,
-      elaScore: 0,
-      geometryScore: 0,
+      mathScore: 0,
       scienceScore: 0,
       satScore: 0,
-      studentTeacherRatio: 0,
+      studentTeacherRatio: 200,
       viewFilters: true,
       homeAddress: '',
       selectedSchool: '',
@@ -63,15 +62,28 @@ class Filters extends Component {
     this.props.patchUser({ street_address: streetAddress }, this.props.CurrentUser.id);
     this.props.updateAddress(streetAddress);
   }
+  schoolFetchBuilder() {
+    let { gradeLevel, schoolType, mathScore, scienceScore, satScore, studentTeacherRatio } = this.state;
+
+    if (gradeLevel == '1') {
+      return fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}&stRatio=${studentTeacherRatio}`)
+    }
+    if (gradeLevel == '2' || gradeLevel == '3') {
+      return fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}&stRatio=${studentTeacherRatio}&mathRate=${mathScore}&scienceRate=${scienceScore}`)
+    }
+    if (gradeLevel == '4') {
+      return fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}&stRatio=${studentTeacherRatio}&mathRate=${mathScore}&scienceRate=${scienceScore}&satRate=${satScore}`)
+    }
+  }
 
   findSchools() {
-    this.props.activeSearchToggle();
-    const { schoolType, gradeLevel, transitMode } = this.state;
-    fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools?type=${schoolType}&grade_levels=${gradeLevel}`)
-      .then(data => data.json())
-      .then((finalSchools) => {
-        this.getGoogleDistances(finalSchools, transitMode);
-      });
+    this.props.activeSearchToggle()
+    let { transitMode } = this.state;
+    this.schoolFetchBuilder()
+    .then(data => data.json())
+    .then(finalSchools => {
+      this.getGoogleDistances(finalSchools, transitMode)
+    })
   }
 
   handleHomeAddress(e) {
@@ -259,18 +271,18 @@ class Filters extends Component {
               this.props.schoolResults.schools.map((school, i) => (
                 (
                   <SearchResults
-                    key={i}
-                    refNum={i}
-                    schoolData={school}
-                    selectedSchool={this.state.selectedSchool}
-                    selectSchool={this.selectSchool}
-                    userId={CurrentUser.id}
-                  />
-                )
-              )) :
-              <h4>
-                Looks like your search came up empty. Try again but with different filter settings!
-              </h4> }
+                      key={ i }
+                      refNum={ i }
+                      schoolData={ school }
+                      selectedSchool={ this.state.selectedSchool }
+                      selectSchool={ this.selectSchool }
+                      userId={ CurrentUser.id }
+                      commuteType={ this.state.transitMode } />
+                )))
+                :
+                <h4>
+                  Looks like your search came up empty. Try again but with different filter settings!
+                </h4> }
             </div>
             }
         </div>

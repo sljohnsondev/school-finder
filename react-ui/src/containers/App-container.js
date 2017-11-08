@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import App from '../components/App';
 import { signIn } from '../firebase.js';
 import { signInHandler } from '../actions';
-a
+
 const mapStateToProps = state => (
   {
     data: state,
