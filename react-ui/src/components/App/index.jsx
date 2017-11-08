@@ -68,13 +68,14 @@ export default class App extends Component {
     );
   }
 
-  render(props) {
+  render() {
+
     const {
       displayName,
       email,
       photoURL,
       uid,
-    } = props.data.AppData;
+    } = this.props.data.AppData;
 
     return (
       <div className="app-container">

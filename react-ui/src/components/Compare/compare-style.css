@@ -49,15 +49,6 @@ p {
   margin-top: 4px;
 }
 
-.downArrow {
-  background-image: url('arrow-down.png');
-  border: none;
-}
-
-.upArrow {
-  background-image: url('arrow-up.png');
-}
-
 .slide-compare-btn {
   z-index: 1;
   position: fixed;

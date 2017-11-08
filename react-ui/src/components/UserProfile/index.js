@@ -18,19 +18,9 @@ export default class UserProfile extends Component {
   }
 
   render() {
-    const {
-      name,
-      email,
-      photo,
-      tab,
-      toggleTab,
-      favorites,
-    } = this.props;
-
-    const mappedFavorites = favorites.map(school =>
-      <Favorites school={school} commuteInfo={null} key={school.school_id} />);
-
-    const hideProfile = hideComponent(tab, 'profile');
+    const { name, email, photo, tab, toggleTab, favorites, user, getPopulation } = this.props;
+    const mappedFavorites = favorites.map( school => <Favorites school={ school } commuteInfo={ null } getPopulation={ getPopulation } key={ school.school_id } /> );
+    let hideProfile = hideComponent(tab, 'profile');
 
     return (
 
@@ -44,19 +34,20 @@ export default class UserProfile extends Component {
           {hideProfile ? '<' : '>'}
         </button>
 
-        <div className={hideProfile ? 'avatar show-avatar' : 'avatar hide-avatar'}>
-          <img src={photo ? photo : alias} alt="avatar" className="avatar-photo" />
+        <div className={ hideProfile ? 'avatar show-avatar' : 'avatar hide-avatar'}>
+          <div className='avatar-container'>
+            <img src={ photo ? photo : alias } alt='avatar' className='avatar-photo' />
+          </div>
         </div>
 
         <div className={hideProfile ? 'profile-container hide-profile' : 'profile-container'}>
 
           <div className="user-info">
             <h2 className="profile-header">{ name }</h2>
-
             <img src={photo ? photo : alias} alt="avatar" className="user-photo" />
+            <h4 className="address">{ user.street_address } Denver, CO</h4>
+            <h4 className='email'>{ email }</h4>
 
-            <h4 className="address">1771 17th St. Denver, CO. 80201 USA MothaLicka</h4>
-            <h4 className="email">{ email }</h4>
           </div>
 
           <div>
