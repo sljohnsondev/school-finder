@@ -8,7 +8,7 @@ const Favorites = (props) => {
 
     <div className='favorites-container'>
     
-      <SchoolCard school={ props.school } />
+      <SchoolCard school={ props.school } getPopulation={ props.getPopulation }/>
 
     </div>
   )

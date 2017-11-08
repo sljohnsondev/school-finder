@@ -24,7 +24,7 @@ class favoriteButton extends Component {
   }
 
   render () {
-    const { schoolInfo, commuteInfo, userId, deleteFavorite, makeFavorite } = this.props
+    const { schoolInfo, commuteInfo, userId, deleteFavorite, makeFavorite, commuteType } = this.props
     let schoolData = {};
     
     if (commuteInfo) {
@@ -36,6 +36,7 @@ class favoriteButton extends Component {
         school_code: schoolInfo.dps_school_code,
         commute_time: commuteInfo.time.text,
         commute_distance: commuteInfo.distance.text,
+        commute_type: commuteType,
         user_id: userId
       }
     }
