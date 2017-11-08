@@ -62,12 +62,12 @@ app.post('/api/v1/users', (request, response) => {
   }
 
   database('users').insert(user, 'id')
-    .then((userResponse) => (
+    .then(userResponse => (
       response.status(201).json({ id: userResponse[0] })
     ))
-    .catch((error) => {
-      return response.status(500).json({ error });
-    });
+    .catch(error => (
+      response.status(500).json({ error })
+    ));
 });
 
 
@@ -152,7 +152,7 @@ app.post('/api/v1/favorites', (request, response) => {
 app.delete('/api/v1/favorites/:id', (request, response) => {
   const { id } = request.params;
 
-  database('favorites').where('school_code', id ).del()
+  database('favorites').where('school_code', id).del()
     .then((favorite) => {
       if (favorite) {
         return response.sendStatus(204);

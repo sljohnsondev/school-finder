@@ -29,6 +29,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-unused-expressions': 'off',
     'no-restricted-syntax': 'off',
+    'prefer-template': 'off',
   },
   plugins: ['react', 'jsx-a11y', 'import'],
 };
