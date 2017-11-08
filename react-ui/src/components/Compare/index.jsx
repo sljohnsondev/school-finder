@@ -14,14 +14,14 @@ class Compare extends Component {
       (
         <div className="compare-tab-container">
           <p>Compare</p>
-          <img className="downArrow" alt="down facing arrow" />
+          <img className="down-arrow" />
         </div>
       )
       :
       (
         <div className="compare-tab-container">
           <p>Compare</p>
-          <img className="upArrow" alt="up facing arrow" />
+          <img className="up-arrow" />
         </div>
       );
 
