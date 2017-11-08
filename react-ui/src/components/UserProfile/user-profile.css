@@ -56,6 +56,12 @@
   background: rgba(255, 99, 71, 1);
 }
 
+.avatar-container {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
 .avatar {
   background: rgba(198, 218, 240, .95);
   height: 53px;
@@ -76,9 +82,9 @@
 
 .avatar-photo {
   border-radius: 50%;
-  height: 53px;
-  width: 53px;
-
+  padding: 5px;
+  height: 40px;
+  width: 40px;
 }
 
 .hidden-profile {

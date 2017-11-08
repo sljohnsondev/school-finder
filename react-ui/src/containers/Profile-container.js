@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import Profile from '../components/UserProfile/index';
 import { getUser, getPopulation } from '../actions';
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = state => (
+  {
     user: state.CurrentUser,
     favorites: state.Favorites,
   }
-}
+);
 
 const mapDispatchToProps = dispatch => ({
   getUser: (id, userInfo) => {
