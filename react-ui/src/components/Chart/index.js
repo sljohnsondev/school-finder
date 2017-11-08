@@ -38,7 +38,7 @@ class Chart extends Component {
     return (
       <div className='chart-container'>
         <h2 className='chart-title'>{ schoolName }</h2>
-        < Pie data={ chartData } />
+    { schools ? < Pie data={ chartData } /> : <h2>Sorry, there is no population data for these schools</h2> }
       </div>
     );
   }

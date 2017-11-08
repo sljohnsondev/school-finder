@@ -125,7 +125,7 @@
 .favorite-schools {
   display: flex;
   flex-wrap: wrap;
-  height: 77vh;
+  height: 74vh;
   overflow-y: scroll;
   width: 385px;
 }
