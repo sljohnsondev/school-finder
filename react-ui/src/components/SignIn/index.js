@@ -27,7 +27,7 @@ export class SignIn extends Component {
     const { toggleTab } = this.props;
 
     return (
-      <div class='sign-in-center'>
+      <div>
         <div className="lock-page" onClick={() => this.setError()} />
         <div className="sign-in-container">
           <h2>Welcome to School Finder!</h2>
