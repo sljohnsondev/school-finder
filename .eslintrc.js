@@ -21,7 +21,6 @@ module.exports = {
     'jsx-a11y/label-has-for': 'off',
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
-    'prefer-destructuring': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/no-named-as-default': 'off',
     'consistent-return': 'off',
@@ -32,3 +31,5 @@ module.exports = {
   },
   plugins: ['react', 'jsx-a11y', 'import'],
 };
+
+// 'prefer-destructuring': 'off',
