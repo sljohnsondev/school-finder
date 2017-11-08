@@ -7,8 +7,7 @@ import './compare-style.css';
 class Compare extends Component {
 
   render() {
-
-    let { tab, toggleTab, comparedSchools } = this.props;
+    let { tab, toggleTab, comparedSchools, favorites } = this.props;
     let hideCompare = hideComponent(tab, 'compare');
     let buttonText = tab == 'compare' ?
       <div className='compare-tab-container'>
@@ -26,7 +25,8 @@ class Compare extends Component {
                 onClick={ () => toggleTabView(tab, toggleTab, 'compare') }
         >{ buttonText }</button>
         <div className={ hideCompare ? 'compare-container hidden-compare' : 'compare-container'}>
-          <Chart schools={ comparedSchools }/>
+          <Chart schools={ comparedSchools[0] } favorites={ favorites } />
+          <Chart schools={ comparedSchools[1] } favorites={ favorites } />
         </div>
       </div>
     )

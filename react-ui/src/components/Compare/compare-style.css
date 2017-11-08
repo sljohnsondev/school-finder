@@ -9,6 +9,7 @@ p {
 .compare-container {
   font-family: 'Quicksand', sans-serif;
   z-index: 1;
+  display: flex;
   position: fixed;
   bottom: 5px;
   right: 8.5vw;

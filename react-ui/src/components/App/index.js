@@ -51,6 +51,8 @@ export default class App extends Component {
   render() {
 
     const { displayName, email, photoURL, uid } = this.props.data.AppData;
+    console.log('');
+    
 
     return (
       <div className='app-container'>

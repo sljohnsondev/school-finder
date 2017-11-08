@@ -17,9 +17,9 @@ const SchoolCard = (props) => {
           <h4 className='fav-commute-data'>Commute Time: <span className='commute-info'>{ commute_time }</span></h4>
           <h4 className='fav-commute-data'>Commute Distance: <span className='commute-info'>{ commute_distance }</span></h4>
         </section>
-      <div>
+      <div className='buttons'>
         <FavoriteButton id={ id } schoolInfo={ props.school }/>
-        <button onClick={ () => props.getPopulation(school_id) }></button>
+        <button className='compare-button' onClick={ () => props.getPopulation(school_id) }>Compare</button>
       </div>
     </div>
   )

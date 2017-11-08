@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
     schoolResults: state.FilterResults,
     activeSearch: state.FilterResults.activeSearch,
     CurrentUser: state.CurrentUser,
-    comparedSchools: state.ComparedSchools
+    comparedSchools: state.ComparedSchools,
+    favorites: state.Favorites
   }
 }
 
