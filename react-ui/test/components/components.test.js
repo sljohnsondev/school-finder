@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import { withRouter } from 'react-router';
 import { Provider } from 'react-redux';
-import App from '../../src/components/App'
+import App from '../../src/components/App';
 import Compare from '../../src/components/Compare';
 import FavoriteButton from '../../src/components/FavoriteButton';
 import Favorites from '../../src/components/Favorites';
@@ -18,12 +18,12 @@ import UserProfile from '../../src/components/UserProfile';
 
 
 describe('Component tests', () => {
-  const wrapper =  withRouter(<App />);
+  const wrapper = withRouter(<App />);
   const compareWrapper = withRouter(<Compare />);
   const favoriteButtonWrapper = withRouter(<FavoriteButton />);
   const favoritesWrapper = withRouter(<Favorites />);
   const filtersWrapper = withRouter(<Filters />);
-  const headerWrapper = withRouter(<Headers />);
+  const headerWrapper = withRouter(<Header />);
   const mapWrapper = withRouter(<Map />);
   const schoolCardWrapper = withRouter(<SchoolCard />);
   const searchResultsWrapper = withRouter(<SearchResults />);
@@ -78,5 +78,4 @@ describe('Component tests', () => {
   it('should render the google oauth display on page load', () => {
     expect(signInWrapper).toBeDefined();
   });
-
 });
