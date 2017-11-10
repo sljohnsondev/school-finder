@@ -5,6 +5,7 @@
     "node": "6.11.x"
   },
   "scripts": {
+    "lint": "eslint ./react-ui/src",
     "start": "node server",
     "test": "npm run test-backend && npm run test-frontend",
     "test-backend": "NODE_ENV=test ./node_modules/.bin/mocha --exit",
