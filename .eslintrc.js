@@ -16,6 +16,7 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'class-methods-use-this': 'off',
+    'prefer-destructuring': 'off',
     'jsx-a11y/media-has-caption': 'off',
     'react/prop-types': 'off',
     'jsx-a11y/label-has-for': 'off',
@@ -31,5 +32,3 @@ module.exports = {
   },
   plugins: ['react', 'jsx-a11y', 'import'],
 };
-
-// 'prefer-destructuring': 'off',

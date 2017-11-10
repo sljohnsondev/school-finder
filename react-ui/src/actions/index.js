@@ -165,7 +165,7 @@ export const patchUserAddress = (address, userId, updatedUser) => {
 
 export const getPopulation = schoolId => (
   dispatch => {
-    fetch(`https://cdoe-data-api.herokuapp.com/api/v1/schools/population/${schoolId}`)
+    fetch(`https://cdoe-data-api.herokuapp.com/api/v1/school/${schoolId}/population`)
     .then( response => response.json())
     .then( data => dispatch(addCompare(data)))
     .catch( error => error);
