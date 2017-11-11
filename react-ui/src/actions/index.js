@@ -129,7 +129,7 @@ export const getUser = (oId, userInfo) => {
 
 export const makeFavorite = (schoolInfo) => {
   return dispatch => {
-		fetch('/api/v1/favorites/', {
+		fetch('/api/v1/favorites', {
 			method: 'POST',
 			body: JSON.stringify(schoolInfo),
 			headers: {
