@@ -68,6 +68,10 @@ export default class App extends Component {
     );
   }
 
+  componentDidMount() {
+    fetch('https://cdoe-data-api.herokuapp.com/api/v1/start')
+  }
+
   render() {
 
     const {
