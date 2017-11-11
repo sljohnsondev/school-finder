@@ -140,6 +140,8 @@ app.post('/api/v1/favorites', (request, response) => {
     }
   }
 
+  console.log(favorite)
+
   database('favorites').insert(favorite, '*')
     .then((user) => {
       return response.status(201).json(user);
