@@ -142,10 +142,10 @@ app.post('/api/v1/favorites', (request, response) => {
 
   database('favorites').insert(favorite, '*')
     .then((user) => {
-      response.status(201).json(user);
+      return response.status(201).json(user);
     })
     .catch((error) => {
-      response.status(500).json({ error });
+      return response.status(500).json({ error });
     });
 });
 

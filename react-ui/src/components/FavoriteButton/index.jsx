@@ -25,7 +25,7 @@ class favoriteButton extends Component {
 
     if (commuteInfo) {
       schoolData = {
-        school_id: schoolInfo.id,
+        school_id: `${schoolInfo.id}`,
         school_address: schoolInfo.address,
         school_website: schoolInfo.website,
         school_name: schoolInfo.name,
