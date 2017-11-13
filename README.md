@@ -1,7 +1,7 @@
 ## School Finder
 ### A webbased application that uses a Firebase Database of DPS schools and Google Map APIs to help parents find great schools for their kids based on commute time and distance.
 
-Checkout the app [here](https://school-finder-86e85.firebaseapp.com/).
+Checkout the app [here](https://denver-school-finder.herokuapp.com/).
 
 ## Project Screen Shot(s)
 
