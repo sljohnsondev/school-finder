@@ -1,5 +1,5 @@
 ## School Finder
-### A webbased application that uses a Firebase Database of DPS schools and Google Map APIs to help parents find great schools for their kids based on commute time and distance.
+### A webbased application that uses a public API of Colorado school data (see my [CDoE_data_api](https://github.com/sljohnson32/CDoE_data_api) repo for more info) and Google Map APIs to help Denver parents find great schools for their kids based on commute time and distance.
 
 Checkout the app [here](https://denver-school-finder.herokuapp.com/).
 
@@ -44,15 +44,10 @@ The biggest challenge I had was with rendering directions on the page in a React
 As a former staff member at Teach For America, I care deeply about making sure all children have the opportunity to attain an excellent education and this project reflects my desire to use my skills as a developer and problem solver to ensure that is a reality.
 
 ### Additional Development 
-_Give the short amount of time I had to work on this project - approximately 1 week - I do not consider this application to be finished.  The list below represents the remaining issues I will be working on as time allows (also tracked in the issues section of this repo)_
-- Build out testing suite for FE components (and server-side when Postgres DB is implemented)
-- Incorporate CircleCI deployment protocol and move hosting to Heroku
-- Transition Firebase DB to Express w/ Knex and Postgres
-- Refactor Google Directions API calls and filtering into more organized components
+_I worked on developing the 2.0 version of this project with two partners as part of our final Turing Capstone Project.  While we were able to make a number of important additions and improvements to the codebase, the list below represents the remaining issues I will be working on as time allows (also tracked in the issues section of this repo)_
+
+- Styling improvements and more functionality for new Profile and Compare elements
+- Format and build out pop-up windows on individual pin clicks
 - Refactor lifecycles for smoother transition to display school result pins
 - Refactor Google Directions and Distance API calls into Promise.all() functions
-- Add advanced filter options (includes adding necessary data in new Postgres migration and seed files)
-- Add user profile component to save home address and favorited schools
-- Format and build out pop-up windows on individual pin clicks
-- Customize pins for home and school using Google Markers API
 - Create admin portal for managing "instances" of the app for specific schoool districts (includes data uploads)
