@@ -1,0 +1,39 @@
+.school-card-container {
+  align-items: center;
+  border: 1px solid #505050;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-around;
+  margin: 15px;
+  padding: 5px;
+  width: 150px;
+}
+
+.school-name {
+  font-size: .8em;
+  margin: 0;
+}
+
+.fav-commute-data {
+  font-size: .75em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.compare-button {
+  background-color: rgba(255, 99, 71, .5);
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: #f2f2f2;
+}
+
+.compare-button:hover {
+  background-color: rgba(255, 99, 71, .8);
+}

@@ -1,0 +1,35 @@
+.school-container {
+  padding: 8px 0 10px;
+  line-height: normal;
+}
+
+.results-fields {
+  margin: 2px 0;
+}
+h4 {
+  color: black;
+}
+
+.selected {
+  background: rgba(255, 99, 71, .8);
+  border-radius: 2px;
+  position: relative;
+  left: -20px;
+  padding-left: 20px;
+  width: 110%;
+}
+
+.commute-info span {
+  color: rgb(72, 133, 237);
+  padding-left: 7px;
+}
+
+a {
+  color: rgb(72, 133, 237);
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
