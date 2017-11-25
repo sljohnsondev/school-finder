@@ -17,11 +17,29 @@ class compareButton extends Component {
   //   } else return false;
   // }
 
+  addSchool(school) {
+    this.setState({ isSelected: true }, () => {
+      this.props.selectCompare(school)
+    })
+  }
+
+  removeSchool(id) {
+    this.setState({ isSelected: false }, () => {
+      this.props.removeCompare(id)
+    })
+  }
+
   render () {
+    const { id, schoolInfo } = this.props;
 
     return (
       <div>
-        <button className='compare-button' onClick={ () => console.log(this.props) }>Compare</button>
+        {
+          this.state.isSelected ?
+          <button className='compare-button' onClick={ () => this.removeSchool(id) }>Compare</button>
+          :
+          <button className='compare-button' onClick={ () => this.addSchool(schoolInfo) }>Compare</button>
+        }
       </div>
     )
   }

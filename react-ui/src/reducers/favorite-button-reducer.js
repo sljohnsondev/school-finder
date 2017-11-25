@@ -1,7 +1,9 @@
 const favorites = (state = [], action) => {
   switch (action.type) {
+    
     case 'ADD_FAVORITE':
       return [...state, ...action.SchoolData];
+
     case 'REMOVE_FAVORITE':
       /* eslint-disable no-alert, no-plusplus */
       for (let i = 0; i < state.length; i++) {

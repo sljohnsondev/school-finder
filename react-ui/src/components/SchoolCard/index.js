@@ -20,8 +20,8 @@ const SchoolCard = (props) => {
           <h4 className='fav-commute-data'>Commute Distance: <span className='commute-info'>{ commute_distance }</span></h4>
         </section>
       <div className='buttons'>
-        <FavoriteButton id={ id } schoolInfo={ props.school }/>
-        <CompareButton />
+        <FavoriteButton id={ id } schoolInfo={ props.school } />
+        <CompareButton id={ id } schoolInfo={ props.school } />
       </div>
 
     </div>
