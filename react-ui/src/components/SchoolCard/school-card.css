@@ -19,21 +19,3 @@
 .fav-commute-data {
   font-size: .75em;
 }
-
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.compare-button {
-  background-color: rgba(255, 99, 71, .5);
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  color: #f2f2f2;
-}
-
-.compare-button:hover {
-  background-color: rgba(255, 99, 71, .8);
-}

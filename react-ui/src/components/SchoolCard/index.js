@@ -1,5 +1,7 @@
 import React from 'react';
 import FavoriteButton from '../../containers/FavoriteButton-container';
+import CompareButton from '../../containers/CompareButton-container';
+
 import './school-card.css';
 
 const SchoolCard = (props) => {
@@ -19,9 +21,9 @@ const SchoolCard = (props) => {
         </section>
       <div className='buttons'>
         <FavoriteButton id={ id } schoolInfo={ props.school }/>
-        <button className='compare-button' onClick={ () => props.getPopulation(school_id) }>Compare</button>
+        <CompareButton />
       </div>
-      
+
     </div>
   );
 };
