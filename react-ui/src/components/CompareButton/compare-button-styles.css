@@ -15,3 +15,11 @@
 .compare-button:hover {
   background-color: rgba(255, 99, 71, .8);
 }
+
+.compare-button.selected {
+  background-color: rgba(255, 99, 71, .8);
+}
+
+.compare-button.selected:hover {
+  background-color: rgba(255, 99, 71, .5);
+}

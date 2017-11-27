@@ -37,7 +37,7 @@ class compareButton extends Component {
       <div>
         {
           this.state.isSelected ?
-          <button selected className='compare-button' onClick={ () => this.removeSchool(id)}>Compare</button>
+          <button className='compare-button selected' onClick={ () => this.removeSchool(id)}>Compare</button>
           :
           <button className='compare-button' onClick={ () => this.addSchool(schoolInfo) }>Compare</button>
         }
