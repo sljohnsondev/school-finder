@@ -86,6 +86,11 @@ export const selectCompare = comparedSchool => ({
   comparedSchool
 });
 
+export const removeCompare = schoolId => ({
+  type: 'REMOVE_COMPARE',
+  schoolId
+});
+
 // export const addCompare = school => ({
 //   type: 'POPULATION',
 //   schoolPopulation
