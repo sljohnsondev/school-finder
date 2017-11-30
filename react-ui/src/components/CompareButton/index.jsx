@@ -9,18 +9,11 @@ class compareButton extends Component {
     }
   }
 
-  // isSelected() {
-  //   let favIDs = []
-  //   this.props.favorites.forEach(fav => favIDs.push(fav.school_code))
-  //   if (favIDs.includes(this.props.schoolInfo.dps_school_code)) {
-  //     return true;
-  //   } else return false;
-  // }
-
   addSchool(school) {
     this.setState({ isSelected: true }, () => {
       this.props.selectCompare(school)
     })
+    console.log(this.props.comparedSchools)
   }
 
   removeSchool(id) {
@@ -28,6 +21,7 @@ class compareButton extends Component {
       console.log('remove')
       this.props.removeCompare(id)
     })
+    console.log(this.props.comparedSchools)
   }
 
   render () {
@@ -39,7 +33,11 @@ class compareButton extends Component {
           this.state.isSelected ?
           <button className='compare-button selected' onClick={ () => this.removeSchool(id)}>Compare</button>
           :
-          <button className='compare-button' onClick={ () => this.addSchool(schoolInfo) }>Compare</button>
+          <button
+            disabled={ this.props.comparedSchools.length >= 2 ? true : false }
+            className='compare-button'
+            onClick={ () => this.addSchool(schoolInfo) }
+          >Compare</button>
         }
       </div>
     )
@@ -47,5 +45,3 @@ class compareButton extends Component {
 };
 
 export default compareButton;
-//
-// <button className='compare-button' onClick={ () => props.getPopulation(school_id) }>Compare</button>
