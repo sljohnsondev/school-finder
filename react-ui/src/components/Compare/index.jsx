@@ -29,10 +29,10 @@ class Compare extends Component {
   }
 
   displaySchoolInfo(school) {
-    school ?
-      <SchoolCard school={ school } />
-      :
-      <div></div>
+    console.log(school)
+    if (school) {
+      return <SchoolCard school={ school } />
+    } else return (<div>Please select a school to compare.</div>)
   }
 
   render() {
@@ -75,6 +75,7 @@ class Compare extends Component {
               <Chart schools={ comparedSchools[0] } favorites={ favorites } />
             </div>
             <div className='school-metrics'>
+              { this.displaySchoolInfo(comparedSchools[1]) }
               <Chart schools={ comparedSchools[1] } favorites={ favorites } />
             </div>
           </section>
