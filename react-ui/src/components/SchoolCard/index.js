@@ -1,7 +1,6 @@
 import React from 'react';
 import FavoriteButton from '../../containers/FavoriteButton-container';
 import CompareButton from '../../containers/CompareButton-container';
-
 import './school-card.css';
 
 const SchoolCard = (props) => {

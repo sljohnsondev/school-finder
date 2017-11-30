@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { toggleTabView, hideComponent } from '../Helpers/tabControls';
 import filterContainer from '../../containers/Filters-container';
+import SchoolCard from '../../components/SchoolCard';
 import Chart from '../Chart';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -20,11 +21,18 @@ class Compare extends Component {
     this.state = {
       dropDown: 'school_population'
     }
-    this.logChange = this.logChange.bind(this)
+    this.changeDropdown = this.changeDropdown.bind(this)
   }
-  logChange(val) {
-    console.log('Selected: ', val.value);
+
+  changeDropdown(val) {
     this.setState({ dropDown: val.value })
+  }
+
+  displaySchoolInfo(school) {
+    school ?
+      <SchoolCard school={ school } />
+      :
+      <div></div>
   }
 
   render() {
@@ -59,11 +67,16 @@ class Compare extends Component {
               name="school-metric-dropdown"
               value={this.state.dropDown}
               options={options}
-              onChange={this.logChange}
+              onChange={this.changeDropdown}
               closeOnSelect={true}
             />
-            <Chart schools={ comparedSchools[0] } favorites={ favorites } />
-            <Chart schools={ comparedSchools[1] } favorites={ favorites } />
+            <div className='school-metrics'>
+              { this.displaySchoolInfo(comparedSchools[0]) }
+              <Chart schools={ comparedSchools[0] } favorites={ favorites } />
+            </div>
+            <div className='school-metrics'>
+              <Chart schools={ comparedSchools[1] } favorites={ favorites } />
+            </div>
           </section>
         </div>
       </div>
