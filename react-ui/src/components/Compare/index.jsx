@@ -29,9 +29,13 @@ class Compare extends Component {
   }
 
   displaySchoolInfo(school) {
-    console.log(school)
     if (school) {
-      return <SchoolCard school={ school } />
+      return (
+        <div className='school-metrics'>
+          <SchoolCard school={ school } />
+          <Chart school={ school } />
+        </div>
+      )
     } else return (<div>Please select a school to compare.</div>)
   }
 
@@ -70,14 +74,8 @@ class Compare extends Component {
               onChange={this.changeDropdown}
               closeOnSelect={true}
             />
-            <div className='school-metrics'>
-              { this.displaySchoolInfo(comparedSchools[0]) }
-              <Chart schools={ comparedSchools[0] } favorites={ favorites } />
-            </div>
-            <div className='school-metrics'>
-              { this.displaySchoolInfo(comparedSchools[1]) }
-              <Chart schools={ comparedSchools[1] } favorites={ favorites } />
-            </div>
+            { this.displaySchoolInfo(comparedSchools[0]) }
+            { this.displaySchoolInfo(comparedSchools[1]) }
           </section>
         </div>
       </div>

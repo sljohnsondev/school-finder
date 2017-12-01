@@ -24,7 +24,6 @@ class Favorites extends Component {
       <div className='favorites-container'>
         <h3 className="your-favorites">Your Favorites</h3>
         <div className="favorite-schools">
-          { console.log('FAVORITES', favorites) }
           { favorites.length > 0 ? this.favoriteSchools(favorites) : this.noFavs() }
         </div>
       </div>
