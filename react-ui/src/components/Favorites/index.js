@@ -22,7 +22,7 @@ class Favorites extends Component {
 
     return (
       <div className='favorites-container'>
-        <h3 className="your-favorites">Your Favorites</h3>
+        <h3 className="your-favorites">Your Favorite Schools</h3>
         <div className="favorite-schools">
           { favorites.length > 0 ? this.favoriteSchools(favorites) : this.noFavs() }
         </div>

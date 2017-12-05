@@ -10,18 +10,21 @@ const SchoolCard = (props) => {
   return (
     <div className="school-card-container">
 
-      <h1 className="school-name">{ school_name }</h1>
-
-      <p className='results-fields'>{ school_address }</p>
+      <section className='main-school-info'>
+        <h1 className="school-name">{ school_name }</h1>
+        <p className='results-fields'>{ school_address }</p>
         <a href={ website } className='school-url results-fields' target='_blank'>School Website</a>
-        <section className='commute-info results-fields'>
-          <h4 className='fav-commute-data'>Commute Time: <span className='commute-info'>{ commute_time }</span></h4>
-          <h4 className='fav-commute-data'>Commute Distance: <span className='commute-info'>{ commute_distance }</span></h4>
-        </section>
-      <div className='buttons'>
+      </section>
+      <section className='commute-info-container'>
+        <h4>Commute Time</h4>
+        <p className='commute-info'>{ commute_time }</p>
+        <h4>Commute Distance</h4> 
+        <p className='commute-info'>{ commute_distance }</p>
+      </section>
+      <section className='buttons-container'>
         <FavoriteButton id={ id } schoolInfo={ props.school } />
         <CompareButton id={ id } schoolInfo={ props.school } />
-      </div>
+      </section>
 
     </div>
   );

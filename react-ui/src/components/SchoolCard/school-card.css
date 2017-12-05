@@ -1,21 +1,49 @@
 .school-card-container {
-  align-items: center;
-  border: 1px solid #505050;
-  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  height: 200px;
-  justify-content: space-around;
+  flex-direction: row;
+  height: auto;
+  justify-content: space-between;
   margin: 15px;
   padding: 5px;
-  width: 150px;
+  width: 500px;
+}
+
+.main-school-info {
+  width: 200px;
 }
 
 .school-name {
-  font-size: .8em;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.commute-info-container {
+
+  font-size: 14px;
+  padding-top: 5px;
+  width: 140px;
+
+}
+
+.commute-info-container h4 {
   margin: 0;
+}
+
+.commute-info {
+  color: rgb(72, 133, 237);
+  font-weight: bolder;
+  margin: 2px;
 }
 
 .fav-commute-data {
   font-size: .75em;
+}
+
+.buttons-container {
+  height: 75px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
