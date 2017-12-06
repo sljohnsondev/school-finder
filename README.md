@@ -26,7 +26,7 @@ Checkout the app [here](https://school-finder-86e85.firebaseapp.com/).
 ## School Finder 2.0 (still being developed)
 ### A webbased application that uses a public API of Colorado school data (see my [CDoE_data_api](https://github.com/sljohnson32/CDoE_data_api) repo for more info) and Google Map APIs to help Denver parents find great schools for their kids based on commute time and distance.
 
-Checkout the live app [here](https://denver-school-finder.herokuapp.com/). Please note this application is still in development.
+Checkout a live version of the app being developed [here](https://denver-school-finder.herokuapp.com/).
 
 ## Installation and Setup Instructions
 
