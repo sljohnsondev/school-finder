@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FavoriteButton from '../../containers/FavoriteButton-container';
 import './searchresults-style.css';
 
 export default class SearchResults extends Component {
@@ -46,7 +45,6 @@ export default class SearchResults extends Component {
           </section>
         </div>
 
-        <FavoriteButton schoolInfo={ schoolData } commuteInfo={ commute } commuteType={ commuteType } userId={ userId } />
       </div>
     );
   }

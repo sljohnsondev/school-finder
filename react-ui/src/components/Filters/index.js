@@ -59,8 +59,6 @@ class Filters extends Component {
 
   homeCallback(homeAddressCoords, streetAddress) {
     this.props.setHomeAddress(homeAddressCoords);
-    this.props.patchUser({ street_address: streetAddress }, this.props.CurrentUser.id);
-    this.props.updateAddress(streetAddress);
   }
   schoolFetchBuilder() {
     let { gradeLevel, schoolType, mathScore, scienceScore, satScore, studentTeacherRatio } = this.state;
