@@ -6,6 +6,7 @@ const mapStateToProps = state => (
   {
     user: state.CurrentUser,
     favorites: state.Favorites,
+    comparedSchools: state.ComparedSchools
   }
 );
 

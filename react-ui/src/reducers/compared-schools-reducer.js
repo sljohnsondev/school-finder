@@ -1,15 +1,16 @@
+// const intialState = {
+//   data: []
+// }
+
 const comparedSchools = (state = [], action) => {
   switch(action.type) {
-
     case 'SELECT_COMPARE':
-      return [...state, action.comparedSchool];
+      console.log('ADD COMPARE ', state)
+      return state.concat(action.comparedSchool);
 
     case 'REMOVE_COMPARE':
-      for (let i = 0; i < state.length; i++) {
-        if (state[i].id === action.schoolId) {
-          return state.filter(school => school.id !== action.schoolId);
-        }
-      };
+      console.log('REMOVE COMPARE ', state)
+      return state.filter(school => school.id !== action.schoolId);
 
 
     default:

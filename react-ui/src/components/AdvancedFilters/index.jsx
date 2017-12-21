@@ -154,9 +154,9 @@ export default class AdvancedFilters extends Component {
         <button className={ hideAdvFilter ? "slide-adv-filter-btn hidden-adv-filter" :
                                             "slide-adv-filter-btn"}
                 onClick={ () => this.toggleAdvancedFilter(tab) }
-                disabled={ !viewFilters || gradeLevel == '' }
+                disabled={ !viewFilters || gradeLevel === '' }
         >{ hideAdvFilter ? '>' : '<' }<p>More Filters</p></button>
-        { tab == 'filters' ?
+        { tab === 'filters' ?
             <div className={ hideAdvFilter ? 'adv-filter-container hidden-adv-filter' : 'adv-filter-container'}>
               <form className='filter-fields'>
                 <article className='filter-item'>

@@ -18,7 +18,7 @@ const SchoolCard = (props) => {
       <section className='commute-info-container'>
         <h4>Commute Time</h4>
         <p className='commute-info'>{ commute_time }</p>
-        <h4>Commute Distance</h4> 
+        <h4>Commute Distance</h4>
         <p className='commute-info'>{ commute_distance }</p>
       </section>
       <section className='buttons-container'>

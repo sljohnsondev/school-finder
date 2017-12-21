@@ -19,7 +19,9 @@ class Compare extends Component {
   constructor() {
     super();
     this.state = {
-      dropDown: 'school_population'
+      dropDown: 'school_population',
+      schoolOne: [],
+      schoolTwo: []
     }
     this.changeDropdown = this.changeDropdown.bind(this)
   }
@@ -28,15 +30,37 @@ class Compare extends Component {
     this.setState({ dropDown: val.value })
   }
 
-  displaySchoolInfo(school) {
-    if (school) {
+  displaySchoolInfo(comparedSchools) {
+    console.log(comparedSchools)
+    if (comparedSchools.length === 2) {
       return (
-        <div className='school-metrics'>
-          <SchoolCard school={ school } />
-          <Chart school={ school } />
+        <div>
+          <div className='school-metrics'>
+            <SchoolCard school={ comparedSchools[0] } />
+            <Chart school={ comparedSchools[0] } />
+          </div>
+          <div className='school-metrics'>
+            <SchoolCard school={ comparedSchools[1] } />
+            <Chart school={ comparedSchools[1] } />
+          </div>
         </div>
       )
-    } else return (<div>Please select a school to compare.</div>)
+    } else if (comparedSchools.length === 1) {
+        return (
+          <div>
+            <div className='school-metrics'>
+              <SchoolCard school={ comparedSchools[0] } />
+              <Chart school={ comparedSchools[0] } />
+            </div>
+            <div>Please select a school to compare.</div>
+          </div>
+        )
+    } else return (
+      <div>
+        <div>Please select a school to compare.</div>
+        <div>Please select a school to compare.</div>
+      </div>
+    )
   }
 
   render() {
@@ -74,8 +98,9 @@ class Compare extends Component {
               onChange={this.changeDropdown}
               closeOnSelect={true}
             />
-            { this.displaySchoolInfo(comparedSchools[0]) }
-            { this.displaySchoolInfo(comparedSchools[1]) }
+
+            { this.displaySchoolInfo(comparedSchools) }
+
           </section>
         </div>
       </div>

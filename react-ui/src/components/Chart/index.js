@@ -14,8 +14,6 @@ class Chart extends Component {
   componentWillMount() {
     let americanIndainAlaskanNative, asian, blackAfricanAmerican, hispanicLatino, multiRacial, nativeHawiaanOrPacificIslander, white, divideBy;
 
-    console.log('CHART PROPS ', this.props)
-
     fetch(`https://cdoe-data-api.herokuapp.com/api/v1/school/${this.props.school.school_id}/population`)
     .then( response => response.json())
     .then( schoolMetric => {

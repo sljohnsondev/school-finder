@@ -10,11 +10,11 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    selectCompare: (school) => {
-      dispatch(selectCompare(school));
+    selectCompare: (comparedSchool) => {
+      dispatch(selectCompare(comparedSchool));
     },
-    removeCompare: (id) => {
-      dispatch(removeCompare(id));
+    removeCompare: (schoolId) => {
+      dispatch(removeCompare(schoolId));
     }
   }
 );

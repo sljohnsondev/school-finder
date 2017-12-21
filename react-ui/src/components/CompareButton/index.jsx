@@ -7,21 +7,40 @@ class compareButton extends Component {
     this.state = {
       isSelected: false
     }
+    this.addSchool = this.addSchool.bind(this);
+    this.removeSchool = this.removeSchool.bind(this);
   }
 
   addSchool(school) {
-    this.setState({ isSelected: true }, () => {
-      this.props.selectCompare(school)
-    })
-    console.log(this.props.comparedSchools)
+    this.props.selectCompare(school);
+    this.setState({ isSelected: true });
   }
 
   removeSchool(id) {
-    this.setState({ isSelected: false }, () => {
-      console.log('remove')
-      this.props.removeCompare(id)
+    this.props.removeCompare(id);
+    this.setState({ isSelected: false });
+  }
+
+  componentWillMount() {
+    let selectedValue = false;
+    this.props.comparedSchools.forEach((e) => {
+      if (e.id === this.props.id) {
+        selectedValue = true;
+      }
     })
-    console.log(this.props.comparedSchools)
+    this.setState({  isSelected: selectedValue })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.comparedSchools !== nextProps.comparedSchools) {
+      let selectedValue = false;
+      nextProps.comparedSchools.forEach((e) => {
+        if (e.id === this.props.id) {
+          selectedValue = true;
+        }
+      })
+      this.setState({  isSelected: selectedValue })
+    }
   }
 
   render () {
@@ -31,7 +50,10 @@ class compareButton extends Component {
       <div>
         {
           this.state.isSelected ?
-          <button className='compare-button selected' onClick={ () => this.removeSchool(id)}>Compare</button>
+          <button
+            className='compare-button selected'
+            onClick={ () => this.removeSchool(id) }
+          >Compare</button>
           :
           <button
             disabled={ this.props.comparedSchools.length >= 2 ? true : false }
