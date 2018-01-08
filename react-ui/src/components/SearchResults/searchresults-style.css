@@ -10,7 +10,7 @@ h4 {
   color: black;
 }
 
-.selected {
+.school-container.selected {
   background: rgba(255, 99, 71, .8);
   border-radius: 2px;
   position: relative;

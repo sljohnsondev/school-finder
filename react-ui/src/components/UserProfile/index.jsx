@@ -18,8 +18,7 @@ export default class UserProfile extends Component {
   }
 
   render() {
-    const { name, email, photo, tab, toggleTab, favorites, user, getPopulation } = this.props;
-    const mappedFavorites = favorites.map((school, i) => <Favorites school={ school } commuteInfo={ null } getPopulation={ getPopulation } key={ i } /> );
+    const { name, email, photo, tab, toggleTab, favorites, user } = this.props;
     let hideProfile = hideComponent(tab, 'profile');
 
     return (
@@ -50,12 +49,7 @@ export default class UserProfile extends Component {
 
           </div>
 
-          <div>
-            <h3 className="your-favorites">Your Favorites</h3>
-            <div className="favorite-schools">
-              { mappedFavorites }
-            </div>
-          </div>
+          <Favorites favorites={favorites} />
 
         </div>
 

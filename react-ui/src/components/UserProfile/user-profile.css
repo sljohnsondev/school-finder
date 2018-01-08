@@ -1,5 +1,4 @@
 .profile-container {
-  align-items: center;
   background: rgba(198, 218, 240, .95);
   border-radius: 8px;
   display: flex;
@@ -8,7 +7,7 @@
   justify-content: space-around;
   margin-right: 12px;
   max-height: 750px;
-  padding: 0 20px 6px 20px;
+  padding: 20px 20px 6px 20px;
   position: fixed;
   right: 0;
   top: 20px;
@@ -122,12 +121,16 @@
   align-items: center;
 }
 
+.favorites-container {
+
+}
+
 .favorite-schools {
   display: flex;
   flex-wrap: wrap;
-  height: 74vh;
+  height: auto;
   overflow-y: scroll;
-  width: 385px;
+  width: 500px;
 }
 
 .your-favorites {

@@ -38,7 +38,7 @@ class favoriteButton extends Component {
     }
 
     return (
-      <div>
+      <div className='favorite-button-container'>
         { this.isFavorite() ?
           <img src={fav} alt='favorite' className='add-favorite' onClick={ () => deleteFavorite(schoolInfo.dps_school_code) } />
           :
