@@ -38,7 +38,7 @@
   font-size: 20px;
   font-weight: bold;
   outline: none;
-  background-color: rgba(255, 99, 71, .8);
+  background-color: rgba(0,200,83, 0.8);
   border: none;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -55,7 +55,7 @@
 }
 
 .slide-filter-btn:hover {
-  background: rgba(255, 99, 71, 1);
+  background: rgba(0,200,83, 1);
 }
 
 .hidden {
@@ -120,15 +120,15 @@ label {
   border-style: none;
   font-size: 20px;
   font-weight: bolder;
-  background: rgba(255, 99, 71, .6);
+  background: rgba(0,200,83,0.9);
 }
 
-.search-btn:disabled:hover {
+.search-btn:disabled {
   background: rgba(255, 99, 71, .6)
 }
 
 .search-btn:hover {
-  background: rgba(255, 99, 71, .9);
+  background: rgba(0,200,83, 0.7)
 }
 
 .results-header-container {
