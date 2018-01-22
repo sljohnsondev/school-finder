@@ -88,16 +88,7 @@ export default class App extends Component {
           <div />
         :
           <SignIn signInHandler={this.props.signInHandler} toggleTab={this.toggleTab} />}
-        <UserProfile
-          name={displayName}
-          email={email}
-          photo={photoURL}
-          userId={uid}
-          tab={this.state.showTab}
-          toggleTab={this.toggleTab}
-        />
         <Filters tab={this.state.showTab} toggleTab={this.toggleTab} />
-        <Compare tab={this.state.showTab} toggleTab={this.toggleTab} />
         <div style={{ width: '100vw', height: '100vh', background: 'peru' }}>
           {this.renderMap()}
         </div>

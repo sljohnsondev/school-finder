@@ -125,7 +125,7 @@ export const getUser = (oId, userInfo) => {
           return dispatch(createUser(userInfo))
         }
       return (
-        dispatch(getUserFavorites(data[0].id)),
+        // dispatch(getUserFavorites(data[0].id)),
         dispatch(storeUser(data))
       );
     })

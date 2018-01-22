@@ -5,6 +5,7 @@ import alias from '../../assets/user.svg';
 import './user-profile.css';
 
 export default class UserProfile extends Component {
+
   componentWillReceiveProps(nextProps) {
     const userInfo = {
       username: nextProps.name,
