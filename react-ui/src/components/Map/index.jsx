@@ -13,8 +13,8 @@ const MyGoogleMap = withGoogleMap(props => (
     center={props.center}
     options={{ streetViewControl: false, myTypeControl: false, fullscreenControl: false }}
   >
-    { props.directions ? <div /> : props.markers }
-    { props.directions === null ? <div /> : <DirectionsRenderer directions={props.directions} /> }
+    { !props.directions && props.markers }
+    { props.directions && <DirectionsRenderer directions={props.directions} /> }
   </GoogleMap>
 ));
 
