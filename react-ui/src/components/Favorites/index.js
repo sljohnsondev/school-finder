@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './favorites.css';
-import SchoolCard from '../../components/SchoolCard/SchoolCard';
+import SchoolCard from '../../components/SchoolCard';
 
-const Favorites = (props) => {
+class Favorites extends Component {
 
-  return (
-    <div className='favorites-container'>
-      <SchoolCard school={ props.school } getPopulation={ props.getPopulation }/>
-    </div>
-  )
+  noFavs() {
+    return (
+      <div>
+        <p>You have not selected any favorite schools</p>
+      </div>
+    )
+  }
+
+  favoriteSchools(favorites) {
+    return favorites.map((school, i) => <SchoolCard school={ school } key={ i } /> )
+  }
+
+  render() {
+
+    const { favorites } = this.props
+
+    return (
+      <div className='favorites-container'>
+        <h3 className="your-favorites">Your Favorite Schools</h3>
+        <div className="favorite-schools">
+          { favorites.length > 0 ? this.favoriteSchools(favorites) : this.noFavs() }
+        </div>
+      </div>
+    )
+  }
 };
 
 export default Favorites;

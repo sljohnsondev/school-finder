@@ -1,0 +1,20 @@
+.compare-button {
+  background-color: rgba(255, 99, 71, .5);
+  border: none;
+  border-radius: 5px;
+  color: #f2f2f2;
+  outline: none;
+  padding: 5px;
+}
+
+.compare-button:hover {
+  background-color: rgba(255, 99, 71, .8);
+}
+
+.compare-button.selected {
+  background-color: rgba(255, 99, 71, .8);
+}
+
+.compare-button.selected:hover {
+  background-color: rgba(255, 99, 71, .5);
+}

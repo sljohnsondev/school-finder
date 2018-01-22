@@ -81,9 +81,14 @@ export const updateAddress = address => {
   }
 }
 
-export const addCompare = schoolPopulation => ({
-  type: 'POPULATION',
-  schoolPopulation
+export const selectCompare = comparedSchool => ({
+  type: 'SELECT_COMPARE',
+  comparedSchool
+});
+
+export const removeCompare = schoolId => ({
+  type: 'REMOVE_COMPARE',
+  schoolId
 });
 
 export const createUser = (userInfo) => {
@@ -162,12 +167,3 @@ export const patchUserAddress = (address, userId, updatedUser) => {
     })
   }
 }
-
-export const getPopulation = schoolId => (
-  dispatch => {
-    fetch(`https://cdoe-data-api.herokuapp.com/api/v1/school/${schoolId}/population`)
-    .then( response => response.json())
-    .then( data => dispatch(addCompare(data)))
-    .catch( error => error);
-  }
-);
