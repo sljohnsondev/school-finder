@@ -109,7 +109,7 @@ class Filters extends Component {
     } else {
       this.props.clearDirections();
       /* eslint-disable no-alert, no-undef */
-      window.setTimeout(this.props.activeSearchToggle, 600);
+      window.setTimeout(this.props.activeSearchToggle, 800);
       /* eslint-enable no-alert, no-undef */
     }
   }
