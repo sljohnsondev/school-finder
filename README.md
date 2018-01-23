@@ -5,7 +5,7 @@ This application began as a self-directed project at the end of Module 3 at [Tur
 
 I originally set out to build a React - Redux web application built on top of a Firebase Database (now replaced with Node BE) and Google Maps APIs that allowed users to quickly and easily search for and get directions to schools within their desired commute parameters for their kids. I am very comfortable with React and Redux and was excited to build a robust application with them that presented data from the internet in a more helpful and productive way for parents.
 
-As a former staff member at Teach For America, I care deeply about making sure all children have the opportunity to attain an excellent education and this project reflects my desire to use my skills as a developer and problem solver to ensure that is a reality.
+As a former staff member at Teach For America, I care deeply about making sure all children have the opportunity to attain an excellent education and this project reflects my desire to use my skills as a developer and problem solver to ensure that becomes a reality one day.
 
 This project has been a great opportunity to continue to hone my skills in React, Redux, and Node while also learning a lot about how to implement Google Maps API services.  As a front-end developer, I was really excited to have the opportunity to build out two backends in Node w/ Express and Knex to feed the FE application with school-based data and to manage profile information.
 
