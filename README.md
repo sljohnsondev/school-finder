@@ -7,7 +7,7 @@ I originally set out to build a React - Redux web application built on top of a 
 
 As a former staff member at Teach For America, I care deeply about making sure all children have the opportunity to attain an excellent education and this project reflects my desire to use my skills as a developer and problem solver to ensure that becomes a reality one day.
 
-This project has been a great opportunity to continue to hone my skills in React, Redux, and Node while also learning a lot about how to implement Google Maps API services.  As a front-end developer, I was really excited to have the opportunity to build out two backends in Node w/ Express and Knex to feed the FE application with school-based data and to manage profile information.
+This project has been a great opportunity to continue to hone my skills in React, Redux, and Node while also learning a lot about how to implement Google Maps API services.  As a software developer who has focused more on front-end technologies, I was really excited to have the opportunity to build out two backends in Node w/ Express and Knex to feed the FE application with school-based data and to manage profile information.
 
 Checkout a live version of the app being developed [here](https://denver-school-finder.herokuapp.com/).
 
