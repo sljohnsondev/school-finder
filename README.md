@@ -13,11 +13,11 @@ Checkout a live version of the app being developed [here](https://denver-school-
 
 ## Project Screen Shot(s)
 
-School search window ![My image](./readme_assets/initial_page.png)
+_School search window_ ![My image](./readme_assets/initial_page.png)
 
-School search results![My image](./readme_assets/school_results.png)
+_School search results_ ![My image](./readme_assets/school_results.png)
 
-Directions displayed after clicking on East High School ![My image](./readme_assets/school_directions.png)
+_Directions displayed after clicking on East High School_ ![My image](./readme_assets/school_directions.png)
 
 ## Additional Development
 _I worked on developing the 2.0 version of this project with two partners as part of our final Turing Capstone Project.  While we were able to make a number of important additions and improvements to the codebase, the list below represents the remaining enhancements I will be working on as time allows (also tracked in the issues section of this repo)_
