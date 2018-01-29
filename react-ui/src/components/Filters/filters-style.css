@@ -89,8 +89,13 @@
 #homeAddress {
   border: none;
   border-radius: 5px;
-  width: 80%;
+  padding-left: 8px;
   height: 20px;
+  width: 80%;
+}
+
+#homeAddress::placeholder {
+  font-style: italic;
 }
 
 select {
