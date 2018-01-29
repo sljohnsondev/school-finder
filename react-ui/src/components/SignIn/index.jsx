@@ -30,7 +30,7 @@ export class SignIn extends Component {
       <div>
         <div className="lock-page" onClick={() => this.setError()} />
         <div className="sign-in-container">
-          <h2>Welcome to School Finder!</h2>
+          <h2>Welcome!</h2>
           <p style={loginError ? this.errorStyle : {}}>
             Please sign-in to the app to
             <br />

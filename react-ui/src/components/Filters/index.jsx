@@ -60,6 +60,7 @@ class Filters extends Component {
   homeCallback(homeAddressCoords, streetAddress) {
     this.props.setHomeAddress(homeAddressCoords);
   }
+
   schoolFetchBuilder() {
     let { gradeLevel, schoolType, mathScore, scienceScore, satScore, studentTeacherRatio } = this.state;
 
@@ -152,6 +153,7 @@ class Filters extends Component {
                   <h4>Home Street Address</h4>
                   <input
                     id="homeAddress"
+                    placeholder="Denver street address..."
                     type="text"
                     value={this.state.homeAddress}
                     onChange={e => this.handleChange(e)}
