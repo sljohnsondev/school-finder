@@ -128,13 +128,14 @@ label {
   background: rgba(0,200,83,0.9);
 }
 
+.search-btn:hover {
+  background: rgba(0,200,83, 0.7)
+}
+
 .search-btn:disabled {
   background: rgba(255, 99, 71, .6)
 }
 
-.search-btn:hover {
-  background: rgba(0,200,83, 0.7)
-}
 
 .results-header-container {
   position: sticky;
