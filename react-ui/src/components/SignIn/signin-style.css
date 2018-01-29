@@ -20,16 +20,17 @@
   background-color: none;
 }
 
-.sign-in-container h2 {
+h2.sign-in-container {
   margin: 20px 0 10px;
 }
 
-.sign-in-container p {
-  height: 50px;
+p.alt-login {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .google-btn-img {
-  margin-bottom: 15px;
   transform: scale(.7);
   width: inherit;
 }
