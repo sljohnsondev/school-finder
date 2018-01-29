@@ -25,9 +25,14 @@ h2.sign-in-container {
 }
 
 p.alt-login {
+  color: dodgerblue;
   font-size: 13px;
-  font-weight: bold;
   margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+p.alt-login:hover {
+  font-weight: bold;
 }
 
 .google-btn-img {
@@ -36,6 +41,6 @@ p.alt-login {
 }
 
 .google-btn-img:hover {
-  transform: scale(.8);
+  transform: scale(.75);
   opacity: .9;
 }

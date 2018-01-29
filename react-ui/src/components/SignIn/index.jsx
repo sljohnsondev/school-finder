@@ -44,7 +44,7 @@ export class SignIn extends Component {
           />
           <p
             className="alt-login"
-            onClick={() => this.props.signInHandler(toggleTab, false)}>I'm just here for a quick visit...</p>
+            onClick={() => this.props.signInHandler(toggleTab, false)}>I'm just here for a quick visit</p>
         </div>
       </div>
     );
