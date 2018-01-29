@@ -40,8 +40,11 @@ export class SignIn extends Component {
             className="google-btn-img"
             alt="Google sign-in link"
             src={require('../../assets/btn_google_signin.png')}
-            onClick={() => this.props.signInHandler(toggleTab)}
+            onClick={() => this.props.signInHandler(toggleTab, true)}
           />
+          <p
+            className="alt-login"
+            onClick={() => this.props.signInHandler(toggleTab, false)}>I'm just here for a quick visit</p>
         </div>
       </div>
     );

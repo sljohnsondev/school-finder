@@ -4,6 +4,8 @@ import App from '../components/App';
 import { signIn } from '../firebase.js';
 import { signInHandler } from '../actions';
 
+const visitor = { user: { uid: "12345", displayName: "Visitor" } };
+
 const mapStateToProps = state => (
   {
     data: state,
@@ -12,11 +14,16 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    signInHandler: (toggleTab) => {
-      signIn().then((user) => {
+    signInHandler: (toggleTab, visitorAuth) => {
+      if (visitorAuth) {
+        signIn().then((user) => {
+          toggleTab('filters');
+          dispatch(signInHandler(user));
+        });
+      } else {
         toggleTab('filters');
-        dispatch(signInHandler(user));
-      });
+        dispatch(signInHandler(visitor));
+      }
     },
   }
 );
